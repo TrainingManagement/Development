@@ -4,6 +4,7 @@ import { SessionService } from '../services/session.service';
 import { EventService } from '../services/event.service';
 import { CacheService } from '../services/cache.service';
 import { ToastService } from '../services/toast.service';
+import { WindowScrolling } from '../components/loading/WindowScrolling';
 
 export class BaseApp {
 
@@ -14,7 +15,7 @@ export class BaseApp {
     cache: CacheService;
     toastService: ToastService;
     loading = false;
-
+    windowScrolling = new WindowScrolling();
     constructor(
         injector: Injector
     ) {
@@ -28,12 +29,14 @@ export class BaseApp {
     presentLoading() {
         console.log('present loading called')
         this.session.loading = true;
+        this.windowScrolling.disable();
         this.dismissLoading();
     }
 
     dismissLoading() {
         setTimeout(() => {
             this.session.loading = false;
+            this.windowScrolling.enable();
         }, 3000)
     }
 

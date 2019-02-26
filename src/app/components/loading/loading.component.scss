@@ -1,11 +1,11 @@
 .loading{
     background-color: #eaecfbcc;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    text-align: center
+    text-align: center;
 }
 
 .loading-circle{

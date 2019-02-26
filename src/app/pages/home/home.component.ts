@@ -12,11 +12,10 @@ export class HomeComponent extends BaseApp implements OnInit {
     private injector: Injector
   ) {
     super(injector);
-    this.presentLoading();
   }
 
   ngOnInit() {
-    this.presentLoading();
+    // this.presentLoading();
     // this.session.eventEmitter.emit('loading')
   }
 
