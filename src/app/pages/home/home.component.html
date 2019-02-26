@@ -1,0 +1,6 @@
+<div class="black-box">
+  <button class="btn btn-primary" (click)="toastService.presentToastInfo('Information')">info</button>
+  <button class="btn btn-primary" (click)="toastService.presentToastDanger('danger')">danger</button>
+  <button class="btn btn-primary" (click)="toastService.presentToastWarning('warn')">warn</button>
+  <button class="btn btn-primary" (click)="session.eventEmitter.emit('loading')">warn</button>
+</div>
