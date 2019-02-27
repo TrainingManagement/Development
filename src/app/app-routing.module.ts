@@ -9,7 +9,7 @@ const routes: Routes = [
 
   {
     path: 'landing', component: LandingComponent, children: [
-      { path: '', redirectTo:'/home', pathMatch: 'full', component: HomeComponent },
+      { path: '',  component: HomeComponent },
       { path: 'faqs', component: FaqComponent }
     ]
   },
