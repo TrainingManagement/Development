@@ -1,18 +1,20 @@
 <nav class="navbar navbar-expand-lg text-white  navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand " >
+    <a class="navbar-brand ">
       <img src="../../../assets/imgs/capco_white.png" alt="Capco" height="50px">
     </a>
     <div class="dropdown show">
-      <a class="btn btn-secondary dropdown-toggle "  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         {{session.user.name | uppercase}}
       </a>
-    
+
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" >My Profile</a>
-        <a class="dropdown-item" >All Courses</a>
+        <a [routerLink]="['/routePath']"   class="dropdown-item">My Profile</a>
+        <a [routerLink]="['/routePath']"   class="dropdown-item">All Courses</a>
+        <a [routerLink]="['/landing/faqs']"   class="dropdown-item">FAQs</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" >Logout</a>
+        <a class="dropdown-item">Logout</a>
       </div>
     </div>
   </div>

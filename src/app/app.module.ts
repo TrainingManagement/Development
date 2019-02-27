@@ -11,6 +11,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { Interceptor } from './services/http-service/interceptor';
+import { LoginComponent } from './pages/login/login.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { Interceptor } from './services/http-service/interceptor';
     HomeHeaderComponent,
     NavBarComponent,
     ToastComponent,
-    LoadingComponent
+    LoadingComponent,
+    LoginComponent,
+    FaqComponent,
+    LandingComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
