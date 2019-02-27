@@ -15,4 +15,8 @@ export class NavBarComponent extends BaseApp implements OnInit {
   ngOnInit() {
   }
 
+  logout(){
+    this.session.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_OUT);
+  }
+
 }

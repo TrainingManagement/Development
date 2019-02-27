@@ -1,5 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { BaseApp } from '../../common/base-app';
+import { UserProfile } from '../../common/models/user-profile';
+import { SecurityQuestions } from '../../common/models/security';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,8 @@ import { BaseApp } from '../../common/base-app';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends BaseApp implements OnInit {
+
+
 
   constructor(
     private injector: Injector
