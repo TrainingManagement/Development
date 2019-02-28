@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SessionService {
 
-  private _userLoggedIn = true;
+  private _userLoggedIn = false;
   private _user = new UserProfile();
 
   private _token: string = '';

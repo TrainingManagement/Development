@@ -27,14 +27,11 @@ export class BaseApp {
         console.log('present loading called')
         this.session.loading = true;
         this.windowScrolling.disable();
-        this.dismissLoading();
     }
 
     dismissLoading() {
-        setTimeout(() => {
-            this.session.loading = false;
-            this.windowScrolling.enable();
-        }, 3000)
+        this.session.loading = false;
+        this.windowScrolling.enable();
     }
 
 }

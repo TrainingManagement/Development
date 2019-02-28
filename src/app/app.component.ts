@@ -9,10 +9,5 @@ import { BaseApp } from './common/base-app';
 export class AppComponent extends BaseApp {
   constructor(private injector: Injector) {
     super(injector);
-    // this.presentLoading();
-    this.session.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN, {
-      name: 'user name',
-      email: 'capco@capco.com'
-    });
   }
 }

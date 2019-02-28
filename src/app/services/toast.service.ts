@@ -30,13 +30,13 @@ export class ToastService {
     this.dismissToast(time);
   }
 
-  dismissToast(time) {
+  private dismissToast(time) {
     setTimeout(() => {
       this.toastObj.isShow = false;
     }, time)
   }
 
-  presentToast(msg, type) {
+  private presentToast(msg, type) {
     this.toastObj.isShow = true;
     this.toastObj.toastMsg = msg;
     this.toastObj.toastType = type;

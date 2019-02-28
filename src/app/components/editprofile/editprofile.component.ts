@@ -12,7 +12,7 @@ import { BaseApp } from '../../common/base-app';
   templateUrl: "./editprofile.component.html",
   styleUrls: ["./editprofile.component.scss"]
 })
-export class EditprofileComponent extends BaseApp implements OnInit {
+export class EditProfileComponent extends BaseApp implements OnInit {
   profileForm: FormGroup;
   submitted = false;
   success = false;
