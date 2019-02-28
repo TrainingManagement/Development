@@ -1,7 +1,6 @@
 import { Injector, EventEmitter } from '@angular/core';
 import * as APP_CONSTANTS from './constants';
 import { SessionService } from '../services/session.service';
-import { EventService } from '../services/event.service';
 import { CacheService } from '../services/cache.service';
 import { ToastService } from '../services/toast.service';
 import { WindowScrolling } from '../components/loading/WindowScrolling';
@@ -9,7 +8,6 @@ import { WindowScrolling } from '../components/loading/WindowScrolling';
 export class BaseApp {
 
     // this will help to share data within 
-    events: EventService;
     session: SessionService;
     CONSTANTS: any;
     cache: CacheService;
@@ -21,7 +19,6 @@ export class BaseApp {
     ) {
         this.CONSTANTS = APP_CONSTANTS;
         this.session = injector.get(SessionService);
-        this.events = injector.get(EventService);
         this.cache = injector.get(CacheService);
         this.toastService = injector.get(ToastService);
     }

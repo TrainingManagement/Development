@@ -32,7 +32,7 @@ export class HomeComponent extends BaseApp implements OnInit {
   }
 
   sumbit(){
-    console.log('called', this.profileForm)
+    console.log('called', this.profileForm);
   }
 
   get firstName(){

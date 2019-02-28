@@ -15,31 +15,33 @@ export class ToastService {
   constructor() { }
 
   presentToastInfo(msg: string, time: number = 3000) {
-    this.toastObj.isShow = true;
-    this.toastObj.toastMsg = msg;
-    this.toastObj.toastType = 'alert-info'
-    setTimeout(() => {
-      this.toastObj.isShow = false;
-    }, time)
+    this.presentToast(msg, 'alert-info');
+    this.dismissToast(time);
   }
 
   presentToastDanger(msg: string, time: number = 3000) {
-    this.toastObj.isShow = true;
-    this.toastObj.toastMsg = msg;
-    this.toastObj.toastType = 'alert-danger'
+    this.presentToast(msg, 'alert-danger');
+    this.dismissToast(time);
+
+  }
+
+  presentToastWarning(msg: string, time: number = 3000) {
+    this.presentToast(msg, 'alert-warning');
+    this.dismissToast(time);
+  }
+
+  dismissToast(time) {
     setTimeout(() => {
       this.toastObj.isShow = false;
     }, time)
   }
 
-  presentToastWarning(msg: string, time: number = 3000) {
+  presentToast(msg, type) {
     this.toastObj.isShow = true;
     this.toastObj.toastMsg = msg;
-    this.toastObj.toastType = 'alert-warning'
-    setTimeout(() => {
-      this.toastObj.isShow = false;
-    }, time)
+    this.toastObj.toastType = type;
   }
+
 
 
 

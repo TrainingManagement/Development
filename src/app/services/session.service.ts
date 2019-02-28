@@ -8,7 +8,7 @@ import { UserProfile } from '../common/models/user-profile';
 })
 export class SessionService {
 
-  userLoggedIn;
+  userLoggedIn= false;
   private _user = new UserProfile();
 
   private _token: string = '';
