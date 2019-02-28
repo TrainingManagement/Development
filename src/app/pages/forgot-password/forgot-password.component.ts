@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {}
 
-  sumbit() {
+  submit() {
     console.log("called", this.forgotPasswordForm);
   }
 
