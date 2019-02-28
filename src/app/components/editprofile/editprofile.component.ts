@@ -1,27 +1,34 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Injector } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormControl
 } from "@angular/forms";
+import { BaseApp } from '../../common/base-app';
 
 @Component({
   selector: "app-editprofile",
   templateUrl: "./editprofile.component.html",
   styleUrls: ["./editprofile.component.scss"]
 })
-export class EditprofileComponent implements OnInit {
+export class EditprofileComponent extends BaseApp implements OnInit {
   profileForm: FormGroup;
   submitted = false;
   success = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    injector:Injector) {
+      super(injector);
     this.profileForm = new FormGroup({
       contact: new FormControl("", [
         Validators.required,
         Validators.max(10000000000),
         Validators.min(1000000000)
+      ]),
+      bio: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(140)
       ])
     });
   }
@@ -30,6 +37,9 @@ export class EditprofileComponent implements OnInit {
 
   get contact() {
     return this.profileForm.controls["contact"];
+  }
+  get bio() {
+    return this.profileForm.controls["bio"];
   }
 
   sumbit() {

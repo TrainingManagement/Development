@@ -17,10 +17,14 @@ export class SessionService {
   loading = false;
   eventEmitter = new EventEmitter();
   constructor(router: Router) {
+    this._user.name = 'Ruby Kurian';
+    this._user.dob = new Date('1994-03-14');
+    this._user.email ='ruby.kurian@capco.com';
+    this._user.skill = 'Front End'
 
     this.eventEmitter.on(APP_CONSTANTS.EVENT_USER_LOGGED_IN, (res) => {
       this._userLoggedIn = true;
-      this._user.name = 'CAPCO user';
+      this._user.name = 'Ruby Kurian';
       this._token = 'sgndskjbnagjks-332jnasfksdjnfb';
       console.log('user logged in ', res);
     })
