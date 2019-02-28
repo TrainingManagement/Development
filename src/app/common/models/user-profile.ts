@@ -4,4 +4,7 @@ export class UserProfile{
     contact:number;
     dob:Date;
     bio:string;
+    isAdmin:boolean;
+    isTrainer:boolean;
+    primarySkill:string;
 }

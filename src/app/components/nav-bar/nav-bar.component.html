@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg text-white  navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand " [routerLink]="['/landing']" >
+    <a class="navbar-brand " [routerLink]="['/landing']">
       <img src="../../../assets/imgs/capco_white.png" alt="Capco" height="50px">
     </a>
     <div class="dropdown show">
@@ -10,9 +10,9 @@
       </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a [routerLink]="['/routePath']"   class="dropdown-item">My Profile</a>
-        <a [routerLink]="['/routePath']"   class="dropdown-item">All Courses</a>
-        <a [routerLink]="['/landing/faqs']"   class="dropdown-item">FAQs</a>
+        <a [routerLink]="['/routePath']" class="dropdown-item">My Profile</a>
+        <a [routerLink]="['/routePath']" class="dropdown-item">All Courses</a>
+        <a [routerLink]="['/landing/faqs']" class="dropdown-item">FAQs</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>

@@ -15,6 +15,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as EventEmitter from 'events'
 import * as APP_CONSTANTS from '../common/constants';
+import { UserProfile } from '../common/models/user-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,7 @@ import * as APP_CONSTANTS from '../common/constants';
 export class SessionService {
 
   userLoggedIn;
-  private _user = {
-    name: 'user name',
-    email: 'capco@capco.com'
-  }
+  private _user = new UserProfile();
 
   private _token: string = '';
 
@@ -20,6 +18,8 @@ export class SessionService {
   constructor() {
 
     this.eventEmitter.on(APP_CONSTANTS.EVENT_USER_LOGGED_IN, (res) => {
+      this._user.isAdmin = false;
+      this._user.name = 'CAPCO user';
       this._token = 'sgndskjbnagjks-332jnasfksdjnfb';
       console.log('user logged in ', res);
     })
@@ -37,7 +37,7 @@ export class SessionService {
     return this._user;
   }
 
-  get token(){
+  get token() {
     return this._token;
   }
 
