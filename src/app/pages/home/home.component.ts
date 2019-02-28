@@ -20,7 +20,7 @@ export class HomeComponent extends BaseApp implements OnInit {
     super(injector);
 
     this.profileForm = new FormGroup({
-      firstName: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      firstName: new FormControl('',[Validators.required, Validators.minLength(3),Validators.maxLength(5)]),
       lastName: new FormControl('',Validators.required),
     });
     
@@ -40,7 +40,7 @@ export class HomeComponent extends BaseApp implements OnInit {
   }
 
   applyClass(control){
-   return control.touched ?  (control.invalid ? 'is-invalid' : 'is-valid' ) : '';
+   return control.touched || control.dirty ?  (control.invalid ? 'is-invalid' : 'is-valid' ) : '';
   }
 
 }

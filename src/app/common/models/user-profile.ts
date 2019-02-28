@@ -6,5 +6,5 @@ export class UserProfile{
     bio:string;
     isAdmin:boolean;
     isTrainer:boolean;
-    primarySkill:string;
+    skill:string;
 }
