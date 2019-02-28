@@ -14,7 +14,7 @@ export class AuthGuardService extends BaseApp implements CanActivate {
   }
 
   canActivate(): boolean {
-    if (!this.session.userLoggedIn) {
+    if (!this.session.isUserLoggedIn) {
       this.toastService.presentToastDanger('Please login first.');
       this.router.navigate(['/']);
       return false;

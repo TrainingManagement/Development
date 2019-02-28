@@ -6,12 +6,16 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AuthGuardService } from './services/guards/auth-guard.service';
 import { LoginComponent } from './pages/login/login.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   {  
-    path: 'landing', component: LandingComponent, children: [
+    path: 'home', component: LandingComponent, children: [
       { path: '', component: HomeComponent },
+      { path: 'my-profile', component: MyProfileComponent },
       { path: 'faqs', component: FaqComponent }
     ],
      canActivate: [AuthGuardService]

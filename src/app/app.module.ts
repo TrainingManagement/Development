@@ -16,6 +16,8 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     FaqComponent,
     LandingComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MyProfileComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

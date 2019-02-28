@@ -1,3 +1,5 @@
+import { SecurityQuestions } from './security';
+
 export class UserProfile{
     name:string;
     email:string;
@@ -7,4 +9,5 @@ export class UserProfile{
     isAdmin:boolean;
     isTrainer:boolean;
     skill:string;
+    security= new SecurityQuestions()
 }
