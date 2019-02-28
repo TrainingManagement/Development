@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { EditprofileComponent } from './components/editprofile/editprofile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     LandingComponent,
     PageNotFoundComponent,
     MyProfileComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,
