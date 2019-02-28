@@ -20,7 +20,7 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +32,14 @@ import { RegisterComponent } from './pages/register/register.component';
     LoadingComponent,
     LoginComponent,
     FaqComponent,
-    RegisterComponent,
+    RegisterFormComponent,
     LandingComponent,
     PageNotFoundComponent,
     MyProfileComponent,
     ForgotPasswordComponent,
     EditprofileComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

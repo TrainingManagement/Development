@@ -10,14 +10,14 @@ import { MyProfileComponent } from "./pages/my-profile/my-profile.component";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
 import { EditprofileComponent } from "./components/editprofile/editprofile.component";
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 const routes: Routes = [
   {
     path: "", component: LoginComponent,
     children: [
       { path: "login", component: LoginFormComponent },
-      { path: "register", component: RegisterComponent }
+      { path: "register", component: RegisterFormComponent }
     ]
   },
   { path: "forgot-password", component: ForgotPasswordComponent },
