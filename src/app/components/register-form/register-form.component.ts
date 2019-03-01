@@ -15,7 +15,7 @@ export class RegisterFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.maxLength(15)]],
-      emailId: ['', [Validators.required, Validators.email, Validators.pattern('^$|^[A-Za-z0-9]+@capco.com')]],
+      emailId: ['', [Validators.required, Validators.email, Validators.pattern('^[A-Za-z]+.[^A-Za-z][^@]+@capco.com')]],
       date: new FormControl(),
       password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,15}')])]
     });
@@ -49,6 +49,25 @@ export class RegisterFormComponent implements OnInit {
   show() {
     this.showPass = !this.showPass;
   }
+
+  formatDate=(date)=>
+  {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+  
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+  
+      return [year, month, day].join('-');
+  }
+  
+    date:Date = new Date();
+    today = this.formatDate(new Date());
+    formattedMinDate=this.date.getFullYear()-18+"/"+this.date.getMonth()+"/"+ this.date.getDate();
+    maxDate = this.formatDate(this.formattedMinDate);
+  
 
 }
 

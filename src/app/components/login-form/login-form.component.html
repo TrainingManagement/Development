@@ -29,7 +29,8 @@
           This field is required.
         </span>
         <span *ngIf="loginForm.controls['password'].errors.pattern">
-          Password should contain min 6 characters and max 15 characters and one Upper Case,lower case and special characters.          
+          Min 6 characters and Max 15 characters,at least one Upper Case,at least one lower case and special
+          characters(! @ # $ % ^ & *).
         </span>
       </div>
       </div>
