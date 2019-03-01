@@ -31,7 +31,7 @@ export class RegisterFormComponent implements OnInit {
 
   submit() {
     console.log('called', this.registerForm);
-    this.router.navigate(['/security'])
+    this.router.navigate(['register/security'])
   }
 
   get fullName() {

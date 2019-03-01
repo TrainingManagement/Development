@@ -74,7 +74,7 @@
 
 
   <div class="form-group">
-    <button [disabled]="loading" type="button" class="btn col-6 btn-dark"  (click)="submit()" routerLinkActive="active">Next</button>
+    <button [disabled]="loading" [disabled]="registerForm.invalid" type="button" class="btn col-6 btn-dark"  (click)="submit()" routerLinkActive="active">Next</button>
     <button class="btn col-6 btn-light" type="button" routerLink="/login" routerLinkActive="active">Cancel</button>
   </div>
 
