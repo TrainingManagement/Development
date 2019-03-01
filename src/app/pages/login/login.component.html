@@ -43,3 +43,21 @@
     <!-- Default form login -->
   
     
+<div class="card ">
+  <div class="d-flex justify-content-center">
+    <img class=" " src="../../../assets/imgs/capco.png" height="50%" alt="Card image cap">
+  </div>
+  <div class="card-header">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']" routerLinkActive="active">Register</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>

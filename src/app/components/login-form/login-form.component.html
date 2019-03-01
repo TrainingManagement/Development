@@ -1,0 +1,43 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="emailId">Email-Id</label>
+      <input formControlName="emailId" class="form-control " [ngClass]="applyClass(emailId)" type="email" id="emailId"
+        placeholder="Enter your Email-Id">
+      <div class="invalid-feedback" *ngIf="emailId.errors">
+        <span *ngIf="loginForm.controls['emailId'].errors.required">
+          This field is required
+        </span>
+        <span *ngIf="loginForm.controls['emailId'].errors.pattern">
+          Invalid email-id.
+        </span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input formControlName="password" class="form-control " [ngClass]="applyClass(password)" type="password" id="password"
+        placeholder="Enter password">
+      <div class="invalid-feedback" *ngIf="password.errors">
+        <span *ngIf="loginForm.controls['password'].errors.required">
+          This field is required.
+        </span>
+        <span *ngIf="loginForm.controls['password'].errors.pattern">
+          Min 6 characters and Max 15 characters,at least one Upper Case,at least one lower case and special characters(!
+          @ # $ % ^ & *)
+        </span>
+      </div>
+    </div>
+  
+  
+    <div class="d-flex justify-content-around">
+      <div>
+        <a [routerLink]="['/forgot-password']" routerLinkActive="router-link-active" >Forgot password?</a>
+      </div>
+    </div>
+  
+    <div class="text-center">
+      <button class="my-4 btn btn-dark col-12" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+    </div>
+  </form>
+  <!-- Default form login -->

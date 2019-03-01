@@ -1,16 +1,12 @@
-import { any } from 'codelyzer/util/function';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {FormBuilder,FormGroup,FormControl,Validators,NgForm} from '@angular/forms';  
-import { first } from 'rxjs/operators';
-
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;

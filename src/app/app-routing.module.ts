@@ -9,9 +9,17 @@ import { LoginComponent } from "./pages/login/login.component";
 import { MyProfileComponent } from "./pages/my-profile/my-profile.component";
 import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
 import { EditprofileComponent } from "./components/editprofile/editprofile.component";
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
+  {
+    path: "", component: LoginComponent,
+    children: [
+      { path: "login", component: LoginFormComponent },
+      { path: "register", component: RegisterFormComponent }
+    ]
+  },
   { path: "forgot-password", component: ForgotPasswordComponent },
   { path: "edit", component: EditprofileComponent },
   {
@@ -24,7 +32,6 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuardService]
   },
-  { path: "pagenot", component: PageNotFoundComponent },
   { path: "**", component: PageNotFoundComponent }
 ];
 
@@ -32,4 +39,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
