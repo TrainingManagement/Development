@@ -23,7 +23,7 @@
         This field is required
       </span>
       <span *ngIf="emailId.errors.pattern">
-        Invalid email-id.
+        Email should contain Firstname.Lastname@capco.com
       </span>
     </div>
   </div>
@@ -48,7 +48,7 @@
         </span>
         <span *ngIf="password.errors.pattern">
           Min 6 characters and Max 15 characters,at least one Upper Case,at least one lower case and special
-          characters(! @ # $ % ^ & *)
+          characters(! @ # $ % ^ & *).
         </span>
       </div>
     </div>
@@ -68,8 +68,8 @@
 
 
   <div class="form-group">
-    <button [disabled]="loading" class="btn col-6 btn-dark" routerLink="/security">Next</button>
-    <button class="btn col-6 btn-light" routerLink="/login">Cancel</button>
+    <button [disabled]="loading" class="btn col-6 btn-dark" [disabled]="registerForm.invalid" routerLink="/security" routerLinkActive="active">Next</button>
+    <button class="btn col-6 btn-light" routerLink="/login" routerLinkActive="active">Cancel</button>
   </div>
 
 </form>
