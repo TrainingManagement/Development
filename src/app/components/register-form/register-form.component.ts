@@ -69,5 +69,8 @@ export class RegisterFormComponent implements OnInit {
     maxDate = this.formatDate(this.formattedMinDate);
   
 
+    
+
+    
 }
 
