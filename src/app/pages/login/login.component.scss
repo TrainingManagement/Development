@@ -1,22 +1,22 @@
-img{
-    width: 50%;
+img {
+  width: 50%;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: gray;
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: grey;
 }
 
-a{
-    color:gray
+a {
+  color: gray;
 }
 
-.card
-{
-    width:500px;
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
-    padding:15px;
-    margin-top:30px;
+.card {
+  width: 500px;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  padding: 15px;
+  margin-top: 30px;
 }
