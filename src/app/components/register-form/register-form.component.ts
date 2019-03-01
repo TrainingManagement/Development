@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -12,11 +13,13 @@ export class RegisterFormComponent implements OnInit {
   submitted = false;
   showPass = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private router:Router) {
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.maxLength(15)]],
       emailId: ['', [Validators.required, Validators.email, Validators.pattern('^[A-Za-z]+.[^A-Za-z][^@]+@capco.com')]],
-      date: new FormControl(),
+      dob: new FormControl(new Date().toISOString().slice(0,10), Validators.required),
+      skill: new FormControl('Frontend'),
       password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,15}')])]
     });
   }
@@ -26,20 +29,25 @@ export class RegisterFormComponent implements OnInit {
   }
 
 
-  onSubmit() {
-    console.log('called', this.registerForm)
+  submit() {
+    console.log('called', this.registerForm);
+    this.router.navigate(['/security'])
   }
 
   get fullName() {
-    return this.registerForm.controls['fullName']
+    return this.registerForm.controls['fullName'];
   }
 
   get emailId() {
-    return this.registerForm.controls['emailId']
+    return this.registerForm.controls['emailId'];
   }
 
   get password() {
-    return this.registerForm.controls['password']
+    return this.registerForm.controls['password'];
+  }
+
+  get dob(){
+    return this.registerForm.controls['dob'];
   }
 
   applyClass(control) {
