@@ -5,7 +5,7 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { BaseApp } from '../../common/base-app';
+import { BaseApp } from "../../common/base-app";
 
 @Component({
   selector: "app-editProfile",
@@ -17,9 +17,8 @@ export class EditProfileComponent extends BaseApp implements OnInit {
   submitted = false;
   success = false;
 
-  constructor(private formBuilder: FormBuilder,
-    injector:Injector) {
-      super(injector);
+  constructor(private formBuilder: FormBuilder, injector: Injector) {
+    super(injector);
     this.profileForm = new FormGroup({
       contact: new FormControl("", [
         Validators.required,
@@ -27,7 +26,7 @@ export class EditProfileComponent extends BaseApp implements OnInit {
         Validators.min(1000000000)
       ]),
       bio: new FormControl("", [
-        Validators.required,
+        // Validators.required,
         Validators.maxLength(140)
       ])
     });

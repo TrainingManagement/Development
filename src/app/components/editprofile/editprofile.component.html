@@ -4,23 +4,24 @@
     <form [formGroup]="profileForm" (ngSubmit)="sumbit()">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" class="form-control" [value]="session.user.email" readonly />
+        <input type="text" id="email" class="form-control" [value]="session.user.email" readonly />
       </div>
       <div class="form-group">
         <label for="fullname">Full Name</label>
-        <input type="text" class="form-control" [value]="session.user.name" readonly />
+        <input type="text" id="fullname" class="form-control" [value]="session.user.name" readonly />
       </div>
       <div class="form-group">
         <label for="skills">Skills</label>
-        <input type="text" class="form-control" [value]="session.user.skill" readonly />
+        <input type="text" id="skills" class="form-control" [value]="session.user.skill" readonly />
       </div>
       <div class="form-group">
         <label for="dob">Date Of Birth</label>
-        <input type="date" class="form-control" [value]="session.user.dob.toISOString().slice(0,10)" readonly />
+        <input type="date" id="dob" class="form-control" [value]="session.user.dob.toISOString().slice(0,10)" readonly />
       </div>
       <div class="form-group">
         <label for="contact">Contact</label>
-        <input type="number" formControlName="contact" class="form-control" [ngClass]="applyClass(contact)" placeholder="Enter Your Mobile Number" />
+        <input type="number" id="contact" formControlName="contact" class="form-control" [ngClass]="applyClass(contact)" placeholder="Enter Your Mobile Number"
+        />
         <div class="invalid-feedback" *ngIf="contact.errors">
           <span *ngIf="contact.errors.required">
             This field is required
@@ -35,8 +36,7 @@
       </div>
       <div class="form-group">
         <label for="bio">Bio</label>
-        <textarea class="form-control" [ngClass]="applyClass(bio)" formControlName="bio" id="bio" cols="63" rows="2"
-          placeholder="Short Description"></textarea>
+        <textarea class="form-control" id="bio" [ngClass]="applyClass(bio)" formControlName="bio" id="bio" cols="63" rows="2" placeholder="Short Description"></textarea>
         <div class="invalid-feedback" *ngIf="bio.errors">
           <span *ngIf="bio.errors.maxlength">
             max 140 characters required
@@ -44,8 +44,8 @@
         </div>
       </div>
       <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary" [disabled]="profileForm.invalid">Update</button>
-        <a [routerLink]="['/login']" class="btn btn-danger">Cancel</a>
+        <button class="btn btn-primary" [disabled]="profileForm.invalid">Update</button>
+        <button class="btn btn-danger">Cancel</button>
       </div>
     </form>
   </div>
