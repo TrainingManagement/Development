@@ -8,9 +8,9 @@ import {
 import { BaseApp } from '../../common/base-app';
 
 @Component({
-  selector: "app-editprofile",
-  templateUrl: "./editprofile.component.html",
-  styleUrls: ["./editprofile.component.scss"]
+  selector: "app-editProfile",
+  templateUrl: "./editProfile.component.html",
+  styleUrls: ["./editProfile.component.scss"]
 })
 export class EditProfileComponent extends BaseApp implements OnInit {
   profileForm: FormGroup;
