@@ -23,7 +23,7 @@
               This field is required
           </span>           
              <span *ngIf="registerForm.controls['emailId'].errors.pattern">
-                Invalid email-id.
+              Email should contain Firstname.Lastname@capco.com
             </span>          
         </div>
       </div>
@@ -35,15 +35,22 @@
   
     <div class="form-group">
         <label for="password">Password</label>
-        <input formControlName="password" class="form-control " [ngClass]="applyClass(password)" type="password" id="password"
+        <div class="input-group">
+        <input formControlName="password" class="form-control " [ngClass]="applyClass(password)" [type]="!showPass ? 'password' : 'text'" id="password"
           placeholder="Enter password">
+          <div class="input-group-append" (click)="show()">
+            <div class="input-group-text">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+          </div>
         <div class="invalid-feedback" *ngIf="password.errors">
           <span *ngIf="registerForm.controls['password'].errors.required">
               This field is required.
           </span>
           <span *ngIf="registerForm.controls['password'].errors.pattern">
-            Min 6 characters and Max 15 characters,at least one Upper Case,at least one lower case and special characters(! @ # $ % ^ & *)
+            Password should contain min 6 characters and max 15 characters and one Upper Case,lower case and special characters.
           </span>          
+        </div>
         </div>
       </div>   
   

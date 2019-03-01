@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  showPass: boolean = false;
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -37,6 +38,10 @@ export class LoginFormComponent implements OnInit {
 
   applyClass(control) {
     return control.touched ? (control.invalid ? 'is-invalid' : 'is-valid') : '';
+  }
+
+  show() {
+    this.showPass = !this.showPass;
   }
 
 }

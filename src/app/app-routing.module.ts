@@ -11,13 +11,16 @@ import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password
 import { EditprofileComponent } from "./components/editprofile/editprofile.component";
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { SecurityComponent } from './components/security/security.component';
 
 const routes: Routes = [
   {
     path: "", component: LoginComponent,
     children: [
+      { path: "", component: LoginFormComponent },
       { path: "login", component: LoginFormComponent },
-      { path: "register", component: RegisterFormComponent }
+      { path: "register", component: RegisterFormComponent },
+      { path: "security", component: SecurityComponent }
     ]
   },
   { path: "forgot-password", component: ForgotPasswordComponent },

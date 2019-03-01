@@ -21,6 +21,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { SecurityComponent } from './components/security/security.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     ForgotPasswordComponent,
     EditprofileComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    SecurityComponent
   ],
   imports: [
     BrowserModule,
