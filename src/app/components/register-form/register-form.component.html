@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerForm">
 
   <div class="form-group">
     <label for="fullName">Name</label>
@@ -30,8 +30,12 @@
 
   <div class="form-group">
     <label for="dob">What is your Date of birth?</label>
-    <!-- <input type="date" class="form-control" min="{{minDate}}" max="{{today}}"> -->
-    <input type="date" class="form-control" max="{{maxDate}}">
+    <input formControlName="dob" type="date" class="form-control" [ngClass]="applyClass(dob)" max="{{maxDate}}">
+    <div class="invalid-feedback" *ngIf="dob.errors">
+        <span *ngIf="dob.errors.required">
+          This field is required
+        </span>
+      </div>
   </div>
   
   <div class="form-group">
@@ -58,19 +62,19 @@
 
   <div class="form-group">
     <label for="skills">Skill Set</label>
-    <select class="form-control" id="skills">
-      <option>Frontend</option>
-      <option>Backend</option>
-      <option>Business Analyst</option>
-      <option>Data Analyst</option>
-      <option>Dev Ops</option>
-      <option>Testing</option>
+    <select formControlName="skill" class="form-control" id="skills">
+      <option value="Frontend" >Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Business Analyst" selected>Business Analyst</option>
+      <option value="Data Analyst">Data Analyst</option>
+      <option value="Dev Ops">Dev Ops</option>
+      <option value="Testing">Testing</option>
     </select>
   </div>
 
 
   <div class="form-group">
-    <button [disabled]="loading" type="button" class="btn col-6 btn-dark" [disabled]="registerForm.invalid" routerLink="/security" routerLinkActive="active">Next</button>
+    <button [disabled]="loading" [disabled]="registerForm.invalid" type="button" class="btn col-6 btn-dark"  (click)="submit()" routerLinkActive="active">Next</button>
     <button class="btn col-6 btn-light" type="button" routerLink="/login" routerLinkActive="active">Cancel</button>
   </div>
 
