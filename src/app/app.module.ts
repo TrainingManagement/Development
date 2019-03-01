@@ -18,7 +18,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { EditprofileComponent } from './components/editprofile/editprofile.component';
+import { EditProfileComponent } from './components/editProfile/editProfile.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { SecurityComponent } from './components/security/security.component';
@@ -39,7 +39,7 @@ import { SecurityComponent } from './components/security/security.component';
     PageNotFoundComponent,
     MyProfileComponent,
     ForgotPasswordComponent,
-    EditprofileComponent,
+    EditProfileComponent,
     LoginFormComponent,
     RegisterFormComponent,
     SecurityComponent

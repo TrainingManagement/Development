@@ -1,80 +1,75 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >     
-  
-    <div class="form-group">
-        <label for="firstName">Name</label>
-        <input formControlName="firstName" class="form-control " [ngClass]="applyClass(firstName)" type="text" id="firstName"
-          placeholder="first name">
-        <div class="invalid-feedback" *ngIf="firstName.errors">
-          <span *ngIf="registerForm.controls['firstName'].errors.required">
-              This field is required
-          </span>
-          <span *ngIf="registerForm.controls['firstName'].errors.maxlength">
-              Minimum of 10 characters.
-          </span>
-        </div>
-      </div>      
-  
-      <div class="form-group">
-        <label for="emailId">Email-Id</label>
-        <input formControlName="emailId" class="form-control " [ngClass]="applyClass(emailId)" type="email" id="emailId"
-          placeholder="Enter your Email-Id">
-        <div class="invalid-feedback" *ngIf="emailId.errors">
-          <span *ngIf="registerForm.controls['emailId'].errors.required">
-              This field is required
-          </span>           
-             <span *ngIf="registerForm.controls['emailId'].errors.pattern">
-              Email should contain Firstname.Lastname@capco.com
-            </span>          
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="fullName">Name</label>
+    <input formControlName="fullName" class="form-control " [ngClass]="applyClass(fullName)" type="text" id="fullName"
+      placeholder="Full Name">
+    <div class="invalid-feedback" *ngIf="fullName.errors">
+      <span *ngIf="fullName.errors.required">
+        This field is required
+      </span>
+      <span *ngIf="fullName.errors.maxlength">
+        Minimum of 10 characters.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="emailId">Email-Id</label>
+    <input formControlName="emailId" class="form-control " [ngClass]="applyClass(emailId)" type="email" id="emailId"
+      placeholder="Enter your Email-Id">
+    <div class="invalid-feedback" *ngIf="emailId.errors">
+      <span *ngIf="emailId.errors.required">
+        This field is required
+      </span>
+      <span *ngIf="emailId.errors.pattern">
+        Invalid email-id.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="dob">What is your Date of birth?</label>
+    <input type="date" class="form-control" min="{{minDate}}" max="{{today}}">
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <div class="input-group">
+      <input id="password" formControlName="password" [type]="!showPass ? 'password' : 'text'" class="form-control"
+        [ngClass]="applyClass(password)" required />
+      <div class="input-group-append" (click)="show()">
+        <div class="input-group-text">
+          <i class="fa fa-eye" aria-hidden="true"></i>
         </div>
       </div>
-    
-    <div class="form-group">
-        <label for="dob">What is your Date of birth?</label>
-        <input type="date" class="form-control" min="{{minDate}}" max="{{today}}">
-    </div>
-  
-    <div class="form-group">
-        <label for="password">Password</label>
-        <div class="input-group">
-        <input formControlName="password" class="form-control " [ngClass]="applyClass(password)" [type]="!showPass ? 'password' : 'text'" id="password"
-          placeholder="Enter password">
-          <div class="input-group-append" (click)="show()">
-            <div class="input-group-text">
-              <i class="fa fa-eye" aria-hidden="true"></i>
-            </div>
-          </div>
-        <div class="invalid-feedback" *ngIf="password.errors">
-          <span *ngIf="registerForm.controls['password'].errors.required">
-              This field is required.
-          </span>
-          <span *ngIf="registerForm.controls['password'].errors.pattern">
-            Password should contain min 6 characters and max 15 characters and one Upper Case,lower case and special characters.
-          </span>          
-        </div>
-        </div>
-      </div>   
-  
-      <div class="form-group">
-        <label for="skills">Skill Set</label>
-        <select class="form-control" id="skills">
-          <option>Frontend</option>
-          <option>Backend</option>
-          <option>Business Analyst</option>
-          <option>Data Analyst</option>
-          <option>Dev Ops</option>
-          <option>Testing</option>          
-        </select>
+      <div class="invalid-feedback" *ngIf="password.errors">
+        <span *ngIf="password.errors.required">
+          This field is required
+        </span>
+        <span *ngIf="password.errors.pattern">
+          Min 6 characters and Max 15 characters,at least one Upper Case,at least one lower case and special
+          characters(! @ # $ % ^ & *)
+        </span>
       </div>
-  
-    
-    <div class="form-group">
-        <button [disabled]="loading" class="btn col-6 btn-dark"  routerLink="/security" >Next</button>
-        <button class="btn col-6 btn-light" routerLink="/login">Cancel</button>
     </div>
-  
-  </form>
-  
-  
-  
-  
-  
+  </div>
+
+  <div class="form-group">
+    <label for="skills">Skill Set</label>
+    <select class="form-control" id="skills">
+      <option>Frontend</option>
+      <option>Backend</option>
+      <option>Business Analyst</option>
+      <option>Data Analyst</option>
+      <option>Dev Ops</option>
+      <option>Testing</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn col-6 btn-dark" routerLink="/security">Next</button>
+    <button class="btn col-6 btn-light" routerLink="/login">Cancel</button>
+  </div>
+
+</form>
