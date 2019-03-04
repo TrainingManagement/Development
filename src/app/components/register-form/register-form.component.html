@@ -1,16 +1,42 @@
 <form [formGroup]="registerForm">
 
   <div class="form-group">
-    <label for="fullName">Name</label>
-    <input formControlName="fullName" class="form-control " [ngClass]="applyClass(fullName)" type="text" id="fullName"
-      placeholder="Full Name">
-    <div class="invalid-feedback" *ngIf="fullName.errors">
-      <span *ngIf="fullName.errors.required">
+    <label for="firstName">First Name</label>
+    <input formControlName="firstName" class="form-control " [ngClass]="applyClass(firstName)" type="text" id="firstName"
+      placeholder="First Name">
+    <div class="invalid-feedback" *ngIf="firstName.errors">
+      <span *ngIf="firstName.errors.required">
         This field is required
       </span>
-      <span *ngIf="fullName.errors.maxlength">
-        Minimum of 10 characters.
+      <span *ngIf="firstName.errors.maxlength && firstName.errors.pattern">
+        Minimum of 50 characters.
       </span>
+      <span *ngIf="firstName.errors.pattern">
+        Only characters are allowed.
+      </span>
+      <span *ngIf="firstName.errors.cannotContainSpace">
+       {{firstName.errors.cannotContainSpace}}
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input formControlName="lastName" class="form-control " [ngClass]="applyClass(lastName)" type="text" id="lastName"
+      placeholder="Last Name">
+    <div class="invalid-feedback" *ngIf="lastName.errors">
+      <span *ngIf="lastName.errors.required">
+        This field is required
+      </span>
+      <span *ngIf="lastName.errors.maxlength">
+        Minimum of 50 characters.
+      </span>
+      <span *ngIf="lastName.errors.pattern">
+        Only characters are allowed.
+      </span>
+      <span *ngIf="lastName.errors.cannotContainSpace">
+        {{lastName.errors.cannotContainSpace}}
+       </span>
     </div>
   </div>
 
@@ -23,7 +49,7 @@
         This field is required
       </span>
       <span *ngIf="emailId.errors.pattern">
-        Email should contain Firstname.Lastname@capco.com
+        Please enter Capco email address.
       </span>
     </div>
   </div>

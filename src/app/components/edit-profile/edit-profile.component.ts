@@ -9,7 +9,6 @@ import { BaseApp } from '../../common/base-app';
 })
 export class EditProfileComponent extends BaseApp implements OnInit {
   profileForm: FormGroup;
-  submitted = false;
   success = false;
 
   constructor(private formBuilder: FormBuilder, injector: Injector) {
