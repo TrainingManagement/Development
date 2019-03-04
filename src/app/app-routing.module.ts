@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import * as ROUTE_CONSTANTS from './common/constants/routing-constants';
 import { HomeComponent } from "./pages/home/home.component";
 import { FaqComponent } from "./pages/faq/faq.component";
 import { LandingComponent } from "./pages/landing/landing.component";
@@ -18,29 +19,27 @@ const routes: Routes = [
     path: "", component: LoginComponent,
     children: [
       { path: '', redirectTo: '/login', pathMatch: 'full' },
-      { path: "login", component: LoginFormComponent },
-      { path: "register", component: RegisterFormComponent },
-      { path: "register/security", component: SecurityComponent }
+      { path: ROUTE_CONSTANTS.LOGIN_ROUTE, component: LoginFormComponent },
+      { path: ROUTE_CONSTANTS.REGISTER_ROUTE, component: RegisterFormComponent },
+      { path: ROUTE_CONSTANTS.SECURITY_ROUTE, component: SecurityComponent }
     ]
   },
-  
-  { path: "forgot-password", component: ForgotPasswordComponent },
-  
-  { path: "edit", component: EditProfileComponent },
-  
+
+  { path: ROUTE_CONSTANTS.FORGOT_PASS_ROUTE, component: ForgotPasswordComponent },
+
   {
-    path: "home",
+    path: ROUTE_CONSTANTS.HOME_ROUTE,
     component: LandingComponent,
     children: [
       { path: "", component: HomeComponent },
-      { path: "my-profile", component: MyProfileComponent },
-      { path: "faqs", component: FaqComponent }
+      { path: ROUTE_CONSTANTS.PROFILE_ROUTE, component: MyProfileComponent },
+      { path: ROUTE_CONSTANTS.FAQ_ROUTE, component: FaqComponent }
     ],
     canActivate: [AuthGuardService]
   },
 
   { path: "**", component: PageNotFoundComponent }
-  
+
 ];
 
 @NgModule({

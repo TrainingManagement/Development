@@ -35,7 +35,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     setTimeout(() => {
       this.dismissLoading();
       this.session.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/'+this.ROUTE_CONSTANTS.HOME_ROUTE]);
       this.toastService.presentToastInfo('Successfully Logged In');
     }, 2000);
 
