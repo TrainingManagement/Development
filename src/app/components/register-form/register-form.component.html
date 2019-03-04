@@ -13,6 +13,8 @@
       </span>
       <span *ngIf="firstName.errors.pattern">
         Only characters are allowed.
+      <span *ngIf="firstName.errors.cannotContainSpace">
+       {{firstName.errors.cannotContainSpace}}
       </span>
     </div>
   </div>
@@ -31,6 +33,9 @@
       <span *ngIf="lastName.errors.pattern">
         Only characters are allowed.
       </span>
+      <span *ngIf="lastName.errors.cannotContainSpace">
+        {{lastName.errors.cannotContainSpace}}
+       </span>
     </div>
   </div>
 

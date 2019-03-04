@@ -1,5 +1,5 @@
 import { Injector, EventEmitter } from '@angular/core';
-import * as APP_CONSTANTS from './constants';
+import * as APP_CONSTANTS from './constants/constants';
 import { SessionService } from '../services/session.service';
 import { CacheService } from '../services/cache.service';
 import { ToastService } from '../services/toast.service';
