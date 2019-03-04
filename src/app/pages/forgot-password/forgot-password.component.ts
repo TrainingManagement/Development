@@ -28,7 +28,10 @@ export class ForgotPasswordComponent implements OnInit {
         Validators.pattern("^[A-Za-z]+.[^A-Za-z][^@]+@capco.com")
       ]),
       selectQuestion: new FormControl("", [Validators.required]),
-      answer: new FormControl("", [Validators.required]),
+      answer: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(50)
+      ]),
       password: new FormControl("", [
         Validators.required,
         Validators.min(6),

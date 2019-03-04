@@ -1,9 +1,14 @@
 <form [formGroup]="registerForm">
-
   <div class="form-group">
     <label for="firstName">First Name</label>
-    <input formControlName="firstName" class="form-control " [ngClass]="applyClass(firstName)" type="text" id="firstName"
-      placeholder="First Name">
+    <input
+      formControlName="firstName"
+      class="form-control "
+      [ngClass]="applyClass(firstName)"
+      type="text"
+      id="firstName"
+      placeholder="First Name"
+    />
     <div class="invalid-feedback" *ngIf="firstName.errors">
       <span *ngIf="firstName.errors.required">
         This field is required
@@ -15,15 +20,21 @@
         Only characters are allowed.
       </span>
       <span *ngIf="firstName.errors.cannotContainSpace">
-       {{firstName.errors.cannotContainSpace}}
+        {{ firstName.errors.cannotContainSpace }}
       </span>
     </div>
   </div>
 
   <div class="form-group">
     <label for="lastName">Last Name</label>
-    <input formControlName="lastName" class="form-control " [ngClass]="applyClass(lastName)" type="text" id="lastName"
-      placeholder="Last Name">
+    <input
+      formControlName="lastName"
+      class="form-control "
+      [ngClass]="applyClass(lastName)"
+      type="text"
+      id="lastName"
+      placeholder="Last Name"
+    />
     <div class="invalid-feedback" *ngIf="lastName.errors">
       <span *ngIf="lastName.errors.required">
         This field is required
@@ -35,15 +46,21 @@
         Only characters are allowed.
       </span>
       <span *ngIf="lastName.errors.cannotContainSpace">
-        {{lastName.errors.cannotContainSpace}}
-       </span>
+        {{ lastName.errors.cannotContainSpace }}
+      </span>
     </div>
   </div>
 
   <div class="form-group">
     <label for="emailId">Email-Id</label>
-    <input formControlName="emailId" class="form-control " [ngClass]="applyClass(emailId)" type="email" id="emailId"
-      placeholder="Enter your Email-Id">
+    <input
+      formControlName="emailId"
+      class="form-control "
+      [ngClass]="applyClass(emailId)"
+      type="email"
+      id="emailId"
+      placeholder="Enter your Email-Id"
+    />
     <div class="invalid-feedback" *ngIf="emailId.errors">
       <span *ngIf="emailId.errors.required">
         This field is required
@@ -56,19 +73,31 @@
 
   <div class="form-group">
     <label for="dob">What is your Date of birth?</label>
-    <input formControlName="dob" type="date" class="form-control" [ngClass]="applyClass(dob)" max="{{maxDate}}">
+    <input
+      formControlName="dob"
+      type="date"
+      class="form-control"
+      [ngClass]="applyClass(dob)"
+      max="{{ maxDate }}"
+    />
     <div class="invalid-feedback" *ngIf="dob.errors">
-        <span *ngIf="dob.errors.required">
-          This field is required
-        </span>
-      </div>
+      <span *ngIf="dob.errors.required">
+        This field is required
+      </span>
+    </div>
   </div>
-  
+
   <div class="form-group">
     <label for="password">Password:</label>
     <div class="input-group">
-      <input id="password" formControlName="password" [type]="!showPass ? 'password' : 'text'" class="form-control"
-        [ngClass]="applyClass(password)" required />
+      <input
+        id="password"
+        formControlName="password"
+        [type]="!showPass ? 'password' : 'text'"
+        class="form-control"
+        [ngClass]="applyClass(password)"
+        required
+      />
       <div class="input-group-append" (click)="show()">
         <div class="input-group-text">
           <i class="fa fa-eye" aria-hidden="true"></i>
@@ -79,8 +108,8 @@
           This field is required
         </span>
         <span *ngIf="password.errors.pattern">
-          Min 6 characters and Max 15 characters,at least one Upper Case,at least one lower case and special
-          characters(! @ # $ % ^ & *).
+          Min 6 characters and Max 15 characters,at least one Upper Case,at
+          least one lower case and special characters(! @ # $ % ^ & *).
         </span>
       </div>
     </div>
@@ -89,7 +118,7 @@
   <div class="form-group">
     <label for="skills">Skill Set</label>
     <select formControlName="skill" class="form-control" id="skills">
-      <option value="Frontend" >Frontend</option>
+      <option value="Frontend">Frontend</option>
       <option value="Backend">Backend</option>
       <option value="Business Analyst" selected>Business Analyst</option>
       <option value="Data Analyst">Data Analyst</option>
@@ -98,10 +127,23 @@
     </select>
   </div>
 
-
   <div class="form-group">
-    <button type="button" class="btn col-6 btn-dark shadow" [disabled]="registerForm.invalid" (click)="submit()" routerLinkActive="active">Next</button>
-    <button class="btn col-6 btn-light shadow" type="button" routerLink="/login" routerLinkActive="active">Cancel</button>
+    <button
+      type="button"
+      class="btn col-6 btn-dark shadow"
+      [disabled]="registerForm.invalid"
+      (click)="submit()"
+      routerLinkActive="active"
+    >
+      Next
+    </button>
+    <button
+      class="btn col-6 btn-light shadow"
+      type="button"
+      routerLink="/login"
+      routerLinkActive="active"
+    >
+      Cancel
+    </button>
   </div>
-
 </form>
