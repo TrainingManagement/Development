@@ -9,17 +9,27 @@ import { Router } from '@angular/router';
 })
 export class RegisterFormComponent implements OnInit {
   registerForm: FormGroup;
-  loading = false;
   submitted = false;
   showPass = false;
 
+  date:Date = new Date();
+  formattedMinDate=this.date.getFullYear()-18+"/"+this.date.getMonth()+"/"+ this.date.getDate();
+  today;
+  maxDate;
+ 
+
+  
+
   constructor(private formBuilder: FormBuilder,
     private router:Router) {
+      this.today = this.formatDate(new Date());
+      this.maxDate = this.formatDate(this.formattedMinDate);
+      
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
       emailId: ['', [Validators.required, Validators.email, Validators.pattern('^[A-Za-z]+.[^A-Za-z][^@]+@capco.com')]],
-      dob: new FormControl(new Date().toISOString().slice(0,10), Validators.required),
+      dob: new FormControl(this.maxDate, Validators.required),
       skill: new FormControl('Frontend'),
       password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,15}')])]
     });
@@ -76,14 +86,7 @@ export class RegisterFormComponent implements OnInit {
       return [year, month, day].join('-');
   }
   
-    date:Date = new Date();
-    today = this.formatDate(new Date());
-    formattedMinDate=this.date.getFullYear()-18+"/"+this.date.getMonth()+"/"+ this.date.getDate();
-    maxDate = this.formatDate(this.formattedMinDate);
-  
+ 
 
-    
-
-    
 }
 
