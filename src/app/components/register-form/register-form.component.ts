@@ -16,7 +16,8 @@ export class RegisterFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router:Router) {
     this.registerForm = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.maxLength(15)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.maxLength(50)]],
       emailId: ['', [Validators.required, Validators.email, Validators.pattern('^[A-Za-z]+.[^A-Za-z][^@]+@capco.com')]],
       dob: new FormControl(new Date().toISOString().slice(0,10), Validators.required),
       skill: new FormControl('Frontend'),
@@ -34,8 +35,12 @@ export class RegisterFormComponent implements OnInit {
     this.router.navigate(['register/security'])
   }
 
-  get fullName() {
-    return this.registerForm.controls['fullName'];
+  get firstName() {
+    return this.registerForm.controls['firstName'];
+  }
+
+  get lastName() {
+    return this.registerForm.controls['lastName'];
   }
 
   get emailId() {
