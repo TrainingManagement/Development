@@ -14,8 +14,8 @@ export class SecurityComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { 
     this.securityForm = this.formBuilder.group({
-      companyName: ['', Validators.required],
-      maidenName: ['', Validators.required],
+      companyName: ['', [Validators.required, Validators.maxLength(50)]],
+      maidenName: ['', [Validators.required, Validators.maxLength(50)]],
     });
   }
 

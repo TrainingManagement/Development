@@ -8,6 +8,9 @@
       <span *ngIf="companyName.errors.required">
         This field is required
       </span>      
+      <span *ngIf="companyName.errors.maxlength">
+        Only 50 characters are allowed.
+      </span> 
     </div>
   </div>
 
@@ -18,6 +21,9 @@
     <div class="invalid-feedback" *ngIf="maidenName.errors">
       <span *ngIf="maidenName.errors.required">
         This field is required
+      </span> 
+      <span *ngIf="maidenName.errors.maxlength">
+        Only 50 characters are allowed.
       </span>      
     </div>
   </div>

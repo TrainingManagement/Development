@@ -26,8 +26,8 @@ export class RegisterFormComponent implements OnInit {
       this.maxDate = this.formatDate(this.formattedMinDate);
       
     this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50),Validators.pattern('^[A-Za-z]+')]],
+      lastName: ['', [Validators.required, Validators.maxLength(50),Validators.pattern('^[A-Za-z]+')]],
       emailId: ['', [Validators.required, Validators.email, Validators.pattern('^[A-Za-z]+.[^A-Za-z][^@]+@capco.com')]],
       dob: new FormControl(this.maxDate, Validators.required),
       skill: new FormControl('Frontend'),
