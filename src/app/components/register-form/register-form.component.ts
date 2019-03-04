@@ -29,7 +29,7 @@ export class RegisterFormComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.maxLength(50),Validators.pattern('^[A-Za-z]+'),CustomValidators.cannotContainSpace]],
       lastName: ['', [Validators.required, Validators.maxLength(50),Validators.pattern('^[A-Za-z]+'),CustomValidators.cannotContainSpace]],
       emailId: ['', [Validators.required, Validators.email, Validators.pattern('^[A-Za-z]+.[^A-Za-z][^@]+@capco.com'),CustomValidators.cannotContainSpace]],
-      dob: new FormControl(this.maxDate, Validators.required),
+      dob: new FormControl(this.maxDate, [Validators.required, CustomValidators.formatDate]),
       skill: new FormControl('Frontend'),
       password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,15}')])]
     });
