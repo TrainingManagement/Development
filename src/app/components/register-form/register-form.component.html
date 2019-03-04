@@ -11,6 +11,9 @@
       <span *ngIf="firstName.errors.maxlength">
         Minimum of 50 characters.
       </span>
+      <span *ngIf="firstName.errors.cannotContainSpace">
+       {{firstName.errors.cannotContainSpace}}
+      </span>
     </div>
   </div>
 
@@ -25,6 +28,9 @@
       <span *ngIf="lastName.errors.maxlength">
         Minimum of 50 characters.
       </span>
+      <span *ngIf="lastName.errors.cannotContainSpace">
+        {{lastName.errors.cannotContainSpace}}
+       </span>
     </div>
   </div>
 

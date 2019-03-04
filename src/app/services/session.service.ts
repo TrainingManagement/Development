@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as EventEmitter from 'events'
-import * as APP_CONSTANTS from '../common/constants';
+import * as APP_CONSTANTS from '../common/constants/constants';
 import { UserProfile } from '../common/models/user-profile';
 import { Router } from '@angular/router';
 
