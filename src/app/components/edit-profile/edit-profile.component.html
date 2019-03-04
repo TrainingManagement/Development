@@ -1,4 +1,4 @@
-<div class="card shadow">
+<div class="card shadow col-lg-6 mx-auto">
   <h2>My Profile</h2>
   <div class="justify-content-center">
 
@@ -8,8 +8,12 @@
         <input type="text" id="email" class="form-control" [value]="session.user.email" readonly />
       </div>
       <div class="form-group">
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" class="form-control" [value]="session.user.name" readonly />
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" class="form-control" [value]="session.user.firstname" readonly />
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" class="form-control" [value]="session.user.lastname" readonly />
       </div>
       <div class="form-group">
         <label for="skills">Skills</label>

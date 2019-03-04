@@ -4,9 +4,9 @@
       <img src="../../../assets/imgs/capco_white.png" alt="Capco" height="50px">
     </a>
     <div class="dropdown show">
-      <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        {{session.user.name | uppercase}}
+      <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        {{session.user.firstname.charAt(0)+'.'  | uppercase}} {{session.user.lastname  | uppercase}}
       </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
