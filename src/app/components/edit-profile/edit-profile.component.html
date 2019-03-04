@@ -1,6 +1,7 @@
-<div class="container ">
-  <div class="offset-3 col-6">
-    <h2>My Profile</h2>
+<div class="card shadow">
+  <h2>My Profile</h2>
+  <div class="justify-content-center">
+
     <form [formGroup]="profileForm" (ngSubmit)="sumbit()">
       <div class="form-group">
         <label for="email">Email</label>
@@ -36,15 +37,15 @@
       </div>
       <div class="form-group">
         <label for="bio">Bio</label>
-        <textarea class="form-control" id="bio" [ngClass]="applyClass(bio)" formControlName="bio" id="bio" cols="63" rows="2" placeholder="Short Description"></textarea>
+        <textarea class="form-control" id="bio" [ngClass]="applyClass(bio)" formControlName="bio" id="bio" cols="63" rows="3" placeholder="Short Description"></textarea>
         <div class="invalid-feedback" *ngIf="bio.errors">
           <span *ngIf="bio.errors.maxlength">
               max 140 characters required
             </span>
         </div>
       </div>
-      <div class="form-group">
-        <button  class="col-sm-6 btn btn-primary" [disabled]="profileForm.invalid">Update</button>
+      <div class="text-center form-group">
+        <button class="col-sm-6 btn btn-primary" [disabled]="profileForm.invalid">Update</button>
       </div>
     </form>
   </div>
