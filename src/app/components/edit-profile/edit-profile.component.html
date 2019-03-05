@@ -1,7 +1,6 @@
 <div class="card shadow col-lg-6 mx-auto py-3">
   <h2>My Profile</h2>
   <div class="justify-content-center">
-
     <form [formGroup]="profileForm" (ngSubmit)="sumbit()">
       <div class="form-group">
         <label for="email">Email</label>
@@ -9,11 +8,11 @@
       </div>
       <div class="form-group">
         <label for="firstname">First Name</label>
-        <input type="text" id="firstname" class="form-control" [value]="session.user.firstname" readonly />
+        <input type="text" id="firstname" class="form-control" [value]="session.user.firstname | uppercase" readonly />
       </div>
       <div class="form-group">
         <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" class="form-control" [value]="session.user.lastname" readonly />
+        <input type="text" id="lastname" class="form-control" [value]="session.user.lastname | uppercase" readonly />
       </div>
       <div class="form-group">
         <label for="skills">Skills</label>

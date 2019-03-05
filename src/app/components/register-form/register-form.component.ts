@@ -60,21 +60,21 @@ export class RegisterFormComponent implements OnInit {
           CustomValidators.cannotContainSpace
         ]
       ],
-      dob: new FormControl(this.maxDate, Validators.required),
+      dob: new FormControl(this.maxDate, [
+        Validators.required,
+      CustomValidators.formatDate]),
       skill: new FormControl("Frontend"),
       password: [
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern(
-            "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{6,15}"
-          )
+          Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{6,15}")
         ])
       ]
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   submit() {
     console.log("called", this.registerForm);
