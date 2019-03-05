@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 
@@ -8,11 +8,13 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./security.component.scss']
 })
 export class SecurityComponent implements OnInit {
+
+  @Input('in') isRegistraion: boolean
+
   securityForm: FormGroup;
-  loading = false;
 
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder) {
     this.securityForm = this.formBuilder.group({
       companyName: ['', [Validators.required, Validators.maxLength(50)]],
       maidenName: ['', [Validators.required, Validators.maxLength(50)]],
