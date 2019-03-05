@@ -62,7 +62,7 @@ export class RegisterFormComponent implements OnInit {
       ],
       dob: new FormControl(this.maxDate, [
         Validators.required,
-      CustomValidators.formatDate]),
+      CustomValidators.checkAge]),
       skill: new FormControl("Frontend"),
       password: [
         "",

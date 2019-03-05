@@ -11,15 +11,17 @@ export class CustomValidators {
     }
 
 
-    static formatDate(control: AbstractControl): ValidationErrors | null {
+    static checkAge(control: AbstractControl): ValidationErrors | null {
         let date = control.value;
 
         let ageDifMs = Date.now() - new Date(date).getTime();
         let ageDate = new Date(ageDifMs); // miliseconds from epoch
         let age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 18){
-            return { minorUser: 'Age is below 18' }
+        if (age < 18) {
+            return { checkAge: 'Age is below 18' }
+        } else if (age > 60) {
+            return { checkAge: 'Age is greater than 60' }
         }
-            return null;
+        return null;
     }
 }
