@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Injector } from "@angular/core";
 import {
   FormGroup,
   FormBuilder,
@@ -6,13 +6,14 @@ import {
   FormControl
 } from "@angular/forms";
 import { CustomValidators } from "../../common/validations/CustomValidators";
+import { BaseApp } from '../../common/base-app';
 
 @Component({
   selector: "app-forgot-password",
   templateUrl: "./forgot-password.component.html",
   styleUrls: ["./forgot-password.component.scss"]
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent extends BaseApp implements OnInit {
   questions = [
     "What is your Date of Birth?",
     "What is your Maidens Name?",
@@ -22,11 +23,12 @@ export class ForgotPasswordComponent implements OnInit {
   public forgotPasswordForm: FormGroup;
   showPass: boolean = false;
 
-  constructor() {
+  constructor(injector: Injector) {
+    super(injector);
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
-        Validators.pattern("^[A-Za-z]+.[^A-Za-z][^@]+@capco.com")
+        Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)
       ]),
       selectQuestion: new FormControl("", [Validators.required]),
       answer: new FormControl("", [
@@ -39,13 +41,13 @@ export class ForgotPasswordComponent implements OnInit {
         Validators.min(6),
         Validators.max(15),
         Validators.pattern(
-          "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{6,15}"
+          this.PATTERN_CONSTANTS.PASSWORD_PATTERN
         )
       ])
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   submit() {
     console.log("called", this.forgotPasswordForm);

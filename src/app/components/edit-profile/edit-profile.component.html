@@ -28,13 +28,13 @@
         />
         <div class="invalid-feedback" *ngIf="contact.errors">
           <span *ngIf="contact.errors.required">
-              This field is required
+              This field is required.
             </span>
           <span *ngIf="contact.errors.max">
-              max 10 numbers required
+              max 10 numbers required.
             </span>
           <span *ngIf="contact.errors.min">
-              min 10 numbers required
+              min 10 numbers required.
             </span>
         </div>
       </div>
@@ -43,7 +43,7 @@
         <textarea class="form-control" id="bio" [ngClass]="applyClass(bio)" formControlName="bio" id="bio" cols="63" rows="3" placeholder="Short Description"></textarea>
         <div class="invalid-feedback" *ngIf="bio.errors">
           <span *ngIf="bio.errors.maxlength">
-              max 140 characters required
+              max characters limit is 800.
             </span>
         </div>
       </div>
