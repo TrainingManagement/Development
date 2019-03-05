@@ -47,8 +47,15 @@
             </span>
         </div>
       </div>
+
+      <div class="d-flex justify-content-around">
+        <div>
+          <a [routerLink]="" routerLinkActive="router-link-active">Reset password?</a>
+        </div>
+      </div>
+
       <div class="text-center form-group">
-        <button class="col-sm-6 btn btn-primary" [disabled]="profileForm.invalid">Update</button>
+        <button class="my-3 col-sm-6 btn btn-primary" [disabled]="profileForm.invalid">Update</button>
       </div>
     </form>
   </div>
