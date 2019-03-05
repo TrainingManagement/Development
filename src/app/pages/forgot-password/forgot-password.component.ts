@@ -5,6 +5,7 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
+import { CustomValidators } from "../../common/validations/CustomValidators";
 
 @Component({
   selector: "app-forgot-password",
@@ -30,7 +31,8 @@ export class ForgotPasswordComponent implements OnInit {
       selectQuestion: new FormControl("", [Validators.required]),
       answer: new FormControl("", [
         Validators.required,
-        Validators.maxLength(50)
+        Validators.maxLength(50),
+        CustomValidators.cannotContainSpace
       ]),
       password: new FormControl("", [
         Validators.required,
