@@ -1,6 +1,4 @@
 <form [formGroup]="securityForm" (ngSubmit)="onSubmit()">
-
-
   <div class="form-group">
     <label for="companyName">What is your first company name?</label>
     <input formControlName="companyName" class="form-control " [ngClass]="applyClass(companyName)" type="text" id="companyName">
