@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Injector } from "@angular/core";
 import {
   FormGroup,
   FormBuilder,
@@ -7,13 +7,14 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomValidators } from "../../common/validations/CustomValidators";
+import { BaseApp } from '../../common/base-app';
 
 @Component({
   selector: "app-register-form",
   templateUrl: "./register-form.component.html",
   styleUrls: ["./register-form.component.scss"]
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent extends BaseApp implements OnInit {
   registerForm: FormGroup;
   showPass = false;
 
@@ -28,7 +29,9 @@ export class RegisterFormComponent implements OnInit {
   today;
   maxDate;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router,
+    injector: Injector) {
+    super(injector);
     this.today = this.formatDate(new Date());
     this.maxDate = this.formatDate(this.formattedMinDate);
 
@@ -38,7 +41,7 @@ export class RegisterFormComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(50),
-          Validators.pattern("^[A-Za-z]+"),
+          Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),
           CustomValidators.cannotContainSpace
         ]
       ],
@@ -47,7 +50,7 @@ export class RegisterFormComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(50),
-          Validators.pattern("^[A-Za-z]+"),
+          Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),
           CustomValidators.cannotContainSpace
         ]
       ],
@@ -56,19 +59,19 @@ export class RegisterFormComponent implements OnInit {
         [
           Validators.required,
           Validators.email,
-          Validators.pattern("^[A-Za-z]+.[^A-Za-z][^@]+@capco.com"),
+          Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN),
           CustomValidators.cannotContainSpace
         ]
       ],
       dob: new FormControl(this.maxDate, [
         Validators.required,
-      CustomValidators.formatDate]),
+        CustomValidators.checkAge]),
       skill: new FormControl("Frontend"),
       password: [
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{6,15}")
+          Validators.pattern(this.PATTERN_CONSTANTS.PASSWORD_PATTERN)
         ])
       ]
     });

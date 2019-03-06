@@ -28,13 +28,13 @@
         />
         <div class="invalid-feedback" *ngIf="contact.errors">
           <span *ngIf="contact.errors.required">
-              This field is required
+              This field is required.
             </span>
           <span *ngIf="contact.errors.max">
-              max 10 numbers required
+              max 10 numbers required.
             </span>
           <span *ngIf="contact.errors.min">
-              min 10 numbers required
+              min 10 numbers required.
             </span>
         </div>
       </div>
@@ -43,12 +43,19 @@
         <textarea class="form-control" id="bio" [ngClass]="applyClass(bio)" formControlName="bio" id="bio" cols="63" rows="3" placeholder="Short Description"></textarea>
         <div class="invalid-feedback" *ngIf="bio.errors">
           <span *ngIf="bio.errors.maxlength">
-              max 140 characters required
+              max characters limit is 800.
             </span>
         </div>
       </div>
+
+      <div class="d-flex justify-content-around">
+        <div>
+          <a [routerLink]="" routerLinkActive="router-link-active">Reset password?</a>
+        </div>
+      </div>
+
       <div class="text-center form-group">
-        <button class="col-sm-6 btn btn-primary" [disabled]="profileForm.invalid">Update</button>
+        <button class="my-3 col-sm-6 btn btn-primary" [disabled]="profileForm.invalid">Update</button>
       </div>
     </form>
   </div>

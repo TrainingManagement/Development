@@ -21,7 +21,7 @@ export class EditProfileComponent extends BaseApp implements OnInit {
       ]),
       bio: new FormControl("", [
         // Validators.required,
-        Validators.maxLength(140)
+        Validators.maxLength(800)
       ])
     });
   }
