@@ -33,9 +33,9 @@ export class Interceptor implements HttpInterceptor {
             headers: request.headers
                 .set("Accept", "application/json")
                 .set("Access-Control-Allow-Credentials", "true")
-                .set("Access-Control-Allow-Methods", "GET, POST,PUT")
                 .set("Access-Control-Allow-Headers", "X-Requested-With,content-type")
                 .set("Access-Control-Allow-Origin", "*")
+                .set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
         });
 
         console.log('requesr made for - ', customReq);

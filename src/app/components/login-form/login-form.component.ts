@@ -2,6 +2,8 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseApp } from '../../common/base-app';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login-form',
@@ -16,6 +18,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
+    private http: HttpClient,
     injector: Injector) {
     super(injector);
     this.loginForm = this.formBuilder.group({
@@ -35,7 +38,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     setTimeout(() => {
       this.dismissLoading();
       this.session.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN);
-      this.router.navigate(['/'+this.ROUTE_CONSTANTS.HOME_ROUTE]);
+      this.router.navigate(['/' + this.ROUTE_CONSTANTS.HOME_ROUTE]);
       this.toastService.presentToastInfo('Successfully Logged In');
     }, 2000);
 
@@ -55,6 +58,20 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   show() {
     this.showPass = !this.showPass;
+  }
+
+
+  login() {
+    try {
+      this.http.post('http://10.75.82.211:6000/employee/login', {
+        "email": "pranjal.nartam@capco.com",
+        "password": "Pranjal@0220"
+      }).subscribe((res) => {
+        console.log(res);
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }
