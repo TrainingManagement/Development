@@ -1,5 +1,5 @@
 <div>
-    <app-toast *ngIf="toastService.toastObj.isShow" class="app-alert"></app-toast>
+    <app-toast @toastFade *ngIf="toastService.toastObj.isShow" class="app-alert"></app-toast>
     <app-loading *ngIf="session.loading"></app-loading>
     <router-outlet></router-outlet>
 </div>

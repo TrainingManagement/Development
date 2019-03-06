@@ -2,7 +2,12 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseApp } from '../../common/base-app';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpService } from '../../services/http-service/http.service';
+import { IServiceResponse } from '../../common/models/service-response';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 
 @Component({
@@ -18,7 +23,8 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private http: HttpClient,
+    private httpService: HttpService,
+    private authService: AuthenticationService,
     injector: Injector) {
     super(injector);
     this.loginForm = this.formBuilder.group({
@@ -34,7 +40,6 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   onSubmit() {
     console.log('called', this.loginForm);
-    this.presentLoading();
     setTimeout(() => {
       this.dismissLoading();
       this.session.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN);
@@ -59,19 +64,19 @@ export class LoginFormComponent extends BaseApp implements OnInit {
   show() {
     this.showPass = !this.showPass;
   }
+  // 9789000010134
 
-
-  login() {
-    try {
-      this.http.post('http://10.75.82.211:6000/employee/login', {
-        "email": "pranjal.nartam@capco.com",
-        "password": "Pranjal@0220"
-      }).subscribe((res) => {
-        console.log(res);
-      })
-    } catch (error) {
-      console.log(error);
+  loginResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("claimResponse objcet : ", data);
+      this.toastService.presentToastInfo('successful api call')
+    },
+    fail: (errorService) => {
+      console.log("claimResponse Error - ", errorService)
     }
   }
 
+  login() {
+    this.authService.addPosts({ as: 'asd' }, this.loginResponse)
+  }
 }

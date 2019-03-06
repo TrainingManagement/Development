@@ -8,9 +8,6 @@ import * as HttpStatus from 'http-status-codes';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-/** 
- * @author Keyur Joshi
-*/
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
@@ -35,7 +32,9 @@ export class Interceptor implements HttpInterceptor {
                 .set("Access-Control-Allow-Credentials", "true")
                 .set("Access-Control-Allow-Headers", "X-Requested-With,content-type")
                 .set("Access-Control-Allow-Origin", "*")
-                .set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
+
+
         });
 
         console.log('requesr made for - ', customReq);
