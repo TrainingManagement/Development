@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injector } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { BaseApp } from '../../common/base-app';
 
 
 @Component({
@@ -7,17 +8,19 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   templateUrl: './security.component.html',
   styleUrls: ['./security.component.scss']
 })
-export class SecurityComponent implements OnInit {
+export class SecurityComponent extends BaseApp implements OnInit {
 
   @Input('in') isRegistraion: boolean
 
   securityForm: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    injector:Injector) {
+    super(injector);
     this.securityForm = this.formBuilder.group({
       companyName: ['', [Validators.required, Validators.maxLength(50)]],
-      maidenName: ['', [Validators.required, Validators.maxLength(50)]],
+      maidenName: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN)]],
     });
   }
 
