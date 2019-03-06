@@ -7,11 +7,14 @@ import {
 } from "@angular/forms";
 import { CustomValidators } from "../../common/validations/CustomValidators";
 import { BaseApp } from '../../common/base-app';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { fade } from '../../common/styles/animations';
 
 @Component({
   selector: "app-forgot-password",
   templateUrl: "./forgot-password.component.html",
-  styleUrls: ["./forgot-password.component.scss"]
+  styleUrls: ["./forgot-password.component.scss"],
+  animations: [fade]
 })
 export class ForgotPasswordComponent extends BaseApp implements OnInit {
   questions = [

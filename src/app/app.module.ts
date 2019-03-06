@@ -22,7 +22,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SecurityComponent } from './components/security/security.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { SecurityComponent } from './components/security/security.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
     
   ],
   providers: [
