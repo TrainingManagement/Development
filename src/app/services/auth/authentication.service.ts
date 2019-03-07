@@ -19,6 +19,11 @@ export class AuthenticationService extends BaseApp {
     this.httpService.post(this.URL_CONSTANTS.LOGIN_URL, serviceResponse, body);
   }
 
+  getProfile(serviceResponse: IServiceResponse<any>) {
+    let username = sessionStorage.getItem(this.CONSTANTS.SESSION_USER);
+    this.httpService.get(`${username}`, serviceResponse);
+  }
+
   getPosts() {
 
   }

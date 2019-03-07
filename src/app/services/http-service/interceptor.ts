@@ -32,10 +32,14 @@ export class Interceptor implements HttpInterceptor {
                 .set("Access-Control-Allow-Headers", "X-Requested-With,content-type")
                 .set("Access-Control-Allow-Origin", "*")
                 .set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
-
-
         });
 
+        if (sessionStorage.getItem('token')) {
+            customReq = customReq.clone({
+                headers: customReq.headers.set("Authorization", 'Bearer ' + sessionStorage.getItem('token'))
+            });
+
+        }
         console.log('requesr made for - ', customReq);
 
         return next.handle(request).pipe(

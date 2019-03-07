@@ -8,36 +8,26 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class EventService {
-  private _userLoggedIn = false;
-  private _user = new UserProfile();
-  private _token: string = "";
   loading = false;
   eventEmitter = new EventEmitter();
 
-  constructor(router: Router) {
+  constructor(router: Router) 
+  {
 
-
-    this.eventEmitter.on(APP_CONSTANTS.EVENT_USER_LOGGED_IN, res => {
-      this._userLoggedIn = true;
+    this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_LOGGED_IN, res => {
+      console.log('event emitted',res)
+      sessionStorage.setItem(APP_CONSTANTS.SESSION_USER_LOGGED_IN, 'true')
+      sessionStorage.setItem(APP_CONSTANTS.SESSION_TOKEN, res.result.token);
+      sessionStorage.setItem(APP_CONSTANTS.SESSION_USER, res.result.username);
     });
 
-    this.eventEmitter.on(APP_CONSTANTS.EVENT_USER_LOGGED_OUT, res => {
-      this._userLoggedIn = false;
+    this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_LOGGED_OUT, res => {
       router.navigate(["/"]);
       sessionStorage.clear();
-      console.log("Cache cleared");
     });
-  }
-
-  get user() {
-    return this._user;
-  }
-
-  get isUserLoggedIn() {
-    return this._userLoggedIn;
   }
 
   get token() {
-    return this._token;
+    return sessionStorage.getItem(APP_CONSTANTS.SESSION_TOKEN);
   }
 }

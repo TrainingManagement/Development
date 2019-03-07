@@ -10,7 +10,7 @@ import * as PATTERN from '../common/validations/pattern-constants';
 export class BaseApp {
 
     // this will help to share data within 
-    session: EventService;
+    eventService: EventService;
     CONSTANTS: any;
     ROUTE_CONSTANTS: any;
     URL_CONSTANTS: any;
@@ -26,19 +26,19 @@ export class BaseApp {
         this.ROUTE_CONSTANTS = ROUTE_CONSTANTS;
         this.URL_CONSTANTS = URL_CONSTANTS;
         this.PATTERN_CONSTANTS = PATTERN;
-        this.session = injector.get(EventService);
+        this.eventService = injector.get(EventService);
         this.cache = injector.get(CacheService);
         this.toastService = injector.get(ToastService);
     }
 
     presentLoading(data) {
         console.log('present loading called')
-        this.session.loading = data;
+        this.eventService.loading = data;
         this.windowScrolling.disable();
     }
 
     dismissLoading() {
-        this.session.loading = false;
+        this.eventService.loading = false;
         this.windowScrolling.enable();
     }
 

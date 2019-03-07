@@ -42,7 +42,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     console.log('called', this.loginForm);
     setTimeout(() => {
       this.dismissLoading();
-      this.session.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN);
+      this.eventService.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN);
       this.router.navigate(['/' + this.ROUTE_CONSTANTS.HOME_ROUTE]);
       this.toastService.presentToastInfo('Successfully Logged In');
     }, 2000);
@@ -70,6 +70,8 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     success: (data: any) => {
       console.log("loginResponse objcet : ", data);
       this.toastService.presentToastInfo('successful api call');
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
+      this.getProfile();
     },
     fail: (errorService) => {
       console.log("loginResponse Error - ", errorService);
@@ -81,11 +83,10 @@ export class LoginFormComponent extends BaseApp implements OnInit {
   profileResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log("profile objcet : ", data);
-
+      this.router.navigate(['/home'])
     },
     fail: (errorService) => {
       console.log("profile Error - ", errorService);
-
     }
   }
 
@@ -96,4 +97,9 @@ export class LoginFormComponent extends BaseApp implements OnInit {
       "password": "Pranjal@0220"
     }, this.loginResponse)
   }
+
+  getProfile(){
+    this.authService.getProfile(this.profileResponse);
+  }
+
 }
