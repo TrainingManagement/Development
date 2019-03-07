@@ -7,29 +7,24 @@ import { Router } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
-export class SessionService {
+export class EventService {
   private _userLoggedIn = false;
   private _user = new UserProfile();
   private _token: string = "";
   loading = false;
   eventEmitter = new EventEmitter();
-  
+
   constructor(router: Router) {
-    this._user.firstname = "Ruby";
-    this._user.lastname = "Kurian";
-    this._user.dob = new Date("1994-03-14");
-    this._user.email = "ruby.kurian@capco.com";
-    this._user.skill = "Front End";
+
 
     this.eventEmitter.on(APP_CONSTANTS.EVENT_USER_LOGGED_IN, res => {
       this._userLoggedIn = true;
-      this._token = "sgndskjbnagjks-332jnasfksdjnfb";
-      console.log("user logged in ", res);
     });
 
     this.eventEmitter.on(APP_CONSTANTS.EVENT_USER_LOGGED_OUT, res => {
       this._userLoggedIn = false;
       router.navigate(["/"]);
+      sessionStorage.clear();
       console.log("Cache cleared");
     });
   }
