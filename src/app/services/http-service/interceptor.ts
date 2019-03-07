@@ -16,7 +16,6 @@ export class Interceptor implements HttpInterceptor {
     ) {
 
     }
-
     /**
      * 
      * @param request 

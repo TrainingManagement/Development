@@ -68,15 +68,32 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   loginResponse = <IServiceResponse<any>>{
     success: (data: any) => {
-      console.log("claimResponse objcet : ", data);
-      this.toastService.presentToastInfo('successful api call')
+      console.log("loginResponse objcet : ", data);
+      this.toastService.presentToastInfo('successful api call');
     },
     fail: (errorService) => {
-      console.log("claimResponse Error - ", errorService)
+      console.log("loginResponse Error - ", errorService);
+      this.toastService.presentToastDanger('call failed');
     }
   }
 
+
+  profileResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("profile objcet : ", data);
+
+    },
+    fail: (errorService) => {
+      console.log("profile Error - ", errorService);
+
+    }
+  }
+
+
   login() {
-    this.authService.addPosts({ as: 'asd' }, this.loginResponse)
+    this.authService.login({
+      "email": "pranjal.nartam@capco.com",
+      "password": "Pranjal@0220"
+    }, this.loginResponse)
   }
 }
