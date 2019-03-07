@@ -63,7 +63,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   login() {
     try {
-      this.http.post('http://10.75.82.211:6000/employee/login', {
+      this.http.post('http://10.75.82.211:8081/employee/login', {
         "email": "pranjal.nartam@capco.com",
         "password": "Pranjal@0220"
       }).subscribe((res) => {
