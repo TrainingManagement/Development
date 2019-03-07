@@ -20,36 +20,21 @@ export class HttpService extends BaseApp {
   }
 
   post<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: T, headers?: any) {
-    this.serviceResponse = serviceResponse;
     this.serviceCall('post', url, serviceResponse, requestBody, headers)
   }
   put<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: T, headers?: any) {
-    this.serviceResponse = serviceResponse;
     this.serviceCall('put', url, serviceResponse, requestBody, headers)
   }
 
   get<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, headers?: any) {
-    this.serviceResponse = serviceResponse;
     this.serviceCall('get', url, serviceResponse, null, headers);
   }
 
-  httpGet(url: string, serviceResponse: IServiceResponse<any> = null, headers?: any) {
-    let finalUrl = this.URL_CONSTANTS.BASE_URL + url;
-    this.presentLoading(true);
-    this.http.get(finalUrl)
-      .pipe(finalize(() => {
-        this.presentLoading(false);
-      }))
-      .subscribe((res) => {
-        serviceResponse.success(res);
-      }, err => {
-        serviceResponse.fail(err);
-      })
-
-  }
   protected serviceCall<T extends any>(method: string, url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: any, headers?: any) {
     this.presentLoading(true);
-    this.getHttpClient(method, url, requestBody, headers).pipe(finalize(() => {
+    this.getHttpClient(method, url, requestBody, headers)
+    .pipe(
+      finalize(() => {
       this.presentLoading(false);
     }))
       .subscribe((res) => {
@@ -81,7 +66,6 @@ export class HttpService extends BaseApp {
     let httpConfig: any = {
       'Accept': 'application/json',
     };
-
     if (header) {
       Object.assign(httpConfig, header);
     }
