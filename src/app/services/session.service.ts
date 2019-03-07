@@ -8,13 +8,12 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class SessionService {
-  private _userLoggedIn = true;
+  private _userLoggedIn = false;
   private _user = new UserProfile();
-
   private _token: string = "";
-
   loading = false;
   eventEmitter = new EventEmitter();
+  
   constructor(router: Router) {
     this._user.firstname = "Ruby";
     this._user.lastname = "Kurian";
