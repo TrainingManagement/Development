@@ -19,24 +19,25 @@ export class HttpService extends BaseApp {
     super(injector);
   }
 
-  post<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: T, headers?: any) {
-    this.serviceCall('post', url, serviceResponse, requestBody, headers)
+  post<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: T, headers?: any, isLoading: boolean = true) {
+    this.serviceCall('post', url, serviceResponse, requestBody, headers, isLoading)
   }
-  put<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: T, headers?: any) {
-    this.serviceCall('put', url, serviceResponse, requestBody, headers)
-  }
-
-  get<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, headers?: any) {
-    this.serviceCall('get', url, serviceResponse, null, headers);
+  put<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: T, headers?: any, isLoading: boolean = true) {
+    this.serviceCall('put', url, serviceResponse, requestBody, headers, isLoading)
   }
 
-  protected serviceCall<T extends any>(method: string, url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody?: any, headers?: any) {
-    this.presentLoading(true);
+  get<T>(url: string = "", serviceResponse: IServiceResponse<T> = null, headers?: any, isLoading: boolean = true) {
+    this.serviceCall('get', url, serviceResponse, null, headers, isLoading);
+  }
+
+  protected serviceCall<T extends any>(method: string, url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody: any = null, headers: any = null, isLoading: boolean = true) {
+   debugger;
+    this.presentLoading(isLoading);
     this.getHttpClient(method, url, requestBody, headers)
-    .pipe(
-      finalize(() => {
-      this.presentLoading(false);
-    }))
+      .pipe(
+        finalize(() => {
+          this.presentLoading(false);
+        }))
       .subscribe((res) => {
         serviceResponse.success(res);
       }, err => {

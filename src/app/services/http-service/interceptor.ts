@@ -6,7 +6,7 @@ import {
 } from "@angular/common/http";
 import * as HttpStatus from 'http-status-codes';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, timeout } from 'rxjs/operators';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
@@ -42,20 +42,17 @@ export class Interceptor implements HttpInterceptor {
         }
         console.log('requesr made for - ', customReq);
 
-        return next.handle(request).pipe(
-            map((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
-                    console.log('event--->>>', event);
-                }
-                return event;
-            }), catchError((error: HttpErrorResponse) => {
-                let data = {};
-                data = {
-                    reason: error && error.error.reason ? error.error.reason : '',
-                    status: error.status
-                };
-                return throwError(error);
-            }))
+        return next.handle(request)
+            .pipe(
+                timeout(10000),
+                map((event: HttpEvent<any>) => {
+                    if (event instanceof HttpResponse) {
+                        console.log('event--->>>', event);
+                    }
+                    return event;
+                }), catchError((error: HttpErrorResponse) => {
+                    return throwError(error);
+                }))
     }
 }
 
