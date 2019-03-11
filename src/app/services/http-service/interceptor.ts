@@ -35,6 +35,7 @@ export class Interceptor implements HttpInterceptor {
         });
 
         if (sessionStorage.getItem('token')) {
+            console.log(sessionStorage.getItem('token'))
             customReq = customReq.clone({
                 headers: customReq.headers.set("Authorization", 'Bearer ' + sessionStorage.getItem('token'))
             });

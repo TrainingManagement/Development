@@ -31,7 +31,6 @@ export class HttpService extends BaseApp {
   }
 
   protected serviceCall<T extends any>(method: string, url: string = "", serviceResponse: IServiceResponse<T> = null, requestBody: any = null, headers: any = null, isLoading: boolean = true) {
-   debugger;
     this.presentLoading(isLoading);
     this.getHttpClient(method, url, requestBody, headers)
       .pipe(
@@ -67,6 +66,9 @@ export class HttpService extends BaseApp {
     let httpConfig: any = {
       'Accept': 'application/json',
     };
+    if(sessionStorage.getItem('token')){
+      httpConfig['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
+    }
     if (header) {
       Object.assign(httpConfig, header);
     }

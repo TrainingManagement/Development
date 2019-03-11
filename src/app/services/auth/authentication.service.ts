@@ -20,6 +20,7 @@ export class AuthenticationService extends BaseApp {
   }
 
   getProfile(serviceResponse: IServiceResponse<any>) {
+
     let username = sessionStorage.getItem(this.CONSTANTS.SESSION_USER);
     this.httpService.get(`${username}`, serviceResponse);
   }
