@@ -9,16 +9,24 @@ import { Router } from "@angular/router";
 })
 export class EventService {
   loading = false;
+  private _user = new  UserProfile();
   eventEmitter = new EventEmitter();
 
-  constructor(router: Router) 
-  {
+  constructor(router: Router) {
 
     this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_LOGGED_IN, (res) => {
-      console.log('event emitted',res)
+      console.log('event emitted', res)
       sessionStorage.setItem(APP_CONSTANTS.SESSION_USER_LOGGED_IN, 'true')
       sessionStorage.setItem(APP_CONSTANTS.SESSION_TOKEN, res.result.token);
       sessionStorage.setItem(APP_CONSTANTS.SESSION_USER, res.result.username);
+
+
+
+    });
+
+    this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_PROFILE, (res) => {
+      sessionStorage.setItem(APP_CONSTANTS.CACHE_USER, JSON.stringify(res));
+      this._user = res;
     });
 
     this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_LOGGED_OUT, (res) => {
@@ -30,5 +38,9 @@ export class EventService {
 
   get token() {
     return sessionStorage.getItem(APP_CONSTANTS.SESSION_TOKEN);
+  }
+
+  get user(){
+    return this._user;
   }
 }

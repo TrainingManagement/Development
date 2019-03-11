@@ -6,7 +6,7 @@
     <div class="dropdown show">
       <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
-        {{session.user.firstname.charAt(0)+'.'  | uppercase}} {{session.user.lastname  | uppercase}}
+        {{eventService.user.firstName.charAt(0)+'.'  | uppercase}} {{eventService.user.lastName  | uppercase}}
       </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -18,4 +18,4 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> 

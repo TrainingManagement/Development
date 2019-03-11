@@ -1,8 +1,8 @@
 import { SecurityQuestions } from "./security";
 
 export class UserProfile {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   contact: number;
   dob: Date;

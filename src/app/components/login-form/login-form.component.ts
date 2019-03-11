@@ -83,6 +83,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
   profileResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log("profile objcet : ", data);
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_PROFILE, data.result);
       this.router.navigate(['/home'])
     },
     fail: (errorService) => {
@@ -98,7 +99,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     }, this.loginResponse)
   }
 
-  getProfile(){
+  getProfile() {
     this.authService.getProfile(this.profileResponse);
   }
 
