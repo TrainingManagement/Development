@@ -4,23 +4,23 @@
     <form [formGroup]="profileForm" (ngSubmit)="sumbit()">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" id="email" class="form-control" [value]="session.user.email" readonly />
+        <input type="text" id="email" class="form-control" [value]="eventService.user.email" readonly />
       </div>
       <div class="form-group">
         <label for="firstname">First Name</label>
-        <input type="text" id="firstname" class="form-control" [value]="session.user.firstname | uppercase" readonly />
+        <input type="text" id="firstname" class="form-control" [value]="eventService.user.firstName | uppercase" readonly />
       </div>
       <div class="form-group">
         <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" class="form-control" [value]="session.user.lastname | uppercase" readonly />
+        <input type="text" id="lastname" class="form-control" [value]="eventService.user.lastame | uppercase" readonly />
       </div>
       <div class="form-group">
         <label for="skills">Skills</label>
-        <input type="text" id="skills" class="form-control" [value]="session.user.skill" readonly />
+        <input type="text" id="skills" class="form-control" [value]="eventService.user.skill" readonly />
       </div>
       <div class="form-group">
         <label for="dob">Date Of Birth</label>
-        <input type="date" id="dob" class="form-control" [value]="session.user.dob.toISOString().slice(0,10)" readonly />
+        <input type="date" id="dob" class="form-control" [value]="eventService.user.dob.toISOString().slice(0,10)" readonly />
       </div>
       <div class="form-group">
         <label for="contact">Contact</label>

@@ -28,7 +28,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     injector: Injector) {
     super(injector);
     this.loginForm = this.formBuilder.group({
-      emailId: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],
       password: ['', Validators.compose([Validators.required, Validators.pattern(this.PATTERN_CONSTANTS.PASSWORD_PATTERN)])]
     });
   }
@@ -49,8 +49,8 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   }
 
-  get emailId() {
-    return this.loginForm.controls['emailId']
+  get email() {
+    return this.loginForm.controls['email']
   }
 
   get password() {
