@@ -9,6 +9,10 @@ import { CustomValidators } from "../../common/validations/CustomValidators";
 import { BaseApp } from '../../common/base-app';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { fade } from '../../common/styles/animations';
+import { AuthenticationService } from '../../services/auth/authentication.service';
+import { IServiceResponse } from '../../common/models/service-response';
+import { SecurityQuestions } from '../../common/models/security';
+
 
 @Component({
   selector: "app-forgot-password",
@@ -17,23 +21,19 @@ import { fade } from '../../common/styles/animations';
   animations: [fade]
 })
 export class ForgotPasswordComponent extends BaseApp implements OnInit {
-  questions = [
-    "What is your Date of Birth?",
-    "What is your Maidens Name?",
-    "What is your First Company Name?"
-  ];
+  questions = "firstCompany";
 
   public forgotPasswordForm: FormGroup;
   showPass: boolean = false;
 
-  constructor(injector: Injector) {
+  constructor(injector: Injector, private authenticationService:AuthenticationService) {
     super(injector);
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
         Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)
       ]),
-      selectQuestion: new FormControl("", [Validators.required]),
+      // selectQuestion: new FormControl("", [Validators.required]),
       answer: new FormControl("", [
         Validators.required,
         Validators.maxLength(50),
@@ -60,9 +60,9 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     return this.forgotPasswordForm.controls["email"];
   }
 
-  get selectQuestion() {
-    return this.forgotPasswordForm.controls["selectQuestion"];
-  }
+  // get selectQuestion() {
+  //   return this.forgotPasswordForm.controls["selectQuestion"];
+  // }
 
   get answer() {
     return this.forgotPasswordForm.controls["answer"];
@@ -79,4 +79,24 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
   show() {
     this.showPass = !this.showPass;
   }
+
+  forgotResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("forgotResponse objcet : ", data);
+      this.toastService.presentToastInfo('successful api call');
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
+    },
+    fail: (errorService) => {
+      console.log("forgotResponse Error - ", errorService);
+      this.toastService.presentToastDanger('call failed');
+    }
+  }
+
+  forgot() {    
+    // this.authenticationService.forgot(this.forgotResponse,);    
+    this.authenticationService.forgot['qa'][this.questions] = this.answer;
+  }   
+  
+   
+  
 }

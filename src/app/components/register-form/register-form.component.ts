@@ -8,6 +8,7 @@ import {
 import { Router } from "@angular/router";
 import { CustomValidators } from "../../common/validations/CustomValidators";
 import { BaseApp } from '../../common/base-app';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
   selector: "app-register-form",
@@ -17,6 +18,7 @@ import { BaseApp } from '../../common/base-app';
 export class RegisterFormComponent extends BaseApp implements OnInit {
   registerForm: FormGroup;
   showPass = false;
+
 
   date: Date = new Date();
   formattedMinDate =
@@ -30,6 +32,7 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
   maxDate;
 
   constructor(private formBuilder: FormBuilder, private router: Router,
+    private authenticationService:AuthenticationService,
     injector: Injector) {
     super(injector);
     this.today = this.formatDate(new Date());
@@ -77,10 +80,14 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  
+   }
 
   submit() {
     console.log("called", this.registerForm);
+    this.authenticationService.registrationData = this.registerForm.value;
     this.router.navigate(["register/security"]);
   }
 

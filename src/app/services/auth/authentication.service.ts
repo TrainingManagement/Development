@@ -8,6 +8,9 @@ import { IServiceResponse } from '../../common/models/service-response';
 })
 export class AuthenticationService extends BaseApp {
 
+  registrationData:any
+  securityData:any
+
   constructor(
     private httpService: HttpService,
     injector: Injector
@@ -23,6 +26,16 @@ export class AuthenticationService extends BaseApp {
 
     let username = sessionStorage.getItem(this.CONSTANTS.SESSION_USER);
     this.httpService.get(`${username}`, serviceResponse);
+  }
+
+  register(serviceResponse:IServiceResponse<any>)
+  {
+    this.httpService.post(this.URL_CONSTANTS.REG_URL, serviceResponse, this.registrationData);    
+  }
+
+  forgot(body: any, serviceResponse: IServiceResponse<any>)
+  {
+    this.httpService.post(this.URL_CONSTANTS.FORGOT_PASSWORD_URL, serviceResponse, body);    
   }
 
   getPosts() {

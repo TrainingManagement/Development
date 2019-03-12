@@ -2,7 +2,7 @@
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input formControlName="firstName" class="form-control " [ngClass]="applyClass(firstName)" type="text" id="firstName" placeholder="First Name"
-    />
+        />
     <div class="invalid-feedback" *ngIf="firstName.errors">
       <span *ngIf="firstName.errors.required">
           This field is required
@@ -55,7 +55,7 @@
 
   <div class="form-group">
     <label for="dob">What is your Date of birth?</label>
-    <input formControlName="dob" type="date" class="form-control" [ngClass]="applyClass(dob)" max="{{ maxDate }}" />
+    <input formControlName="dob" type="date" class="form-control" [ngClass]="applyClass(dob)" max="{{ maxDate }}"  />
     <div class="invalid-feedback" *ngIf="dob.errors">
       <span *ngIf="dob.errors.required">
           This field is required

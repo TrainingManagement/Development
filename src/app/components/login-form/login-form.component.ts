@@ -93,10 +93,8 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
 
   login() {
-    this.authService.login({
-      "email": "pranjal.nartam@capco.com",
-      "password": "Pranjal@0220"
-    }, this.loginResponse)
+    this.authService.login(this.loginForm.value,this.loginResponse)
+    console.log("login form res",this.loginForm.value);
   }
 
   getProfile() {

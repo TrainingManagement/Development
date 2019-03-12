@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Injector } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { BaseApp } from '../../common/base-app';
+import { AuthenticationService } from '../../services/auth/authentication.service';
+import { Router } from '@angular/router';
+import { IServiceResponse } from '../../common/models/service-response';
 
 
 @Component({
@@ -13,15 +16,22 @@ export class SecurityComponent extends BaseApp implements OnInit {
   @Input('in') isRegistraion: boolean
 
   securityForm: FormGroup;
+  
 
 
   constructor(private formBuilder: FormBuilder,
+    private router:Router,private authenticationService:AuthenticationService,
     injector:Injector) {
     super(injector);
     this.securityForm = this.formBuilder.group({
-      companyName: ['', [Validators.required, Validators.maxLength(50)]],
+      firstCompany: ['', [Validators.required, Validators.maxLength(50)]],
       maidenName: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN)]],
     });
+
+    if(!authenticationService.registrationData){
+    this.router.navigate(['/register']);
+    }
+    console.log("-->",authenticationService.registrationData)
   }
 
   ngOnInit() {
@@ -29,10 +39,18 @@ export class SecurityComponent extends BaseApp implements OnInit {
 
   onSubmit() {
     console.log('called', this.securityForm);
+    this.authenticationService.securityData = this.securityForm.value;
+    console.log("Security-->",this.authenticationService.securityData);
+    console.log("reg-->",this.authenticationService.registrationData);
+    let regData = this.authenticationService.registrationData;
+    let secData = this.authenticationService.securityData;
+    
+    let regSecData = Object.assign(regData,secData);
+    console.log("DATA-->",regSecData);
   }
 
-  get companyName() {
-    return this.securityForm.controls['companyName']
+  get firstCompany() {
+    return this.securityForm.controls['firstCompany']
   }
 
   get maidenName() {
@@ -42,5 +60,24 @@ export class SecurityComponent extends BaseApp implements OnInit {
   applyClass(control) {
     return control.touched ? (control.invalid ? 'is-invalid' : 'is-valid') : '';
   }
+
+  regResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("loginResponse objcet : ", data);
+      this.toastService.presentToastInfo('successful api call');
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
+    },
+    fail: (errorService) => {
+      console.log("regResponse Error - ", errorService);
+      this.toastService.presentToastDanger('call failed');
+    }
+  }
+
+  register() {
+    this.authenticationService.registrationData['securityQa']=this.securityForm.value;
+    console.log("register data check",this.authenticationService.registrationData)
+    this.authenticationService.register(this.regResponse);    
+  }
+
 
 }
