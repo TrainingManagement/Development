@@ -3,6 +3,7 @@ import { BaseApp } from '../../common/base-app';
 import { UserProfile } from '../../common/models/user-profile';
 import { SecurityQuestions } from '../../common/models/security';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IServiceResponse } from '../../common/models/service-response';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +35,16 @@ export class HomeComponent extends BaseApp implements OnInit {
   sumbit(){
     console.log('called', this.profileForm);
   }
+  
+  listResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+        //success
+    },
+    fail: (errorService) => {
+        //fail
+    }
+  }
+
 
   get firstName(){
     return this.profileForm.controls['firstName']
