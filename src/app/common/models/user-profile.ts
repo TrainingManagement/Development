@@ -7,8 +7,6 @@ export class UserProfile {
   contact: number;
   dob: Date;
   bio: string;
-  isAdmin: boolean;
-  isTrainer: boolean;
   skill: string;
   security = new SecurityQuestions();
 }

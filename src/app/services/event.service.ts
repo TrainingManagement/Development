@@ -39,7 +39,7 @@ export class EventService {
   }
 
   get user(){
-    let user = sessionStorage.getItem(APP_CONSTANTS.SESSION_USER_PROFILE)
+    this._user = JSON.parse(sessionStorage.getItem(APP_CONSTANTS.SESSION_USER_PROFILE));
     return this._user;
   }
 }
