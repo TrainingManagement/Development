@@ -19,13 +19,11 @@ export class EventService {
       sessionStorage.setItem(APP_CONSTANTS.SESSION_USER_LOGGED_IN, 'true')
       sessionStorage.setItem(APP_CONSTANTS.SESSION_TOKEN, res.result.token);
       sessionStorage.setItem(APP_CONSTANTS.SESSION_USER, res.result.username);
-
-
-
     });
 
     this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_PROFILE, (res) => {
-      sessionStorage.setItem(APP_CONSTANTS.CACHE_USER, JSON.stringify(res));
+      console.log('user profile success',res);
+      sessionStorage.setItem(APP_CONSTANTS.SESSION_USER_PROFILE, JSON.stringify(res));
       this._user = res;
     });
 
@@ -41,6 +39,7 @@ export class EventService {
   }
 
   get user(){
+    let user = sessionStorage.getItem(APP_CONSTANTS.SESSION_USER_PROFILE)
     return this._user;
   }
 }
