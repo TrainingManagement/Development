@@ -1,6 +1,8 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BaseApp } from '../../common/base-app';
+import { AuthenticationService } from '../../services/auth/authentication.service';
+import { IServiceResponse } from '../../common/models/service-response';
 
 @Component({
   selector: 'edit-profile',
@@ -11,7 +13,9 @@ export class EditProfileComponent extends BaseApp implements OnInit {
   profileForm: FormGroup;
   success = false;
 
-  constructor(private formBuilder: FormBuilder, injector: Injector) {
+  constructor(private formBuilder: FormBuilder, 
+    private authService:AuthenticationService,
+    injector: Injector) {
     super(injector);
     this.profileForm = new FormGroup({
       contact: new FormControl("", [
@@ -35,8 +39,21 @@ export class EditProfileComponent extends BaseApp implements OnInit {
     return this.profileForm.controls["bio"];
   }
 
+
+  updateProfileResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+        //success
+    },
+    fail: (errorService) => {
+        //fail
+    }
+  }
+
+
+
   sumbit() {
     console.log("called", this.profileForm);
+    this.authService.updateProfile(this.profileForm.value,this.updateProfileResponse)
   }
 
   applyClass(control) {

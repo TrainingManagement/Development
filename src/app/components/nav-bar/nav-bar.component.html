@@ -3,19 +3,39 @@
     <a class="navbar-brand " [routerLink]="['/home']">
       <img src="../../../assets/imgs/capco_white.png" alt="Capco" height="50px">
     </a>
-    <div class="dropdown show">
-      <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        {{eventService.user.firstName.charAt(0)+'.' | uppercase}} {{eventService.user.lastName | uppercase}}
-      </a>
 
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a [routerLink]="['/home/my-profile']" class="dropdown-item">My Profile</a>
-        <a [routerLink]="['/routePath']" class="dropdown-item">All Courses</a>
-        <a [routerLink]="['/home/faqs']" class="dropdown-item">FAQs</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
+    <div>
+      <div class="row">
+        <div class="col">
+          <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item">Admin</a>
+              <a class="dropdown-item">Learner</a>
+              <a class="dropdown-item">Trainer</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{eventService.user.firstName.charAt(0)+'.' | uppercase}} {{eventService.user.lastName | uppercase}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a [routerLink]="['/home/my-profile']" class="dropdown-item">My Profile</a>
+              <a [routerLink]="['/routePath']" class="dropdown-item">All Courses</a>
+              <a [routerLink]="['/home/faqs']" class="dropdown-item">FAQs</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </nav>

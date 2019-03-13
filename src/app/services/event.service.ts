@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class EventService {
   loading = false;
-  private _user = new  UserProfile();
+  private _user = new UserProfile();
   eventEmitter = new EventEmitter();
 
   constructor(router: Router) {
@@ -22,7 +22,7 @@ export class EventService {
     });
 
     this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_PROFILE, (res) => {
-      console.log('user profile success',res);
+      console.log('user profile success', res);
       sessionStorage.setItem(APP_CONSTANTS.SESSION_USER_PROFILE, JSON.stringify(res));
       this._user = res;
     });
@@ -38,8 +38,8 @@ export class EventService {
     return sessionStorage.getItem(APP_CONSTANTS.SESSION_TOKEN);
   }
 
-  get user(){
-    let user = sessionStorage.getItem(APP_CONSTANTS.SESSION_USER_PROFILE)
+  get user() {
+    this._user = JSON.parse(sessionStorage.getItem(APP_CONSTANTS.SESSION_USER_PROFILE));
     return this._user;
   }
 }

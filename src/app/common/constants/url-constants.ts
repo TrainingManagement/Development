@@ -5,3 +5,4 @@ export const POST_URL = 'posts';
 export const LOGIN_URL = 'employee/login';
 export const FORGOT_PASSWORD_URL ='verfiy/securityqa';
 export const REG_URL = 'signup';
+export const UPDATE_PROFILE_URL = 'signup';
