@@ -1,14 +1,14 @@
 <div class="card shadow container mt-4 p-4">  
     <div align="center" class="row mt-4">
       <div class="col-sm-4 mx-auto">
-          <div class="card tile-box  mx-auto" data-toggle="modal" data-target="#myModal">
+          <div class="card tile-box shadow mx-auto" data-toggle="modal" data-target="#myModal">
               <i class="fa fa-user-plus fa-2x p-2" aria-hidden="true"></i>
               <label for="AddUser" class="txt">Add User</label>    
           </div>      
       </div>
 
-      <div class="col-sm-4  mx-auto">    
-          <div class="card tile-box  mx-auto">              
+      <div class="col-sm-4  mx-auto" data-toggle="modal" data-target="#myModal2">    
+          <div class="card tile-box shadow mx-auto">              
             <i class="fa fa-users fa-2x p-2" aria-hidden="true"></i>
             <label for="AddUser" class="txt">Manage User</label>  
           </div>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="col-sm-4  mx-auto" data-toggle="modal" data-target="#myModal1">     
-          <div class="card tile-box  mx-auto">              
+          <div class="card tile-box shadow mx-auto">              
           <i class="fa fa-briefcase fa-2x p-2" aria-hidden="true"></i>
           <label for="AddUser" class="txt">Add Trainings</label>   
           </div>       
@@ -136,13 +136,19 @@
 
                     <div class="form-group">
                         <label for="courseCategory">Course Category</label>
-                        <input formControlName="courseCategory" class="form-control " [ngClass]="applyClass(email)" type="text" id="courseCategory"
-                          placeholder="Course Category">                      
+                        <select id="courseCategory" [ngModelOptions]="{standalone: true}" name="courseCategory" class="form-control" required
+                          [(ngModel)]="courseCategory">
+                          <option value="frontend">Frontend</option>
+                          <option value="backend">Backend</option>  
+                          <option value="ba">BA</option> 
+                          <option value="testing">Testing</option> 
+                          <option value="devops">DEV OPS</option>    
+                        </select>
                       </div>
 
                       <div class="form-group">
                           <label for="desc">Description</label>
-                          <textarea class="form-control" id="bio" [ngClass]="applyClass(bio)" formControlName="desc" id="desc" cols="63"
+                          <textarea class="form-control" id="desc" [ngClass]="applyClass(desc)" formControlName="desc" id="desc" cols="63"
                             rows="3" placeholder="Description"></textarea>
                           <div class="invalid-feedback" *ngIf="bio.errors">
                             <span *ngIf="bio.errors.maxlength">
@@ -152,9 +158,9 @@
                         </div>
   
                     <div class="form-group">
-                        <label for="userType">Add Trainer</label>
-                        <select id="userType" [ngModelOptions]="{standalone: true}" name="selectQuestion" class="form-control" required
-                          [(ngModel)]="userType">
+                        <label for="addTrainer">Add Trainer</label>
+                        <select id="addTrainer" [ngModelOptions]="{standalone: true}" name="addTrainer" class="form-control" required
+                          [(ngModel)]="addTrainer">
                           <option value="trainer">Trainer 1</option>
                           <option value="learner">Trainer 2</option>   
                         </select>
@@ -172,4 +178,5 @@
         
       </div>
     <!-- End of add trainings -->
+    
     

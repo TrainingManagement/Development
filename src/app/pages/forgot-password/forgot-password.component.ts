@@ -18,6 +18,7 @@ import { fade } from "../../common/styles/animations";
 import { AuthenticationService } from "../../services/auth/authentication.service";
 import { IServiceResponse } from "../../common/models/service-response";
 import { SecurityQuestions } from "../../common/models/security";
+import { ForgotPassword } from "../../common/models/forgot-password.class";
 
 @Component({
   selector: "app-forgot-password",
@@ -26,13 +27,16 @@ import { SecurityQuestions } from "../../common/models/security";
   animations: [fade]
 })
 export class ForgotPasswordComponent extends BaseApp implements OnInit {
+  questions = "firstCompany";
+
+  public forgotPasswordForm: FormGroup;
+  showPass: boolean = false;
+
   constructor(
     injector: Injector,
     private authenticationService: AuthenticationService
   ) {
     super(injector);
-    this.today = this.formatDate(new Date());
-    this.maxDate = this.formatDate(this.formattedMinDate);
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
@@ -42,8 +46,7 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
       answer: new FormControl("", [
         Validators.required,
         Validators.maxLength(50),
-        CustomValidators.cannotContainSpace,
-        CustomValidators.checkAge
+        CustomValidators.cannotContainSpace
       ]),
       password: new FormControl("", [
         Validators.required,
@@ -54,13 +57,20 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     });
   }
 
+  ngOnInit() {}
+
+  submit() {
+    let body = new ForgotPassword();
+    body.email = this.email.value;
+    body.password = this.password.value;
+    body.qa[this.questions] = this.answer.value;
+    console.log("answer ", body);
+    this.authenticationService.forgot(body, this.forgotResponse);
+  }
+
   get email() {
     return this.forgotPasswordForm.controls["email"];
   }
-
-  // get selectQuestion() {
-  //   return this.forgotPasswordForm.controls["selectQuestion"];
-  // }
 
   get answer() {
     return this.forgotPasswordForm.controls["answer"];
@@ -69,20 +79,14 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
   get password() {
     return this.forgotPasswordForm.controls["password"];
   }
-  questions = "firstCompany";
 
-  public forgotPasswordForm: FormGroup;
-  showPass = false;
-  date: Date = new Date();
-  formattedMinDate =
-    this.date.getFullYear() -
-    18 +
-    "/" +
-    this.date.getMonth() +
-    "/" +
-    this.date.getDate();
-  today;
-  maxDate;
+  applyClass(control) {
+    return control.touched ? (control.invalid ? "is-invalid" : "is-valid") : "";
+  }
+
+  show() {
+    this.showPass = !this.showPass;
+  }
 
   forgotResponse = <IServiceResponse<any>>{
     success: (data: any) => {
@@ -97,40 +101,5 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
       console.log("forgotResponse Error - ", errorService);
       this.toastService.presentToastDanger("call failed");
     }
-  };
-
-  ngOnInit() {}
-
-  submit() {
-    console.log("called", this.forgotPasswordForm);
-  }
-
-  applyClass(control) {
-    return control.touched ? (control.invalid ? "is-invalid" : "is-valid") : "";
-  }
-
-  show() {
-    this.showPass = !this.showPass;
-  }
-
-  forgot() {
-    // this.authenticationService.forgot(this.forgotResponse,);
-    this.authenticationService.forgot["qa"][this.questions] = this.answer;
-  }
-
-  formatDate = date => {
-    let d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) {
-      month = "0" + month;
-    }
-    if (day.length < 2) {
-      day = "0" + day;
-    }
-
-    return [year, month, day].join("-");
   };
 }

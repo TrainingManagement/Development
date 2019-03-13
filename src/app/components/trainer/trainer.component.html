@@ -1,10 +1,7 @@
 <div class="card shadow container mt-4 p-4">
   <div align="center" class="row mt-4">
     <div class="col-sm-4">
-      <div
-        class="card tile-box  mx-auto"
-        data-toggle="modal"
-        data-target="#myModal"
+      <div class="card tile-box  mx-auto"      
       >
         <i class="fa fa-briefcase fa-2x p-2" aria-hidden="true"></i>
         <label for="AddUser" class="txt">Completed Trainings</label>
@@ -45,7 +42,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-toggle="modal" data-target="#myModal">
             <td>John</td>
             <td>Doe</td>
             <td>john@example.com</td>
@@ -67,79 +64,115 @@
       </table>
     </div>
 
-    <div class="col-sm-2 sidenav p-4">
-      <div class="card mt-2 p-2">
-        <p>Course Catalog</p>
+    <div class="col-sm-2 sidenav">
+        <div class="card tile-box mb-2">
+            <i class="fa fa-briefcase p-2" aria-hidden="true"></i>
+            <label for="courseCatalog" class="txt">Course Catalog</label>
+        </div>
+        <div class="card tile-box">
+            <i class="fa fa-calendar p-2" aria-hidden="true"></i><br>
+            <label for="calendar" class="txt">Calendar</label>
+        </div>
       </div>
-      <div class="card mt-4 mb-1 p-2">
-        <p>Calender</p>
-      </div>
-    </div>
 
     <router-outlet></router-outlet>
   </div>
 </div>
 
-<!-- Add User model -->
-<div class="container">
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Add User</h4>
-          <button type="button" class="close" data-dismiss="modal">
-            &times;
-          </button>
-        </div>
-
-        <!-- Modal body -->
+<!-- intro to business analysis -->
+<div class="container">     
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Introduction to Business analysis</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
         <div class="modal-body">
-          <div class="form-group">
-            <label for="email">Email-Id</label>
-            <input
-              formControlName="email"
-              class="form-control "
-              [ngClass]="applyClass(email)"
-              type="email"
-              id="email"
-              placeholder="Enter your Email-Id"
-            />
-            <div class="invalid-feedback" *ngIf="email.errors">
-              <span *ngIf="loginForm.controls['email'].errors.required">
-                This field is required
-              </span>
-              <span *ngIf="loginForm.controls['email'].errors.pattern">
-                Please enter Capco email address.
-              </span>
-            </div>
-          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                  <label for="trainingName">Training Name</label>
+                  <input formControlName="trainingName" class="form-control " [ngClass]="applyClass(email)" type="text" id="trainingName"
+                    placeholder="Training Name">                      
+                </div>                    
 
-          <div class="form-group">
-            <label for="userType">User Type</label>
-            <select
-              id="userType"
-              [ngModelOptions]="{ standalone: true }"
-              name="selectQuestion"
-              class="form-control"
-              required
-              [(ngModel)]="userType"
-            >
-              <option value="trainer">Trainer</option>
-              <option value="learner">Learner</option>
-            </select>
-          </div>
-        </div>
+                  <div class="form-group">
+                      <label for="trainingCategory">Training Category</label>
+                      <select id="trainingCategory" [ngModelOptions]="{standalone: true}" name="trainingCategory" class="form-control" required
+                        [(ngModel)]="trainingCategory">
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>  
+                        <option value="ba">BA</option> 
+                        <option value="testing">Testing</option> 
+                        <option value="devops">DEV OPS</option>  
+                      </select>
+                  </div>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">
-            Add User
-          </button>
+                  <div class="form-group">
+                      <label for="trainerName">Trainer Name</label>
+                      <input formControlName="trainerName" class="form-control " [ngClass]="applyClass(email)" type="text" id="trainerName"
+                        placeholder="Trainer Name">                      
+                    </div>
+
+                    <div class="form-group">
+                        <label for="venue">Venue</label>
+                        <input formControlName="venue" class="form-control " [ngClass]="applyClass(email)" type="text" id="venue"
+                          placeholder="Venue">                      
+                      </div>
+
+                      <div class="form-group">
+                          <label for="trainingType">Training Type</label>
+                          <input formControlName="trainingType" class="form-control " [ngClass]="applyClass(email)" type="text" id="trainingType"
+                            placeholder="Training Type">                      
+                      </div>
+                    </div>
+                  
+              <div class="col"> 
+                
+                  <div class="form-group">
+                      <label for="startDate">Start Date</label>
+                      <input formControlName="startDate" class="form-control " [ngClass]="applyClass(email)" type="date" id="startDate"
+                        placeholder="Start Date">                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="endDate">End Date</label>
+                      <input formControlName="endDate" class="form-control " [ngClass]="applyClass(email)" type="date" id="endDate"
+                        placeholder="End Date">                      
+                  </div>
+
+                  <div class="form-group">
+                      <label for="addTime">Add Time</label>
+                      <input formControlName="addTime" class="form-control " [ngClass]="applyClass(email)" type="time" id="addTime"
+                        placeholder="Add Time">                      
+                  </div>
+                
+                <div class="form-group">
+                    <label for="completionStatus">Completion Status</label>
+                    <select id="completionStatus" [ngModelOptions]="{standalone: true}" name="completionStatus" class="form-control" required
+                      [(ngModel)]="completionStatus">
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>   
+                    </select>
+                </div>
+              </div>
+          </div>
+        </div> 
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+          </div>
+          
         </div>
       </div>
     </div>
+    
   </div>
-</div>
-<!-- End of Add user model -->
+<!-- End of business analysis -->
