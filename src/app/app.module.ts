@@ -24,6 +24,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { SecurityComponent } from './components/security/security.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './components/admin/admin.component';
+import { TrainerComponent } from './components/trainer/trainer.component';
+import { LearnerComponent } from './components/learner/learner.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AdminComponent } from './components/admin/admin.component';
     LoginFormComponent,
     RegisterFormComponent,
     SecurityComponent,
-    AdminComponent
+    AdminComponent,
+    TrainerComponent,
+    LearnerComponent
   ],
   imports: [
     BrowserModule,

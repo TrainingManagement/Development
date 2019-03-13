@@ -7,3 +7,13 @@ body{
 }
 @import "./app/common/styles/animation.css";
 
+.btn{
+    position: relative;
+    top:0px;
+    transition: all 0.3 ease;
+}
+
+.btn:active{
+    top:4px;
+    box-shadow: 0px 0px 0px grey;
+}
