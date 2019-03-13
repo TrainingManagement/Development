@@ -57,7 +57,7 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
           CustomValidators.cannotContainSpace
         ]
       ],
-      emailId: [
+      email: [
         "",
         [
           Validators.required,
@@ -100,8 +100,8 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
     return this.registerForm.controls["lastName"];
   }
 
-  get emailId() {
-    return this.registerForm.controls["emailId"];
+  get email() {
+    return this.registerForm.controls["email"];
   }
 
   get password() {

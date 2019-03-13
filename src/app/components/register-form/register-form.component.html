@@ -40,14 +40,14 @@
   </div>
 
   <div class="form-group">
-    <label for="emailId">Email-Id</label>
-    <input formControlName="emailId" class="form-control " [ngClass]="applyClass(emailId)" type="email" id="emailId" placeholder="Enter your Email-Id"
+    <label for="email">Email-Id</label>
+    <input formControlName="email" class="form-control " [ngClass]="applyClass(email)" type="email" id="email" placeholder="Enter your Email-Id"
     />
-    <div class="invalid-feedback" *ngIf="emailId.errors">
-      <span *ngIf="emailId.errors.required">
+    <div class="invalid-feedback" *ngIf="email.errors">
+      <span *ngIf="email.errors.required">
           This field is required
         </span>
-      <span *ngIf="emailId.errors.pattern">
+      <span *ngIf="email.errors.pattern">
           Please enter Capco email address.
         </span>
     </div>

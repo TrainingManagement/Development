@@ -91,9 +91,9 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
       this.toastService.presentToastInfo('successful api call');
       this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
     },
-    fail: (errorService) => {
-      console.log("forgotResponse Error - ", errorService);
-      this.toastService.presentToastDanger('call failed');
+    fail: (error) => {
+      console.log("forgotResponse Error - ", error);
+      this.toastService.presentToastDanger(error.error.message);
     }
   }
 }
