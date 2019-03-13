@@ -12,6 +12,7 @@ import { fade } from '../../common/styles/animations';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { IServiceResponse } from '../../common/models/service-response';
 import { SecurityQuestions } from '../../common/models/security';
+import { ForgotPassword } from '../../common/models/forgot-password.class';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
   public forgotPasswordForm: FormGroup;
   showPass: boolean = false;
 
-  constructor(injector: Injector, private authenticationService:AuthenticationService) {
+  constructor(injector: Injector, private authenticationService: AuthenticationService) {
     super(injector);
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl("", [
@@ -53,16 +54,17 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
   ngOnInit() { }
 
   submit() {
-    console.log("called", this.forgotPasswordForm);
+    let body = new ForgotPassword();
+    body.email = this.email.value;
+    body.password = this.password.value;
+    body.qa[this.questions] = this.answer.value;
+    console.log('answer ', body);
+    this.authenticationService.forgot(body, this.forgotResponse);
   }
 
   get email() {
     return this.forgotPasswordForm.controls["email"];
   }
-
-  // get selectQuestion() {
-  //   return this.forgotPasswordForm.controls["selectQuestion"];
-  // }
 
   get answer() {
     return this.forgotPasswordForm.controls["answer"];
@@ -91,12 +93,6 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
       this.toastService.presentToastDanger('call failed');
     }
   }
-
-  forgot() {    
-    // this.authenticationService.forgot(this.forgotResponse,);    
-    this.authenticationService.forgot['qa'][this.questions] = this.answer;
-  }   
-  
-   
-  
 }
+
+
