@@ -6,13 +6,18 @@ import {
   FormControl
 } from "@angular/forms";
 import { CustomValidators } from "../../common/validations/CustomValidators";
-import { BaseApp } from '../../common/base-app';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { fade } from '../../common/styles/animations';
-import { AuthenticationService } from '../../services/auth/authentication.service';
-import { IServiceResponse } from '../../common/models/service-response';
-import { SecurityQuestions } from '../../common/models/security';
-
+import { BaseApp } from "../../common/base-app";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from "@angular/animations";
+import { fade } from "../../common/styles/animations";
+import { AuthenticationService } from "../../services/auth/authentication.service";
+import { IServiceResponse } from "../../common/models/service-response";
+import { SecurityQuestions } from "../../common/models/security";
 
 @Component({
   selector: "app-forgot-password",
@@ -21,13 +26,13 @@ import { SecurityQuestions } from '../../common/models/security';
   animations: [fade]
 })
 export class ForgotPasswordComponent extends BaseApp implements OnInit {
-  questions = "firstCompany";
-
-  public forgotPasswordForm: FormGroup;
-  showPass: boolean = false;
-
-  constructor(injector: Injector, private authenticationService:AuthenticationService) {
+  constructor(
+    injector: Injector,
+    private authenticationService: AuthenticationService
+  ) {
     super(injector);
+    this.today = this.formatDate(new Date());
+    this.maxDate = this.formatDate(this.formattedMinDate);
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
@@ -37,23 +42,16 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
       answer: new FormControl("", [
         Validators.required,
         Validators.maxLength(50),
-        CustomValidators.cannotContainSpace
+        CustomValidators.cannotContainSpace,
+        CustomValidators.checkAge
       ]),
       password: new FormControl("", [
         Validators.required,
         Validators.min(6),
         Validators.max(15),
-        Validators.pattern(
-          this.PATTERN_CONSTANTS.PASSWORD_PATTERN
-        )
+        Validators.pattern(this.PATTERN_CONSTANTS.PASSWORD_PATTERN)
       ])
     });
-  }
-
-  ngOnInit() { }
-
-  submit() {
-    console.log("called", this.forgotPasswordForm);
   }
 
   get email() {
@@ -71,6 +69,41 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
   get password() {
     return this.forgotPasswordForm.controls["password"];
   }
+  questions = "firstCompany";
+
+  public forgotPasswordForm: FormGroup;
+  showPass = false;
+  date: Date = new Date();
+  formattedMinDate =
+    this.date.getFullYear() -
+    18 +
+    "/" +
+    this.date.getMonth() +
+    "/" +
+    this.date.getDate();
+  today;
+  maxDate;
+
+  forgotResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("forgotResponse objcet : ", data);
+      this.toastService.presentToastInfo("successful api call");
+      this.eventService.eventEmitter.emit(
+        this.CONSTANTS.SESSION_USER_LOGGED_IN,
+        data
+      );
+    },
+    fail: errorService => {
+      console.log("forgotResponse Error - ", errorService);
+      this.toastService.presentToastDanger("call failed");
+    }
+  };
+
+  ngOnInit() {}
+
+  submit() {
+    console.log("called", this.forgotPasswordForm);
+  }
 
   applyClass(control) {
     return control.touched ? (control.invalid ? "is-invalid" : "is-valid") : "";
@@ -80,23 +113,24 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     this.showPass = !this.showPass;
   }
 
-  forgotResponse = <IServiceResponse<any>>{
-    success: (data: any) => {
-      console.log("forgotResponse objcet : ", data);
-      this.toastService.presentToastInfo('successful api call');
-      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
-    },
-    fail: (errorService) => {
-      console.log("forgotResponse Error - ", errorService);
-      this.toastService.presentToastDanger('call failed');
-    }
+  forgot() {
+    // this.authenticationService.forgot(this.forgotResponse,);
+    this.authenticationService.forgot["qa"][this.questions] = this.answer;
   }
 
-  forgot() {    
-    // this.authenticationService.forgot(this.forgotResponse,);    
-    this.authenticationService.forgot['qa'][this.questions] = this.answer;
-  }   
-  
-   
-  
+  formatDate = date => {
+    let d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) {
+      month = "0" + month;
+    }
+    if (day.length < 2) {
+      day = "0" + day;
+    }
+
+    return [year, month, day].join("-");
+  };
 }
