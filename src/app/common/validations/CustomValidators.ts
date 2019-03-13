@@ -22,4 +22,13 @@ export class CustomValidators {
         }
         return null;
     }
+
+    /**
+     * 
+     * @param date should be in format yyyy-mm-dd
+     */
+    static dateConverter(date){
+        let dateArr = date.split('-');
+        return dateArr[1]+'/'+dateArr[2]+'/'+dateArr[0];
+    }
 }

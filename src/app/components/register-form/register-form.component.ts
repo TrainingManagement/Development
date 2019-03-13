@@ -88,6 +88,7 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
   submit() {
     console.log("called", this.registerForm);
     this.authenticationService.registrationData = this.registerForm.value;
+    this.authenticationService.registrationData.dob = CustomValidators.dateConverter(this.dob.value);
     this.router.navigate(["register/security"]);
   }
 

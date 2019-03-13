@@ -37,18 +37,6 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
   }
 
-
-  onSubmit() {
-    console.log('called', this.loginForm);
-    setTimeout(() => {
-      this.dismissLoading();
-      this.eventService.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_IN);
-      this.router.navigate(['/' + this.ROUTE_CONSTANTS.HOME_ROUTE]);
-      this.toastService.presentToastInfo('Successfully Logged In');
-    }, 2000);
-
-  }
-
   get email() {
     return this.loginForm.controls['email']
   }

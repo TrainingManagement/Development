@@ -58,6 +58,9 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     body.email = this.email.value;
     body.password = this.password.value;
     body.qa[this.questions] = this.answer.value;
+    if(this.questions  == 'dob'){
+      body.qa[this.questions] = CustomValidators.dateConverter(this.answer.value);
+    }
     console.log('answer ', body);
     this.authenticationService.forgot(body, this.forgotResponse);
   }

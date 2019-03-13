@@ -34,12 +34,11 @@ export class BaseApp {
     presentLoading(data) {
         console.log('present loading called')
         this.eventService.loading = data;
-        this.windowScrolling.disable();
-    }
-
-    dismissLoading() {
-        this.eventService.loading = false;
-        this.windowScrolling.enable();
+        if (data) {
+            this.windowScrolling.disable();
+        } else {
+            this.windowScrolling.enable();
+        }
     }
 
 }
