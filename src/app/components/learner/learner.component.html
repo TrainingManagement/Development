@@ -1,7 +1,7 @@
 <div class="card shadow container mt-4 p-4">
   <div align="center" class="row mt-4 mb-2">
     <div class="col-sm-4">
-      <div class="card tile-box mx-auto">
+      <div class="card tile-box mx-auto"  data-toggle="modal" data-target="#myModal">
         <i class="fa fa-briefcase fa-2x p-2" aria-hidden="true"></i>
         <label for="AddUser" class="txt">Completed Trainings</label>
       </div>
@@ -126,7 +126,7 @@
             <div class="col">
               <div class="form-group">
                   <label for="trainingName">Training Name</label>
-                  <input formControlName="trainingName" class="form-control " [ngClass]="applyClass(email)" type="text" id="trainingName"
+                  <input class="form-control "  type="text" id="trainingName"
                     placeholder="Training Name">                      
                 </div>                    
 
@@ -144,19 +144,19 @@
 
                   <div class="form-group">
                       <label for="trainerName">Trainer Name</label>
-                      <input formControlName="trainerName" class="form-control " [ngClass]="applyClass(email)" type="text" id="trainerName"
+                      <input class="form-control "  type="text" id="trainerName"
                         placeholder="Trainer Name">                      
                     </div>
 
                     <div class="form-group">
                         <label for="venue">Venue</label>
-                        <input formControlName="venue" class="form-control " [ngClass]="applyClass(email)" type="text" id="venue"
+                        <input class="form-control "  type="text" id="venue"
                           placeholder="Venue">                      
                       </div>
 
                       <div class="form-group">
                           <label for="trainingType">Training Type</label>
-                          <input formControlName="trainingType" class="form-control " [ngClass]="applyClass(email)" type="text" id="trainingType"
+                          <input class="form-control "  type="text" id="trainingType"
                             placeholder="Training Type">                      
                       </div>
                     </div>
@@ -165,19 +165,19 @@
                 
                   <div class="form-group">
                       <label for="startDate">Start Date</label>
-                      <input formControlName="startDate" class="form-control " [ngClass]="applyClass(email)" type="date" id="startDate"
+                      <input class="form-control "  type="date" id="startDate"
                         placeholder="Start Date">                      
                   </div>
 
                   <div class="form-group">
                       <label for="endDate">End Date</label>
-                      <input formControlName="endDate" class="form-control " [ngClass]="applyClass(email)" type="date" id="endDate"
+                      <input class="form-control "  type="date" id="endDate"
                         placeholder="End Date">                      
                   </div>
 
                   <div class="form-group">
                       <label for="addTime">Add Time</label>
-                      <input formControlName="addTime" class="form-control " [ngClass]="applyClass(email)" type="time" id="addTime"
+                      <input class="form-control "  type="time" id="addTime"
                         placeholder="Add Time">                      
                   </div>
                 
