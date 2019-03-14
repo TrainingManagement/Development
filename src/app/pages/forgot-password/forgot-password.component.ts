@@ -19,6 +19,7 @@ import { AuthenticationService } from "../../services/auth/authentication.servic
 import { IServiceResponse } from "../../common/models/service-response";
 import { SecurityQuestions } from "../../common/models/security";
 import { ForgotPassword } from "../../common/models/forgot-password.class";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-forgot-password",
@@ -29,7 +30,8 @@ import { ForgotPassword } from "../../common/models/forgot-password.class";
 export class ForgotPasswordComponent extends BaseApp implements OnInit {
   constructor(
     injector: Injector,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {
     super(injector);
     this.today = this.formatDate(new Date());
@@ -85,11 +87,8 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
   forgotResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log("forgotResponse objcet : ", data);
-      this.toastService.presentToastInfo("successful api call");
-      this.eventService.eventEmitter.emit(
-        this.CONSTANTS.SESSION_USER_LOGGED_IN,
-        data
-      );
+      this.toastService.presentToastInfo("Password changed successfully");
+      this.router.navigate(['/login']);
     },
     fail: (error) => {
       console.log("forgotResponse Error - ", error);
@@ -97,13 +96,16 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     }
   };
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   submit() {
     const body = new ForgotPassword();
     body.email = this.email.value;
     body.password = this.password.value;
     body.qa[this.questions] = this.answer.value;
+    if (this.questions == 'dob') {
+      body.dob = CustomValidators.dateConverter(this.answer.value);
+    }
     console.log("answer ", body);
     this.authenticationService.forgot(body, this.forgotResponse);
   }
