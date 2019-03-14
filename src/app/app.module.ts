@@ -26,14 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './components/admin/admin.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
 import { LearnerComponent } from './components/learner/learner.component';
+import { TrainingErrorHandler } from './common/base-app';
 
 
-
-class TrainingErrorHandler implements ErrorHandler {
-  handleError(error) {
-    console.log(error);
-  }
-}
 
 
 @NgModule({

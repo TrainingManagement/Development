@@ -1,4 +1,4 @@
-import { Injector, EventEmitter } from '@angular/core';
+import { Injector, EventEmitter, ErrorHandler } from '@angular/core';
 import * as APP_CONSTANTS from './constants/constants';
 import * as ROUTE_CONSTANTS from './constants/routing-constants'
 import * as URL_CONSTANTS from './constants/url-constants'
@@ -42,3 +42,11 @@ export class BaseApp {
     }
 
 }
+
+export class TrainingErrorHandler implements ErrorHandler {
+    handleError(error) {
+      console.log(error);
+    }
+  }
+  
+  
