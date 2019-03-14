@@ -38,21 +38,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>John</td>
-                  <td>Doe</td>
-                  <td>john@example.com</td>
+
+                <tr *ngFor="let adminData of adminObj">
+                  <td>{{adminData.trainingName}}</td>
+                  <td>{{adminData.category}}</td>
+                  <td>{{adminData.trainer}}</td>
                 </tr>
-                <tr>
-                  <td>Mary</td>
-                  <td>Moe</td>
-                  <td>mary@example.com</td>
-                </tr>
-                <tr>
-                  <td>July</td>
-                  <td>Dooley</td>
-                  <td>july@example.com</td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
@@ -75,29 +67,31 @@
             
             <!-- Modal body -->
             <div class="modal-body">
+              <form [formGroup]="addUserForm">
 
                 <div class="form-group">
                     <label for="email">Email-Id</label>
                     <input formControlName="email" class="form-control " [ngClass]="applyClass(email)" type="email" id="email"
                       placeholder="Enter your Email-Id">
                     <div class="invalid-feedback" *ngIf="email.errors">
-                      <span *ngIf="loginForm.controls['email'].errors.required">
+                      <span *ngIf="addUserForm.controls['email'].errors.required">
                         This field is required
                       </span>
-                      <span *ngIf="loginForm.controls['email'].errors.pattern">
+                      <span *ngIf="addUserForm.controls['email'].errors.pattern">
                         Please enter Capco email address.
                       </span>
                     </div>
                   </div>
 
+                  
                   <div class="form-group">
                       <label for="userType">User Type</label>
-                      <select id="userType" [ngModelOptions]="{standalone: true}" name="selectQuestion" class="form-control" required
-                        [(ngModel)]="userType">
+                      <select formControlName="userType" id="userType" name="userType" class="form-control" required>
                         <option value="trainer">Trainer</option>
                         <option value="learner">Learner</option>   
                       </select>
                     </div>
+              </form>  
             </div>
             
             <!-- Modal footer -->
@@ -127,12 +121,27 @@
               
               <!-- Modal body -->
               <div class="modal-body">
-  
-                  <div class="form-group">
-                      <label for="courseName">Course Name</label>
-                      <input formControlName="courseName" class="form-control " [ngClass]="applyClass(email)" type="text" id="courseName"
-                        placeholder="Course Name">                      
-                    </div>
+                <form [formGroup]="addTrainingForm">
+
+                    <div class="form-group">
+                        <label for="courseName">Course Name</label>
+                        <input formControlName="courseName" class="form-control " [ngClass]="applyClass(courseName)" type="text" id="courseName" placeholder="Course Name"
+                            />
+                        <div class="invalid-feedback" *ngIf="courseName.errors">
+                          <span *ngIf="courseName.errors.required">
+                              This field is required
+                            </span>
+                          <span *ngIf="courseName.errors.maxlength">
+                              Minimum of 50 characters.
+                            </span>
+                          <span *ngIf="courseName.errors.pattern">
+                              Only characters are allowed.
+                            </span>
+                          <span *ngIf="courseName.errors.cannotContainSpace">
+                              {{courseName.errors.cannotContainSpace}}
+                            </span>
+                        </div>
+                      </div>
 
                     <div class="form-group">
                         <label for="courseCategory">Course Category</label>
@@ -150,9 +159,9 @@
                           <label for="desc">Description</label>
                           <textarea class="form-control" id="desc" [ngClass]="applyClass(desc)" formControlName="desc" id="desc" cols="63"
                             rows="3" placeholder="Description"></textarea>
-                          <div class="invalid-feedback" *ngIf="bio.errors">
-                            <span *ngIf="bio.errors.maxlength">
-                              max characters limit is 800.
+                          <div class="invalid-feedback" *ngIf="desc.errors">
+                            <span *ngIf="desc.errors.maxlength">
+                              max characters limit is 700.
                             </span>
                           </div>
                         </div>
@@ -165,6 +174,7 @@
                           <option value="learner">Trainer 2</option>   
                         </select>
                       </div>
+                </form>
               </div>
               
               <!-- Modal footer -->
