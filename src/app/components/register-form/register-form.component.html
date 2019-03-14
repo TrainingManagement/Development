@@ -104,7 +104,7 @@
   <div class="row">
     <div class="col-6">
       <!-- <button type="button" class="btn btn-dark btn-block shadow" [disabled]="registerForm.invalid" (click)="submit()" -->
-      <button id="security-btn" type="button" class="btn btn-dark btn-block shadow" (click)="submit()" routerLinkActive="active">
+      <button id="security-btn" [disabled]="registerForm.invalid" type="button" class="btn btn-dark btn-block shadow" (click)="submit()" routerLinkActive="active">
         Next
       </button>
     </div>

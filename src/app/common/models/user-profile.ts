@@ -6,7 +6,7 @@ export class UserProfile {
   lastName: string;
   email: string;
   contact: number;
-  dob: Date;
+  dob: any;
   bio: string;
   skill: string;
   security = new SecurityQuestions();

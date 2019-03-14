@@ -44,7 +44,7 @@
     </div>
   
     <div class="text-center">
-      <button id="signin-btn" class="my-4 btn btn-dark col-12 shadow" type="submit" (click)="login()">Sign in</button>
+      <button id="signin-btn" [disabled] = "loginForm.invalid" class="my-4 btn btn-dark col-12 shadow" type="submit" (click)="login()">Sign in</button>
     </div>
   </form>
   <!-- Default form login -->
