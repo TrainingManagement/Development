@@ -1,4 +1,4 @@
-import { Injector, EventEmitter } from '@angular/core';
+import { Injector, EventEmitter, ErrorHandler } from '@angular/core';
 import * as APP_CONSTANTS from './constants/constants';
 import * as ROUTE_CONSTANTS from './constants/routing-constants'
 import * as URL_CONSTANTS from './constants/url-constants'
@@ -34,12 +34,19 @@ export class BaseApp {
     presentLoading(data) {
         console.log('present loading called')
         this.eventService.loading = data;
-        this.windowScrolling.disable();
-    }
-
-    dismissLoading() {
-        this.eventService.loading = false;
-        this.windowScrolling.enable();
+        if (data) {
+            this.windowScrolling.disable();
+        } else {
+            this.windowScrolling.enable();
+        }
     }
 
 }
+
+export class TrainingErrorHandler implements ErrorHandler {
+    handleError(error) {
+      console.log(error);
+    }
+  }
+  
+  

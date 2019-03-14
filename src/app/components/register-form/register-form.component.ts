@@ -7,8 +7,8 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomValidators } from "../../common/validations/CustomValidators";
-import { BaseApp } from '../../common/base-app';
-import { AuthenticationService } from '../../services/auth/authentication.service';
+import { BaseApp } from "../../common/base-app";
+import { AuthenticationService } from "../../services/auth/authentication.service";
 
 @Component({
   selector: "app-register-form",
@@ -18,7 +18,6 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 export class RegisterFormComponent extends BaseApp implements OnInit {
   registerForm: FormGroup;
   showPass = false;
-
 
   date: Date = new Date();
   formattedMinDate =
@@ -31,9 +30,12 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
   today;
   maxDate;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,
-    private authenticationService:AuthenticationService,
-    injector: Injector) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    injector: Injector
+  ) {
     super(injector);
     this.today = this.formatDate(new Date());
     this.maxDate = this.formatDate(this.formattedMinDate);
@@ -57,7 +59,7 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
           CustomValidators.cannotContainSpace
         ]
       ],
-      emailId: [
+      email: [
         "",
         [
           Validators.required,
@@ -68,7 +70,8 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
       ],
       dob: new FormControl(this.maxDate, [
         Validators.required,
-        CustomValidators.checkAge]),
+        CustomValidators.checkAge
+      ]),
       skill: new FormControl("Frontend"),
       password: [
         "",
@@ -80,10 +83,7 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
     });
   }
 
-  ngOnInit() {
-
-  
-   }
+  ngOnInit() {}
 
   submit() {
     console.log("called", this.registerForm);
@@ -99,8 +99,8 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
     return this.registerForm.controls["lastName"];
   }
 
-  get emailId() {
-    return this.registerForm.controls["emailId"];
+  get email() {
+    return this.registerForm.controls["email"];
   }
 
   get password() {

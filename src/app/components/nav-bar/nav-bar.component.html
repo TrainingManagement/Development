@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col">
           <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            <a id="auth-menu" class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Admin
             </a>
@@ -21,7 +21,7 @@
         </div>
         <div class="col">
           <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            <a id="user-menu" class="btn btn-secondary dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               {{eventService.user.firstName.charAt(0)+'.' | uppercase}} {{eventService.user.lastName | uppercase}}
             </a>

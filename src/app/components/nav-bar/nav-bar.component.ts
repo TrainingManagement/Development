@@ -16,7 +16,7 @@ export class NavBarComponent extends BaseApp implements OnInit {
   }
 
   logout(){
-    this.eventService.eventEmitter.emit(this.CONSTANTS.EVENT_USER_LOGGED_OUT);
+    this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_OUT);
   }
 
 }

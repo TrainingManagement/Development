@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -26,6 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './components/admin/admin.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
 import { LearnerComponent } from './components/learner/learner.component';
+import { TrainingErrorHandler } from './common/base-app';
+
+
+
 
 @NgModule({
   declarations: [
@@ -60,8 +64,11 @@ import { LearnerComponent } from './components/learner/learner.component';
     
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    {provide: ErrorHandler, useClass: TrainingErrorHandler}
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

@@ -4,7 +4,7 @@
       <label for="email">Email-Id</label>
       <input formControlName="email" class="form-control " [ngClass]="applyClass(email)" type="email" id="email"
         placeholder="Enter your Email-Id">
-      <div class="invalid-feedback" *ngIf="email.errors">
+      <div id="email-error" class="invalid-feedback" *ngIf="email.errors">
         <span *ngIf="loginForm.controls['email'].errors.required">
           This field is required
         </span>
@@ -24,7 +24,7 @@
             <i class="fa fa-eye" aria-hidden="true"></i>
           </div>
         </div>
-      <div class="invalid-feedback" *ngIf="password.errors">
+      <div id="password-error" class="invalid-feedback" *ngIf="password.errors">
         <span *ngIf="loginForm.controls['password'].errors.required">
           This field is required.
         </span>
@@ -39,12 +39,12 @@
   
     <div class="d-flex justify-content-around">
       <div>
-        <a [routerLink]="['/forgot-password']" routerLinkActive="router-link-active" >Forgot password?</a>
+        <a id="forgot-link" [routerLink]="['/forgot-password']" routerLinkActive="router-link-active" >Forgot password?</a>
       </div>
     </div>
   
     <div class="text-center">
-      <button class="my-4 btn btn-dark col-12 shadow" type="submit" (click)="login()">Sign in</button>
+      <button id="signin-btn" class="my-4 btn btn-dark col-12 shadow" type="submit" (click)="login()">Sign in</button>
     </div>
   </form>
   <!-- Default form login -->
