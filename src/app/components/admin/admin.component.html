@@ -86,7 +86,7 @@
                   
                   <div class="form-group">
                       <label for="userType">User Type</label>
-                      <select formControlName="userType" id="userType" name="userType" class="form-control" required>
+                      <select [(ngModel)]="userType" [ngModelOptions]="{standalone: true}" id="userType" name="userType" class="form-control" required>
                         <option *ngFor="let userTypeData of userTypeObj">{{userTypeData.type}}</option>
                       </select>
                     </div>
@@ -95,9 +95,15 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Add User</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submit()">Add User</button>
             </div>
             
+            <p>
+             <!-- Form Status: {{ addUserForm.status }}<br> -->
+              Form Value: "email":{{ email.value }}
+              User Type:{{userType}}
+            </p>
+
           </div>
         </div>
       </div>
@@ -159,22 +165,29 @@
                               max characters limit is 700.
                             </span>
                           </div>
+                        </div>  
+                    
+
+                      <div class="form-group">
+                        <label for="email">Trainer Email-Id</label>
+                        <input formControlName="trainerEmail" class="form-control " [ngClass]="applyClass(trainerEmail)" type="email" id="trainerEmail"
+                          placeholder="Enter your Email-Id">
+                        <div class="invalid-feedback" *ngIf="email.errors">
+                          <span *ngIf="addTrainingForm.controls['trainerEmail'].errors.required">
+                            This field is required
+                          </span>
+                          <span *ngIf="addTrainingForm.controls['trainerEmail'].errors.pattern">
+                            Please enter Capco email address.
+                          </span>
                         </div>
-  
-                    <div class="form-group">
-                        <label for="addTrainer">Add Trainer</label>
-                        <select id="addTrainer" [ngModelOptions]="{standalone: true}" name="addTrainer" class="form-control" required
-                          [(ngModel)]="addTrainer">
-                          <option value="trainer">Trainer 1</option>
-                          <option value="learner">Trainer 2</option>   
-                        </select>
                       </div>
+
                 </form>
               </div>
               
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Add Training</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submitTraining()">Add Training</button>
               </div>
               
             </div>

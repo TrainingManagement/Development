@@ -33,8 +33,8 @@ export class AdminComponent extends BaseApp implements OnInit {
    {"trainingName": "Automation Testing","category": "Testing","trainer": "Mr.LKJ"}
   ];
 
-  userTypeObj = [{type:"Trainer"},
-                {type:"Learner"}];
+  userTypeObj = [{type:"Admin"},
+                {type:"Trainer"}];
 
   courseCategoryObj = [{category:"Frontend"},
                         {category:"Backend"},
@@ -55,7 +55,9 @@ export class AdminComponent extends BaseApp implements OnInit {
 
     this.addTrainingForm = this.formBuilder.group({
       courseName: ["",[Validators.required,Validators.maxLength(70),Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),CustomValidators.cannotContainSpace]],
-      desc: new FormControl("", [Validators.maxLength(700)])
+      desc: new FormControl("", [Validators.maxLength(700)]),
+      trainerEmail: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],      
+      
     });
   }
 
@@ -65,8 +67,12 @@ export class AdminComponent extends BaseApp implements OnInit {
   }
 
   submit() {
-    console.log("add-userForm", this.addUserForm);
-    console.log("add-trainingForm",this.addTrainingForm);
+    console.log("add-userForm", this.addUserForm.value);    
+  }
+
+  submitTraining()
+  {
+    console.log("add-trainingForm",this.addTrainingForm.value);
   }
   
 
@@ -81,6 +87,10 @@ export class AdminComponent extends BaseApp implements OnInit {
 
   get courseName() {
     return this.addTrainingForm.controls["courseName"];
+  }
+
+  get trainerEmail() {
+    return this.addTrainingForm.controls["trainerEmail"];
   }
 
   applyClass(control) {
