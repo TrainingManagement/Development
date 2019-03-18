@@ -14,6 +14,7 @@ import { CustomValidators } from "../../common/validations/CustomValidators";
   styleUrls: ["./trainer.component.scss"]
 })
 export class TrainerComponent extends BaseApp implements OnInit {
+ 
   trainerForm: FormGroup;
   constructor(private formBuilder: FormBuilder, injector: Injector) {
     super(injector);
@@ -33,7 +34,13 @@ export class TrainerComponent extends BaseApp implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  ngAfterContentInit() {
+    console.log('trainer loaded');
+    // TODO Api call to do
+  }
 
   get trainingName() {
     return this.trainerForm.controls["trainingName"];
@@ -44,7 +51,6 @@ export class TrainerComponent extends BaseApp implements OnInit {
   }
 
   applyClass(control) {
-    console.log("check", control);
     return control.touched ? (control.invalid ? "is-invalid" : "is-valid") : "";
   }
 }

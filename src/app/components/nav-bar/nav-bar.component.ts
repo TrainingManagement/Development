@@ -1,5 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { BaseApp } from '../../common/base-app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'nav-bar',
@@ -8,26 +9,33 @@ import { BaseApp } from '../../common/base-app';
 })
 export class NavBarComponent extends BaseApp implements OnInit {
 
-  roleType:string;
+  roleType: string = 'Learner';
 
-  constructor( injector:Injector) { 
+  constructor(private router: Router,
+    injector: Injector,
+  ) {
 
     super(injector);
-    this.roleType = this.eventService.role;
+    if (sessionStorage.getItem('role')) {
+      this.roleType = sessionStorage.getItem('role');
+    }
   }
 
   ngOnInit() {
   }
 
-  logout(){
+  logout() {
     this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_OUT);
   }
 
-  setRole(role)
-  {
-      sessionStorage.setItem('role',role);
-      //this.roleType = role;
-      console.log("check with role",this.roleType)
+  setRole(role) {
+    this.roleType = role
+    sessionStorage.setItem('role', role);
+  }
+
+  homeNavigate() {
+    let url = '/home/' + this.roleType;
+    this.router.navigate([`${url}`])
   }
 
 }
