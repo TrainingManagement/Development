@@ -43,4 +43,12 @@ export class AuthenticationService extends BaseApp {
     this.httpService.post(this.URL_CONSTANTS.UPDATE_PROFILE_URL, serviceResponse, profile);
 
   }
+
+  addUser(body: any, serviceResponse: IServiceResponse<any>) {
+    this.httpService.post(this.URL_CONSTANTS.ADD_USER_URL, serviceResponse, body);
+  }
+
+  addTraining(body: any, serviceResponse: IServiceResponse<any>) {
+    this.httpService.post(this.URL_CONSTANTS.ADD_TRAINING_URL, serviceResponse, body);
+  }
 }

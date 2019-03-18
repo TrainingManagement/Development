@@ -85,9 +85,9 @@
 
                   
                   <div class="form-group">
-                      <label for="userType">User Type</label>
-                      <select [(ngModel)]="userType" [ngModelOptions]="{standalone: true}" id="userType" name="userType" class="form-control" required>
-                        <option *ngFor="let userTypeData of userTypeObj">{{userTypeData.type}}</option>
+                      <label for="role">User Type</label>
+                      <select formControlName="role"  id="role" name="role" class="form-control" required>
+                        <option *ngFor="let role of userTypeObj">{{role.type}}</option>
                       </select>
                     </div>
               </form>  
@@ -95,13 +95,12 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submit()">Add User</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addUser()">Add User</button>
             </div>
             
             <p>
              <!-- Form Status: {{ addUserForm.status }}<br> -->
               Form Value: "email":{{ email.value }}
-              User Type:{{userType}}
             </p>
 
           </div>
@@ -129,39 +128,39 @@
                 <form [formGroup]="addTrainingForm">
 
                     <div class="form-group">
-                        <label for="courseName">Course Name</label>
-                        <input formControlName="courseName" class="form-control " [ngClass]="applyClass(courseName)" type="text" id="courseName" placeholder="Course Name"
+                        <label for="coursename">Course Name</label>
+                        <input formControlName="coursename" class="form-control " [ngClass]="applyClass(coursename)" type="text" id="coursename" placeholder="Course Name"
                             />
-                        <div class="invalid-feedback" *ngIf="courseName.errors">
-                          <span *ngIf="courseName.errors.required">
+                        <div class="invalid-feedback" *ngIf="coursename.errors">
+                          <span *ngIf="coursename.errors.required">
                               This field is required
                             </span>
-                          <span *ngIf="courseName.errors.maxlength">
+                          <span *ngIf="coursename.errors.maxlength">
                               Minimum of 50 characters.
                             </span>
-                          <span *ngIf="courseName.errors.pattern">
+                          <span *ngIf="coursename.errors.pattern">
                               Only characters are allowed.
                             </span>
-                          <span *ngIf="courseName.errors.cannotContainSpace">
-                              {{courseName.errors.cannotContainSpace}}
+                          <span *ngIf="coursename.errors.cannotContainSpace">
+                              {{coursename.errors.cannotContainSpace}}
                             </span>
                         </div>
                       </div>
 
                     <div class="form-group">
-                        <label for="courseCategory">Course Category</label>
-                        <select id="courseCategory" [ngModelOptions]="{standalone: true}" name="courseCategory" class="form-control" required
-                          [(ngModel)]="courseCategory">
-                          <option *ngFor="let courseCategoryData of courseCategoryObj">{{courseCategoryData.category}}</option>                             
+                        <label for="coursecategory">Course Category</label>
+                        <select formControlName="coursecategory" id="coursecategory" name="coursecategory" class="form-control" required
+                          >
+                          <option *ngFor="let coursecategory of courseCategoryObj">{{coursecategory.category}}</option>                             
                         </select>
                       </div>
 
                       <div class="form-group">
-                          <label for="desc">Description</label>
-                          <textarea class="form-control" id="desc" [ngClass]="applyClass(desc)" formControlName="desc" id="desc" cols="63"
+                          <label for="description">Description</label>
+                          <textarea class="form-control" id="description" [ngClass]="applyClass(description)" formControlName="description" id="description" cols="63"
                             rows="3" placeholder="Description"></textarea>
-                          <div class="invalid-feedback" *ngIf="desc.errors">
-                            <span *ngIf="desc.errors.maxlength">
+                          <div class="invalid-feedback" *ngIf="description.errors">
+                            <span *ngIf="description.errors.maxlength">
                               max characters limit is 700.
                             </span>
                           </div>
@@ -172,8 +171,8 @@
                         <label for="email">Trainer Email-Id</label>
                         <input formControlName="trainerEmail" class="form-control " [ngClass]="applyClass(trainerEmail)" type="email" id="trainerEmail"
                           placeholder="Enter your Email-Id">
-                        <div class="invalid-feedback" *ngIf="email.errors">
-                          <span *ngIf="addTrainingForm.controls['trainerEmail'].errors.required">
+                        <div class="invalid-feedback" *ngIf="trainerEmail.errors">
+                          <span *ngIf="addTrainingForm.controls['trainerEmail'].errors">
                             This field is required
                           </span>
                           <span *ngIf="addTrainingForm.controls['trainerEmail'].errors.pattern">
@@ -187,7 +186,7 @@
               
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submitTraining()">Add Training</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addTraining()">Add Training</button>
               </div>
               
             </div>

@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
+
 export class EventService {
   loading = false;
   private _user = new UserProfile();

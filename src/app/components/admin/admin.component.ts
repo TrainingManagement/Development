@@ -48,14 +48,16 @@ export class AdminComponent extends BaseApp implements OnInit {
     private authService: AuthenticationService,
     injector: Injector) {
     super(injector);
+    
     this.addUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],      
-      userType: ['']      
+      role: ['']      
     });
 
     this.addTrainingForm = this.formBuilder.group({
-      courseName: ["",[Validators.required,Validators.maxLength(70),Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),CustomValidators.cannotContainSpace]],
-      desc: new FormControl("", [Validators.maxLength(700)]),
+      coursename: ["",[Validators.required,Validators.maxLength(70),Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),CustomValidators.cannotContainSpace]],
+      coursecategory:[''],
+      description: new FormControl("", [Validators.maxLength(700)]),
       trainerEmail: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],      
       
     });
@@ -84,12 +86,12 @@ export class AdminComponent extends BaseApp implements OnInit {
   }
   
 
-  get desc() {
-    return this.addTrainingForm.controls["desc"];
+  get description() {
+    return this.addTrainingForm.controls["description"];
   }
 
-  get courseName() {
-    return this.addTrainingForm.controls["courseName"];
+  get coursename() {
+    return this.addTrainingForm.controls["coursename"];
   }
 
   get trainerEmail() {
@@ -99,6 +101,41 @@ export class AdminComponent extends BaseApp implements OnInit {
   applyClass(control) {
     return control.touched ? (control.invalid ? 'is-invalid' : 'is-valid') : '';
   }
+
+  addUserResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("addUserResponse objcet : ", data);
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
+    },
+    fail: (error) => {
+      console.log("addUserResponse Error - ", error);
+      this.toastService.presentToastDanger( error.error.message);
+    }
+  }
   
+  addUser() {
+    this.authService.addUser(this.addUserForm.value,this.addUserResponse);
+    console.log("addUser form res",this.addUserForm.value);
+    this.addUserForm.reset();
+    
+  }
+
+  addTrainingResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("addTrainingResponse objcet : ", data);
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
+    },
+    fail: (error) => {
+      console.log("addTrainingResponse Error - ", error);
+      this.toastService.presentToastDanger( error.error.message);
+    }
+  }
+  
+  addTraining() {
+    this.authService.addTraining(this.addTrainingForm.value,this.addTrainingResponse);
+    console.log("addTraining form res",this.addTrainingForm.value);
+    //this.addTrainingForm.reset();
+    
+  }
 
 }
