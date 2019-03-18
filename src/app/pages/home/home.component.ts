@@ -19,6 +19,7 @@ export class HomeComponent extends BaseApp implements OnInit {
     private injector: Injector
   ) {
     super(injector);
+    //sessionStorage.setItem('role','learner');
 
     this.profileForm = new FormGroup({
       firstName: new FormControl('',[Validators.required, Validators.minLength(3),Validators.maxLength(5)]),

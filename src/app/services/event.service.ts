@@ -11,6 +11,7 @@ export class EventService {
   loading = false;
   private _user = new UserProfile();
   eventEmitter = new EventEmitter();
+  private _role = "learner";
 
   constructor(router: Router) {
 
@@ -41,5 +42,11 @@ export class EventService {
   get user() {
     this._user = JSON.parse(sessionStorage.getItem(APP_CONSTANTS.SESSION_USER_PROFILE));
     return this._user;
+  }
+
+  get role()
+  {
+    this._role = sessionStorage.getItem('role');
+    return this._role;
   }
 }

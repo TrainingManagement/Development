@@ -87,8 +87,7 @@
                   <div class="form-group">
                       <label for="userType">User Type</label>
                       <select formControlName="userType" id="userType" name="userType" class="form-control" required>
-                        <option value="trainer">Trainer</option>
-                        <option value="learner">Learner</option>   
+                        <option *ngFor="let userTypeData of userTypeObj">{{userTypeData.type}}</option>
                       </select>
                     </div>
               </form>  
@@ -147,11 +146,7 @@
                         <label for="courseCategory">Course Category</label>
                         <select id="courseCategory" [ngModelOptions]="{standalone: true}" name="courseCategory" class="form-control" required
                           [(ngModel)]="courseCategory">
-                          <option value="frontend">Frontend</option>
-                          <option value="backend">Backend</option>  
-                          <option value="ba">BA</option> 
-                          <option value="testing">Testing</option> 
-                          <option value="devops">DEV OPS</option>    
+                          <option *ngFor="let courseCategoryData of courseCategoryObj">{{courseCategoryData.category}}</option>                             
                         </select>
                       </div>
 

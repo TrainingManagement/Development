@@ -33,6 +33,15 @@ export class AdminComponent extends BaseApp implements OnInit {
    {"trainingName": "Automation Testing","category": "Testing","trainer": "Mr.LKJ"}
   ];
 
+  userTypeObj = [{type:"Trainer"},
+                {type:"Learner"}];
+
+  courseCategoryObj = [{category:"Frontend"},
+                        {category:"Backend"},
+                        {category:"BA"},
+                        {category:"Dev Ops"},
+                        {category:"Training"}];
+
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private httpService: HttpService,
@@ -54,7 +63,6 @@ export class AdminComponent extends BaseApp implements OnInit {
     
 
   }
-
   
 
   get email() {
