@@ -63,6 +63,11 @@ export class AdminComponent extends BaseApp implements OnInit {
     
 
   }
+
+  submit() {
+    console.log("add-userForm", this.addUserForm);
+    console.log("add-trainingForm",this.addTrainingForm);
+  }
   
 
   get email() {
