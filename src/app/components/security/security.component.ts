@@ -64,7 +64,7 @@ export class SecurityComponent extends BaseApp implements OnInit {
   regResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log("loginResponse objcet : ", data);
-      this.toastService.presentToastInfo('successful api call');
+      this.toastService.presentToastInfo('Registered Successfully');
       this.router.navigate(['/login']);
     },
     fail: (error) => {
