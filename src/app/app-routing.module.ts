@@ -13,6 +13,9 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SecurityComponent } from './components/security/security.component';
+import { LearnerComponent } from './components/learner/learner.component';
+import { TrainerComponent } from './components/trainer/trainer.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -32,8 +35,11 @@ const routes: Routes = [
     component: LandingComponent,
     children: [
       { path: "", component: HomeComponent },
-      { path: ROUTE_CONSTANTS.PROFILE_ROUTE, component: MyProfileComponent },
-      { path: ROUTE_CONSTANTS.FAQ_ROUTE, component: FaqComponent }
+      { path: 'my-profile', component: MyProfileComponent },
+      { path: 'learner', component: LearnerComponent },
+      { path: 'trainer', component: TrainerComponent },
+      { path: 'admin', component: AdminComponent },
+      { path: 'faqs', component: FaqComponent }
     ],
     canActivate: [AuthGuardService]
   },

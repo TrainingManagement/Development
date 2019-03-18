@@ -65,7 +65,7 @@ import { TrainingErrorHandler } from './common/base-app';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-    {provide: ErrorHandler, useClass: TrainingErrorHandler}
+    // {provide: ErrorHandler, useClass: TrainingErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

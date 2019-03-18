@@ -62,8 +62,11 @@ export class AdminComponent extends BaseApp implements OnInit {
   }
 
   ngOnInit() {
-    
+  }
 
+  ngAfterContentInit() {
+    console.log('admin loaded');
+    // TODO Api call to do
   }
 
   submit() {
