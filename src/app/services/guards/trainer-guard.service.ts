@@ -14,14 +14,14 @@ export class TrainerGuardService extends BaseApp implements CanActivate{
     }
   
     canActivate(): boolean {
-      // if (this.eventService.user.adminRole != true) {      
-      //   this.toastService.presentToastDanger('You are not Trainer');
-      //   let roleType = sessionStorage.getItem('role'); 
-      //   let url = '/home/' + roleType;
-      //   this.router.navigate([`${url}`]) 
-      //   //this.router.navigate(['/home/learner']);
-      //   return false;
-      // }
+      if (this.eventService.user.adminRole != true) {      
+        this.toastService.presentToastDanger('You are not Trainer');
+        let roleType = sessionStorage.getItem('role'); 
+        let url = '/home/' + roleType;
+        this.router.navigate([`${url}`]) 
+        //this.router.navigate(['/home/learner']);
+        return false;
+      }
       return true;
     }
   

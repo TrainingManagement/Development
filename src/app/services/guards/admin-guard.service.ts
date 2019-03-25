@@ -14,15 +14,15 @@ export class AdminGuardService extends BaseApp implements CanActivate{
   }
 
   canActivate(): boolean {
-    // if (this.eventService.user.adminRole != true) {      
-    //   this.toastService.presentToastDanger('You are not Admin');
+    if (this.eventService.user.adminRole != true) {      
+      this.toastService.presentToastDanger('You are not Admin');
       
-    //   let roleType = sessionStorage.getItem('role'); 
-    //   let url = '/home/' + roleType;
-    //   this.router.navigate([`${url}`]) 
-    //   //this.router.navigate(['/home/learner']);
-    //   return false;
-    // }
+      let roleType = sessionStorage.getItem('role'); 
+      let url = '/home/' + roleType;
+      this.router.navigate([`${url}`]) 
+      //this.router.navigate(['/home/learner']);
+      return false;
+    }
     return true;
   }
 
