@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent extends BaseApp implements OnInit {
 
-  roleType: string = 'Learner';
+  roleType: string = 'learner';
 
   constructor(private router: Router,
     injector: Injector,
   ) {
 
     super(injector);
+    sessionStorage.setItem('role', this.roleType);
     if (sessionStorage.getItem('role')) {
       this.roleType = sessionStorage.getItem('role');
     }

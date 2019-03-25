@@ -1,3 +1,4 @@
+import { CanActivate, CanActivateChild } from '@angular/router/public_api';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import * as ROUTE_CONSTANTS from './common/constants/routing-constants';
@@ -16,6 +17,8 @@ import { SecurityComponent } from './components/security/security.component';
 import { LearnerComponent } from './components/learner/learner.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AdminGuardService } from './services/guards/admin-guard.service';
+import { TrainerGuardService } from './services/guards/trainer-guard.service';
 
 const routes: Routes = [
   {
@@ -37,8 +40,8 @@ const routes: Routes = [
       { path: "", component: HomeComponent },
       { path: 'my-profile', component: MyProfileComponent },
       { path: 'learner', component: LearnerComponent },
-      { path: 'trainer', component: TrainerComponent },
-      { path: 'admin', component: AdminComponent },
+      { path: 'trainer', component: TrainerComponent,canActivate:[TrainerGuardService] },
+      { path: 'admin', component: AdminComponent,canActivate:[AdminGuardService]},
       { path: 'faqs', component: FaqComponent }
     ],
     canActivate: [AuthGuardService]

@@ -1,5 +1,5 @@
 // export const BASE_URL = 'https://jsonplaceholder.typicode.com/';
-export const BASE_URL = 'http://10.75.82.121:8082/';
+export const BASE_URL = 'http://10.75.82.96:8082/';
 
 export const POST_URL = 'posts';
 export const LOGIN_URL = 'employee/login';

@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BaseApp } from '../../common/base-app';
+import { BaseApp, TrainingErrorHandler } from '../../common/base-app';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -48,7 +48,7 @@ export class AdminComponent extends BaseApp implements OnInit {
     private authService: AuthenticationService,
     injector: Injector) {
     super(injector);
-    
+        
     this.addUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],      
       role: ['']      

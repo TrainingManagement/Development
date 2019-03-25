@@ -11,12 +11,12 @@ export class LearnerComponent extends BaseApp implements OnInit {
 
   learnerObj = 
   [
-    {"trainingName": "Angular 7","category": "Frontend","trainer": "Mr.XYZ","trainingType":"Mandatory"},
-   {"trainingName": "Core Java","category": "Backend","trainer": "Mr.MNB","trainingType":"Mandatory"},
-   {"trainingName": "Automation Testing","category": "Testing","trainer": "Mr.LKJ","trainingType":"Mandatory"}, 
-   {"trainingName": "Angular 7","category": "Frontend","trainer": "Mr.XYZ","trainingType":"Mandatory"},
-   {"trainingName": "Core Java","category": "Backend","trainer": "Mr.MNB","trainingType":"Mandatory"},
-   {"trainingName": "Automation Testing","category": "Testing","trainer": "Mr.LKJ","trainingType":"Mandatory"},
+    {"trainingName": "Angular 7","category": "Frontend","trainer": "Mr.XYZ","trainingType":"Mandatory","date":"07/04/2019","time":"11.00"},
+   {"trainingName": "Core Java","category": "Backend","trainer": "Mr.MNB","trainingType":"Mandatory","date":"07/04/2019","time":"11.00"},
+   {"trainingName": "Automation Testing","category": "Testing","trainer": "Mr.LKJ","trainingType":"Mandatory","date":"07/04/2019","time":"11.00"}, 
+   {"trainingName": "Angular 7","category": "Frontend","trainer": "Mr.XYZ","trainingType":"Mandatory","date":"07/04/2019","time":"11.00"},
+   {"trainingName": "Core Java","category": "Backend","trainer": "Mr.MNB","trainingType":"Mandatory","date":"07/04/2019","time":"11.00"},
+   {"trainingName": "Automation Testing","category": "Testing","trainer": "Mr.LKJ","trainingType":"Mandatory","date":"07/04/2019","time":"11.00"},
   ];
 
   constructor(injector: Injector) {
