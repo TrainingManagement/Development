@@ -51,4 +51,8 @@ export class AuthenticationService extends BaseApp {
   addTraining(body: any, serviceResponse: IServiceResponse<any>) {
     this.httpService.post(this.URL_CONSTANTS.ADD_TRAINING_URL, serviceResponse, body);
   }
+
+  welcome(body:any, serviceResponse: IServiceResponse<any>) {    
+        this.httpService.post(this.URL_CONSTANTS.WELCOME, serviceResponse, body);
+  }
 }

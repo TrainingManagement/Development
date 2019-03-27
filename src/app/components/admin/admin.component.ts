@@ -51,7 +51,7 @@ export class AdminComponent extends BaseApp implements OnInit {
         
     this.addUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN)]],      
-      role: ['']      
+      userType: ['']      
     });
 
     this.addTrainingForm = this.formBuilder.group({
@@ -137,5 +137,8 @@ export class AdminComponent extends BaseApp implements OnInit {
     //this.addTrainingForm.reset();
     
   }
+
+ 
+
 
 }

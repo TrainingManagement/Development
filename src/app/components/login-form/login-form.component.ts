@@ -59,6 +59,8 @@ export class LoginFormComponent extends BaseApp implements OnInit {
       console.log("loginResponse objcet : ", data);
       this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
       this.getProfile();
+      this.welcome();
+      // this.addUser();
     },
     fail: (error) => {
       console.log("loginResponse Error - ", error);
@@ -90,5 +92,44 @@ export class LoginFormComponent extends BaseApp implements OnInit {
   getProfile() {
     this.authService.getProfile(this.profileResponse);
   }
+
+  welcomeResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log("welcome objcet : ", data);
+      
+    },
+    fail: (errorService) => {
+      console.log("welcome Error - ", errorService);
+      this.toastService.presentToastDanger('Something went wrong, please try again later.');
+    }
+  }
+  
+   welcomeData = 
+  {
+    email:"ashu.dhiman@capco.com",
+    userType:"Trainer"
+}
+
+  welcome() {
+    this.authService.welcome(this.welcomeData,this.welcomeResponse)
+  }
+
+  // addUserResponse = <IServiceResponse<any>>{
+  //   success: (data: any) => {
+  //     console.log("addUserResponse objcet : ", data);
+  //     this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
+  //   },
+  //   fail: (error) => {
+  //     console.log("addUserResponse Error - ", error);
+  //     this.toastService.presentToastDanger( error.error.message);
+  //   }
+  // }
+  
+  // addUser() {
+  //   this.authService.addUser(this.welcomeData,this.addUserResponse);
+  //   //console.log("addUser form res",this.addUserForm.value);
+  //   //this.addUserForm.reset();
+    
+  // }
 
 }
