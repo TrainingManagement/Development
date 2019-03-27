@@ -39,10 +39,10 @@
               </thead>
               <tbody>
 
-                <tr *ngFor="let adminData of adminObj">
-                  <td>{{adminData.trainingName}}</td>
-                  <td>{{adminData.category}}</td>
-                  <td>{{adminData.trainer}}</td>
+                <tr *ngFor="let adminDashabord of this.adminData">
+                  <td>{{adminDashabord.trainingName}}</td>
+                  <td>{{adminDashabord.courseCategory}}</td>
+                  <td>{{adminDashabord.trainer.firstName}} {{adminDashabord.trainer.lastName}}</td>
                 </tr>
                 
               </tbody>

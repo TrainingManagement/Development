@@ -17,6 +17,7 @@ import { DashboardService } from '../../services/dashboard/dashboard.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent extends BaseApp implements OnInit {
+  adminData: any;
   addUserForm: FormGroup;
   addTrainingForm: FormGroup;
   PATTERN_CONSTANTS: any;
@@ -59,7 +60,7 @@ export class AdminComponent extends BaseApp implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private httpService: HttpService,
-    private dashboardService:DashboardService,
+    private dashboardService: DashboardService,
     private authService: AuthenticationService,
     injector: Injector
   ) {
@@ -173,12 +174,13 @@ export class AdminComponent extends BaseApp implements OnInit {
     );
     console.log('addTraining form res', this.addTrainingForm.value);
     //this.addTrainingForm.reset();
-    
   }
 
   getAdminDashboardResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log('getAdminDashboard objcet : ', data);
+      this.adminData = data.result;
+      console.log("GetAdminData",this.adminData);
     },
     fail: error => {
       console.log('addAdminResponse Error - ', error);
@@ -189,6 +191,5 @@ export class AdminComponent extends BaseApp implements OnInit {
   getAdminDashboard() {
     this.dashboardService.getAdminDashboard(this.getAdminDashboardResponse);
     console.log('getAdminDashboard form res', this.getAdminDashboardResponse);
-
   }
 }
