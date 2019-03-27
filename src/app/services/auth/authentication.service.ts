@@ -55,4 +55,7 @@ export class AuthenticationService extends BaseApp {
   welcome(body:any, serviceResponse: IServiceResponse<any>) {    
         this.httpService.post(this.URL_CONSTANTS.WELCOME, serviceResponse, body);
   }
+
+  
 }
+

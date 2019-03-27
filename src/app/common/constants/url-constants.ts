@@ -10,3 +10,6 @@ export const UPDATE_PROFILE_URL = 'signup';
 export const ADD_USER_URL = "user/add";
 export const ADD_TRAINING_URL = "training/add";
 export const WELCOME = "user/welcome";
+export const VIEW_DASHBOARD_ADMIN = "view/dashboard/admin/";
+export const VIEW_DASHBOARD_TRAINER = "view/dashboard/trainer/";
+export const VIEW_DASHBOARD_LEARNER = "view/dashboard/learner/";
