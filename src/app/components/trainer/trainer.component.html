@@ -44,8 +44,8 @@
           <tr data-toggle="modal" data-target="#myModal" *ngFor="let training of trainingList">
             <td>{{training.trainingName}}</td>
             <td>{{training.courseCategory}}</td>
-            <td>{{training.trainer.startDate}}</td>
-            <td>{{training.trainer.endDate}}</td>
+            <td>{{training.trainer.startTime}}</td>
+            <td>{{training.trainer.endTime}}</td>
           </tr>
         </tbody>
       </table>
@@ -136,7 +136,7 @@
                     class="form-control "
                     type="text"
                     id="trainerName"
-                    placeholder="Sonal Sabale"
+                    placeholder="Trainer Name"
                     disabled
                   />
                 </div>

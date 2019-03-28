@@ -62,11 +62,11 @@ export class TrainerComponent extends BaseApp implements OnInit {
 
   getTrainerDashboardResponse = <IServiceResponse<any>>{
     success: (data: any) => {
-      console.log('getLearnerDashboard objcet : ', data);
+      console.log('getTrainerDashboard objcet : ', data);
       this.trainingList=data.result;
     },
     fail: error => {
-      console.log('getLearnerDashboard Error - ', error);
+      console.log('getTrainerDashboard Error - ', error);
       this.toastService.presentToastDanger(error.error.message);
     },
   };

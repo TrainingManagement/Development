@@ -80,7 +80,7 @@ export class AdminComponent extends BaseApp implements OnInit {
     });
 
     this.addTrainingForm = this.formBuilder.group({
-      coursename: [
+      courseName: [
         '',
         [
           Validators.required,
@@ -89,7 +89,7 @@ export class AdminComponent extends BaseApp implements OnInit {
           CustomValidators.cannotContainSpace,
         ],
       ],
-      coursecategory: [''],
+      courseCategory: [''],
       description: new FormControl('', [Validators.maxLength(700)]),
       trainerEmail: [
         '',
@@ -126,8 +126,8 @@ export class AdminComponent extends BaseApp implements OnInit {
     return this.addTrainingForm.controls['description'];
   }
 
-  get coursename() {
-    return this.addTrainingForm.controls['coursename'];
+  get courseName() {
+    return this.addTrainingForm.controls['courseName'];
   }
 
   get trainerEmail() {
