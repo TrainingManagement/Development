@@ -20,6 +20,8 @@ export class TrainerComponent extends BaseApp implements OnInit {
 
   trainerForm: FormGroup;
   trainingList:TrainingData[]=[];
+  trainingCategory:any
+  completionStatus:any
   constructor(private formBuilder: FormBuilder,
     private dashboardService:DashboardService, injector: Injector) {
     super(injector);
