@@ -1,7 +1,7 @@
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 import { Component, OnInit, Injector } from "@angular/core";
 import { BaseApp } from "../../common/base-app";
-import { 
+import {
   FormGroup,
   FormBuilder,
   Validators,
@@ -9,6 +9,7 @@ import {
 } from "@angular/forms";
 import { CustomValidators } from "../../common/validations/CustomValidators";
 import { IServiceResponse } from '../../common/models/service-response';
+import { TrainingData } from '../../common/models/training-data.class';
 
 @Component({
   selector: "app-trainer",
@@ -16,8 +17,9 @@ import { IServiceResponse } from '../../common/models/service-response';
   styleUrls: ["./trainer.component.scss"]
 })
 export class TrainerComponent extends BaseApp implements OnInit {
- 
+
   trainerForm: FormGroup;
+  trainingList:TrainingData[]=[];
   constructor(private formBuilder: FormBuilder,
     private dashboardService:DashboardService, injector: Injector) {
     super(injector);
@@ -61,6 +63,7 @@ export class TrainerComponent extends BaseApp implements OnInit {
   getTrainerDashboardResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log('getLearnerDashboard objcet : ', data);
+      this.trainingList=data.result;
     },
     fail: error => {
       console.log('getLearnerDashboard Error - ', error);

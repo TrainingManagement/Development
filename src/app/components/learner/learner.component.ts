@@ -3,6 +3,7 @@ import { BaseApp } from "src/app/common/base-app";
 import { Injector } from "@angular/core";
 import { IServiceResponse } from '../../common/models/service-response';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
+import { TrainingData } from '../../common/models/training-data.class';
 
 @Component({
   selector: 'app-learner',
@@ -11,64 +12,16 @@ import { DashboardService } from '../../services/dashboard/dashboard.service';
 })
 export class LearnerComponent extends BaseApp implements OnInit {
 
-  learnerObj = [
-    {
-      trainingName: 'Angular 7',
-      category: 'Frontend',
-      trainer: 'Mr.XYZ',
-      trainingType: 'Mandatory',
-      date: '07/04/2019',
-      time: '11.00',
-    },
-    {
-      trainingName: 'Core Java',
-      category: 'Backend',
-      trainer: 'Mr.MNB',
-      trainingType: 'Mandatory',
-      date: '07/04/2019',
-      time: '11.00',
-    },
-    {
-      trainingName: 'Automation Testing',
-      category: 'Testing',
-      trainer: 'Mr.LKJ',
-      trainingType: 'Mandatory',
-      date: '07/04/2019',
-      time: '11.00',
-    },
-    {
-      trainingName: 'Angular 7',
-      category: 'Frontend',
-      trainer: 'Mr.XYZ',
-      trainingType: 'Mandatory',
-      date: '07/04/2019',
-      time: '11.00',
-    },
-    {
-      trainingName: 'Core Java',
-      category: 'Backend',
-      trainer: 'Mr.MNB',
-      trainingType: 'Mandatory',
-      date: '07/04/2019',
-      time: '11.00',
-    },
-    {
-      trainingName: 'Automation Testing',
-      category: 'Testing',
-      trainer: 'Mr.LKJ',
-      trainingType: 'Mandatory',
-      date: '07/04/2019',
-      time: '11.00',
-    },
-  ];
+  learnerObj: TrainingData[] = [];
+  modalData: TrainingData = new TrainingData();
 
-  constructor(  private dashboardService:DashboardService,
+  constructor(private dashboardService: DashboardService,
     injector: Injector,
   ) {
     super(injector);
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterContentInit() {
     console.log('admin loaded');
@@ -79,6 +32,7 @@ export class LearnerComponent extends BaseApp implements OnInit {
   getLearnerDashboardResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log('getLearnerDashboard objcet : ', data);
+      this.learnerObj = data.result;
     },
     fail: error => {
       console.log('getLearnerDashboard Error - ', error);
@@ -89,5 +43,10 @@ export class LearnerComponent extends BaseApp implements OnInit {
   getLearnerDashboard() {
     this.dashboardService.getLearnerDashboard(this.getLearnerDashboardResponse);
     console.log('getLearnerDashboard form res', this.getLearnerDashboardResponse);
+  }
+
+  openModal(learnerData){
+    this.modalData = learnerData;
+    console.log('modal data',this.modalData);
   }
 }

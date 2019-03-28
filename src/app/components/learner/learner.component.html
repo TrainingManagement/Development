@@ -35,13 +35,13 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let learnerData of learnerObj" data-toggle="modal" data-target="#myModal">
+          <tr *ngFor="let learnerData of learnerObj" data-toggle="modal" data-target="#myModal" (click)="openModal(learnerData)">
             <td>{{learnerData.trainingName}}</td>
-            <td>{{learnerData.category}}</td>
-            <td>{{learnerData.trainer}}</td>
+            <td>{{learnerData.courseCategory}}</td>
+            <td>{{learnerData.trainer.firstName}} {{learnerData.trainer.lastName}}</td>
             <td>{{learnerData.trainingType}}</td>
-            <td>{{learnerData.date}}</td>
-            <td>{{learnerData.time}}</td>
+            <td>{{learnerData.startDate}}</td>
+            <td>{{learnerData.endDate}}</td>
           </tr>
         </tbody>
       </table>
@@ -83,17 +83,17 @@
               <div class="col">
                 <div class="form-group">
                   <label for="trainingName">Training Name</label>
-                  <input class="form-control" type="text" id="trainingName" placeholder="Angular 7" disabled />
+                  <input class="form-control" type="text" id="trainingName" [value]="modalData.trainingName" disabled />
                 </div>
 
                 <div class="form-group">
                   <label for="trainingCategory">Training Category</label>
-                  <input class="form-control " type="text" id="trainingCategory" placeholder="Frontend" disabled />
+                  <input class="form-control " type="text" id="trainingCategory" [value]="modalData.courseCategory" disabled />
                 </div>
 
                 <div class="form-group">
                   <label for="trainerName">Trainer Name</label>
-                  <input class="form-control " type="text" id="trainerName" placeholder="Sonal Sabale" disabled />
+                  <input class="form-control " type="text" id="trainerName" value="{{modalData.trainer.firstName}} {{modalData.trainer.lastName}}" disabled />
                 </div>
 
                 <div class="form-group">
@@ -105,28 +105,18 @@
               <div class="col">
                 <div class="form-group">
                   <label for="trainingType">Training Type</label>
-                  <input class="form-control " type="text" id="trainingType" placeholder="Mandatory" disabled />
+                  <input class="form-control " type="text" id="trainingType" [value]="modalData.trainingType" disabled />
                 </div>
 
 
                 <div class="form-group">
                   <label for="startDate">Date</label>
-                  <input class="form-control " type="date" id="startDate" placeholder="Mandatory" disabled />
+                  <input class="form-control " type="text" id="startDate"  [value]="modalData.startDate" disabled />
                 </div>
-
-                <!-- <div class="form-group">
-                  <label for="endDate">End Date</label>
-                  <input
-                    class="form-control "
-                    type="date"
-                    id="endDate"
-                    placeholder="End Date"
-                  />
-                </div> -->
 
                 <div class="form-group">
                   <label for="addTime">Time</label>
-                  <input class="form-control " type="time" id="addTime" placeholder="Mandatory" disabled />
+                  <input class="form-control " type="time" id="addTime" [value]="modalData.endDate" disabled />
                 </div>
               </div>
             </div>

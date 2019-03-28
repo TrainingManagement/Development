@@ -55,6 +55,7 @@ export class AdminComponent extends BaseApp implements OnInit {
     {category: 'Dev Ops'},
     {category: 'Training'},
   ];
+  userType: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -75,7 +76,7 @@ export class AdminComponent extends BaseApp implements OnInit {
           Validators.pattern(this.PATTERN_CONSTANTS.EMAIL_PATTERN),
         ],
       ],
-      userType: [''],
+      userType: ['Admin'],
     });
 
     this.addTrainingForm = this.formBuilder.group({
@@ -140,26 +141,23 @@ export class AdminComponent extends BaseApp implements OnInit {
   addUserResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log('addUserResponse objcet : ', data);
+      this.toastService.presentToastInfo('User added successfully')
     },
     fail: error => {
       console.log('addUserResponse Error - ', error);
-      this.toastService.presentToastDanger(error.error.message);
+      this.toastService.presentToastDanger(error.status.message);
     },
   };
 
   addUser() {
     this.authService.addUser(this.addUserForm.value, this.addUserResponse);
     console.log('addUser form res', this.addUserForm.value);
-    this.addUserForm.reset();
+    this.addUserForm.controls['userType'].setValue('Admin');
   }
 
   addTrainingResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log('addTrainingResponse objcet : ', data);
-      this.eventService.eventEmitter.emit(
-        this.CONSTANTS.SESSION_USER_LOGGED_IN,
-        data
-      );
     },
     fail: error => {
       console.log('addTrainingResponse Error - ', error);
