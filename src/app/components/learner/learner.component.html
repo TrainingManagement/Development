@@ -38,7 +38,7 @@
           <tr *ngFor="let learnerData of learnerObj" data-toggle="modal" data-target="#myModal" (click)="openModal(learnerData)">
             <td>{{learnerData.trainingName}}</td>
             <td>{{learnerData.courseCategory}}</td>
-            <td>{{learnerData.trainer.firstName}} {{learnerData.trainer.lastName}}</td>
+            <td>{{learnerData.trainer?.firstName}} {{learnerData.trainer?.lastName}}</td>
             <td>{{learnerData.trainingType}}</td>
             <td>{{learnerData.startTime}}</td>
             <td>{{learnerData.endTime}}</td>
@@ -93,7 +93,7 @@
 
                 <div class="form-group">
                   <label for="trainerName">Trainer Name</label>
-                  <input class="form-control " type="text" id="trainerName" value="{{modalData.trainer.firstName}} {{modalData.trainer.lastName}}" disabled />
+                  <input class="form-control " type="text" id="trainerName" value="{{modalData.trainer?.firstName}} {{modalData.trainer?.lastName}}" disabled />
                 </div>
 
                 <div class="form-group">
