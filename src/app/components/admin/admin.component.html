@@ -128,28 +128,28 @@
                 <form [formGroup]="addTrainingForm">
 
                     <div class="form-group">
-                        <label for="coursename">Course Name</label>
-                        <input formControlName="coursename" class="form-control " [ngClass]="applyClass(coursename)" type="text" id="coursename" placeholder="Course Name"
+                        <label for="courseName">Course Name</label>
+                        <input formControlName="courseName" class="form-control " [ngClass]="applyClass(courseName)" type="text" id="courseName" placeholder="Course Name"
                             />
-                        <div class="invalid-feedback" *ngIf="coursename.errors">
-                          <span *ngIf="coursename.errors.required">
+                        <div class="invalid-feedback" *ngIf="courseName.errors">
+                          <span *ngIf="courseName.errors.required">
                               This field is required
                             </span>
-                          <span *ngIf="coursename.errors.maxlength">
+                          <span *ngIf="courseName.errors.maxlength">
                               Minimum of 50 characters.
                             </span>
-                          <span *ngIf="coursename.errors.pattern">
+                          <span *ngIf="courseName.errors.pattern">
                               Only characters are allowed.
                             </span>
-                          <span *ngIf="coursename.errors.cannotContainSpace">
-                              {{coursename.errors.cannotContainSpace}}
+                          <span *ngIf="courseName.errors.cannotContainSpace">
+                              {{courseName.errors.cannotContainSpace}}
                             </span>
                         </div>
                       </div>
 
                     <div class="form-group">
-                        <label for="coursecategory">Course Category</label>
-                        <select formControlName="coursecategory" id="coursecategory" name="coursecategory" class="form-control" required
+                        <label for="courseCategory">Course Category</label>
+                        <select formControlName="courseCategory" id="courseCategory" name="courseCategory" class="form-control" required
                           >
                           <option *ngFor="let coursecategory of courseCategoryObj">{{coursecategory.category}}</option>
                         </select>

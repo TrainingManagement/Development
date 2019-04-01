@@ -13,3 +13,4 @@ export const WELCOME = "user/welcome";
 export const VIEW_DASHBOARD_ADMIN = "view/dashboard/admin/";
 export const VIEW_DASHBOARD_TRAINER = "view/dashboard/trainer/";
 export const VIEW_DASHBOARD_LEARNER = "view/dashboard/learner/";
+export const UPDATE_TRAINER_URL = 'user/trainer/update';
