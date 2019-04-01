@@ -76,4 +76,9 @@ export class TrainerComponent extends BaseApp implements OnInit {
   getTrainerDashboard() {
     this.dashboardService.getTrainerDashboard(this.getTrainerDashboardResponse);
   }
+
+  updateTrainer()
+  {
+    console.log("Update",this.trainerForm.value);
+  }
 }

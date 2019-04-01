@@ -44,8 +44,8 @@
           <tr data-toggle="modal" data-target="#myModal" *ngFor="let training of trainingList">
             <td>{{training.trainingName}}</td>
             <td>{{training.courseCategory}}</td>
-            <td>{{training.trainer.startTime}}</td>
-            <td>{{training.trainer.endTime}}</td>
+            <td>{{training.startTime}}</td>
+            <td>{{training.endTime}}</td>
           </tr>
         </tbody>
       </table>
@@ -179,16 +179,16 @@
 
               <div class="col">
                 <div class="form-group">
-                  <label for="startDate">Start Date</label>
+                  <label for="date">Date</label>
                   <input
                     class="form-control "
                     type="date"
-                    id="startDate"
-                    placeholder="Start Date"
+                    id="date"
+                    placeholder="Date"
                   />
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="endDate">End Date</label>
                   <input
                     class="form-control "
@@ -196,15 +196,25 @@
                     id="endDate"
                     placeholder="End Date"
                   />
-                </div>
+                </div> -->
 
                 <div class="form-group">
-                  <label for="addTime">Add Time</label>
+                  <label for="startTime">Start Time</label>
                   <input
                     class="form-control "
                     type="time"
-                    id="addTime"
-                    placeholder="Add Time"
+                    id="startTime"
+                    placeholder="Start Time"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="endTime">End Time</label>
+                  <input
+                    class="form-control "
+                    type="time"
+                    id="endTime"
+                    placeholder="End Time"
                   />
                 </div>
 
@@ -228,7 +238,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTrainer()">
               Update
             </button>
           </div>

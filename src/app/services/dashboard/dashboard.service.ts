@@ -31,4 +31,8 @@ export class DashboardService extends BaseApp {
                 let username = sessionStorage.getItem(this.CONSTANTS.SESSION_USER);
                 this.httpService.get(this.URL_CONSTANTS.VIEW_DASHBOARD_LEARNER +`${username}`, serviceResponse);
               }
+
+              getUpdateTrainer(serviceResponse: IServiceResponse<any>){
+
+              }
 }
