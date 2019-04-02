@@ -37,7 +37,12 @@ export class TrainerComponent extends BaseApp implements OnInit {
       trainingType: [
         "",
         [Validators.required, CustomValidators.cannotContainSpace]
-      ]
+      ],
+      trainingCategory: [''],
+      trainerName: [''],
+      date: [''],
+      startTime: [''],
+      endTime: []
     });
   }
 
