@@ -132,4 +132,5 @@ export class RegisterFormComponent extends BaseApp implements OnInit {
 
     return [year, month, day].join("-");
   };
+
 }

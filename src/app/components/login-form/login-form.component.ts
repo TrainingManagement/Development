@@ -9,7 +9,7 @@ import { HttpService } from '../../services/http-service/http.service';
 import { IServiceResponse } from '../../common/models/service-response';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -58,13 +58,15 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     success: (data: any) => {
       console.log("loginResponse objcet : ", data);
       this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_LOGGED_IN, data);
-      this.getProfile();
-      this.welcome();
-      // this.addUser();
+      this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_PROFILE, data);
+      this.toastService.presentToastInfo('Login Successful');
+      let profile = data;
+      this.router.navigate(['/home/learner'])
+      // this.firebaseService.updateProfile(profile);
     },
     fail: (error) => {
       console.log("loginResponse Error - ", error);
-      this.toastService.presentToastDanger(error.error.message);
+      this.toastService.presentToastDanger(error);
     }
   }
 
@@ -74,8 +76,9 @@ export class LoginFormComponent extends BaseApp implements OnInit {
       console.log("profile objcet : ", data);
       this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_PROFILE, data.result);
       this.toastService.presentToastInfo('Login Successful');
-      this.firebaseService.updateProfile(data.result);
+      let profile = data.result;
       this.router.navigate(['/home/learner'])
+      this.firebaseService.updateProfile(profile);
     },
     fail: (errorService) => {
       console.log("profile Error - ", errorService);
@@ -85,9 +88,10 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
 
   login() {
-    this.authService.login(this.loginForm.value, this.loginResponse)
-    this.loginForm.reset();
+    // this.authService.login(this.loginForm.value, this.loginResponse)
+    // this.loginForm.reset();
     console.log("login form res", this.loginForm.value);
+    this.firebaseService.loginUser(this.loginForm.value, this.loginResponse);
   }
 
   getProfile() {

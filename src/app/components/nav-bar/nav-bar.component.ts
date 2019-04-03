@@ -16,9 +16,10 @@ export class NavBarComponent extends BaseApp implements OnInit {
   ) {
 
     super(injector);
-    sessionStorage.setItem('role', this.roleType);
     if (sessionStorage.getItem('role')) {
       this.roleType = sessionStorage.getItem('role');
+    } else {
+      sessionStorage.setItem('role', this.roleType);
     }
   }
 

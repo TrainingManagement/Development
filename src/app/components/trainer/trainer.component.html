@@ -10,13 +10,7 @@
     <div class="col-sm-4 pt-2">
       <form class="navbar-form" role="search">
         <div class="input-group add-on">
-          <input
-            class="form-control"
-            placeholder="Search"
-            name="srch-term"
-            id="srch-term"
-            type="text"
-          />
+          <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" />
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit">
               <i class="glyphicon glyphicon-search"></i>
@@ -37,13 +31,15 @@
             <th>Training Name</th>
             <th>Category</th>
             <th>Date</th>
-            <th>Time</th>
+            <th>Start Time</th>
+            <th>End Time</th>
           </tr>
         </thead>
         <tbody>
-          <tr data-toggle="modal" data-target="#myModal" *ngFor="let training of trainingList">
+          <tr data-toggle="modal" data-target="#myModal" *ngFor="let training of trainingList; let i = index" (click)="openModal(i)">
             <td>{{training.trainingName}}</td>
             <td>{{training.courseCategory}}</td>
+            <td>{{training.startDate}}</td>
             <td>{{training.startTime}}</td>
             <td>{{training.endTime}}</td>
           </tr>
@@ -75,7 +71,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Introduction to Business analysis</h4>
+            <h4 class="modal-title">Introduction to {{modalData?.trainingName}}</h4>
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
@@ -87,19 +83,9 @@
               <div class="col">
                 <div class="form-group">
                   <label for="trainingName">Training Name</label>
-                  <input
-                    formControlName="trainingName"
-                    class="form-control"
-                    [ngClass]="applyClass(trainingName)"
-                    type="text"
-                    id="trainingName"
-                    placeholder="Training Name"
-                  />
-                  <div
-                    id="training-name-error"
-                    class="invalid-feedback"
-                    *ngIf="trainingName.errors"
-                  >
+                  <input formControlName="trainingName" class="form-control" [ngClass]="applyClass(trainingName)" type="text"
+                    id="trainingName" [placeholder]="modalData?.trainingName" readonly />
+                  <div id="training-name-error" class="invalid-feedback" *ngIf="trainingName.errors">
                     <span *ngIf="trainingName.errors.required">
                       This field is required
                     </span>
@@ -113,7 +99,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="trainingCategory">Training Category</label>
+                  <!-- <label for="trainingCategory">Training Category</label>
                   <select
                     id="trainingCategory"
                     [ngModelOptions]="{ standalone: true }"
@@ -127,10 +113,14 @@
                     <option value="ba">BA</option>
                     <option value="testing">Testing</option>
                     <option value="devops">DEV OPS</option>
-                  </select>
+                  </select> -->
+
+                  <label for="trainingName">Training Category</label>
+                  <input formControlName="trainingName" class="form-control" [ngClass]="applyClass(trainingName)" type="text"
+                    id="trainingName" [placeholder]="modalData?.courseCategory" readonly />
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="trainerName">Trainer Name</label>
                   <input
                     class="form-control "
@@ -139,34 +129,18 @@
                     placeholder="Trainer Name"
                     disabled
                   />
-                </div>
+                </div> -->
 
                 <div class="form-group">
                   <label for="venue">Venue</label>
-                  <input
-                    class="form-control "
-                    type="text"
-                    id="venue"
-                    placeholder="Vatika business center "
-                    disabled
-                  />
+                  <input class="form-control " type="text" id="venue" placeholder="Vatika business center " disabled />
                 </div>
 
                 <div class="form-group">
                   <label for="trainingType">Training Type</label>
-                  <input
-                    formControlName="trainingType"
-                    class="form-control "
-                    type="text"
-                    id="trainingType"
-                    placeholder="Training Type"
-                    [ngClass]="applyClass(trainingType)"
-                  />
-                  <div
-                    id="training-name-error"
-                    class="invalid-feedback"
-                    *ngIf="trainingName.errors"
-                  >
+                  <input formControlName="trainingType" class="form-control " type="text" id="trainingType" placeholder="Mandatory"
+                    [ngClass]="applyClass(trainingType)" readonly />
+                  <div id="training-name-error" class="invalid-feedback" *ngIf="trainingName.errors">
                     <span *ngIf="trainingType.errors.required">
                       This field is required
                     </span>
@@ -180,12 +154,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="date">Date</label>
-                  <input
-                    class="form-control "
-                    type="date"
-                    id="date"
-                    placeholder="Date"
-                  />
+                  <input class="form-control" formControlName="startDate" type="date" id="date" placeholder="Date" />
                 </div>
 
                 <!-- <div class="form-group">
@@ -200,34 +169,17 @@
 
                 <div class="form-group">
                   <label for="startTime">Start Time</label>
-                  <input
-                    class="form-control "
-                    type="time"
-                    id="startTime"
-                    placeholder="Start Time"
-                  />
+                  <input class="form-control" formControlName="startTime" type="time" id="startTime" placeholder="Start Time" />
                 </div>
 
                 <div class="form-group">
                   <label for="endTime">End Time</label>
-                  <input
-                    class="form-control "
-                    type="time"
-                    id="endTime"
-                    placeholder="End Time"
-                  />
+                  <input class="form-control" formControlName="endTime" type="time" id="endTime" placeholder="End Time" />
                 </div>
 
                 <div class="form-group">
                   <label for="completionStatus">Completion Status</label>
-                  <select
-                    id="completionStatus"
-                    [ngModelOptions]="{ standalone: true }"
-                    name="completionStatus"
-                    class="form-control"
-                    required
-                    [(ngModel)]="completionStatus"
-                  >
+                  <select id="completionStatus"  name="completionStatus" formControlName="completionStatus" class="form-control" required>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
@@ -238,7 +190,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTrainer()">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateTraining  ()">
               Update
             </button>
           </div>

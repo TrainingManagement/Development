@@ -69,14 +69,19 @@ export class SecurityComponent extends BaseApp implements OnInit {
     },
     fail: (error) => {
       console.log("regResponse Error - ", error);
-      this.toastService.presentToastDanger(error.error.message);
+      this.toastService.presentToastDanger(error);
+      this.router.navigate(['/login']);
     }
   }
 
   register() {
     this.authenticationService.registrationData['securityQa'] = this.securityForm.value;
+    this.authenticationService.registrationData['learnerRole'] = true;
+    this.authenticationService.registrationData['trainerRole'] = false;
+    this.authenticationService.registrationData['adminRole'] = false;
     console.log("register data check", this.authenticationService.registrationData)
-    this.authenticationService.register(this.regResponse);
+    // this.authenticationService.register(this.regResponse);
+    this.firebaseService.registerUser(this.authenticationService.registrationData, this.regResponse)
   }
 
 

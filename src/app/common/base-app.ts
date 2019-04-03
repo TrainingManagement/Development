@@ -19,7 +19,7 @@ export class BaseApp {
     cache: CacheService;
     toastService: ToastService;
     firebaseService: FirebaseService;
-    loading = false;
+    private loading = false;
     windowScrolling = new WindowScrolling();
     constructor(
         injector: Injector

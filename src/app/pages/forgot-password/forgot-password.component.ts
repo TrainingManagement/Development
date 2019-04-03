@@ -92,7 +92,7 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     },
     fail: (error) => {
       console.log("forgotResponse Error - ", error);
-      this.toastService.presentToastDanger(error.error.message);
+      this.toastService.presentToastDanger(error);
     }
   };
 
@@ -102,12 +102,15 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
     const body = new ForgotPassword();
     body.email = this.email.value;
     body.password = this.password.value;
-    body.qa[this.questions] = this.answer.value;
-    if (this.questions == 'dob') {
-      body.dob = CustomValidators.dateConverter(this.answer.value);
+    body.question = this.questions;
+    if (body.question == 'dob') {
+      body.answer = this.changeDate(this.answer.value);
+    } else {
+      body.answer = this.answer.value;
     }
+    // body.qa[this.questions] = this.answer.value;
     console.log("answer ", body);
-    this.authenticationService.forgot(body, this.forgotResponse);
+    this.firebaseService.forgotPassword(body, this.forgotResponse);
   }
 
   applyClass(control) {
@@ -133,4 +136,9 @@ export class ForgotPasswordComponent extends BaseApp implements OnInit {
 
     return [year, month, day].join("-");
   };
+
+  changeDate(date: string) {
+    let d = date.split('-');
+    return d[1] + '/' + d[2] + '/' + d[0];
+  }
 }

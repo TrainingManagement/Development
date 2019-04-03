@@ -21,39 +21,22 @@ export class AdminComponent extends BaseApp implements OnInit {
   addUserForm: FormGroup;
   addTrainingForm: FormGroup;
   PATTERN_CONSTANTS: any;
+  firebaseAdminData: any;
+
 
   adminObj = [
-    {trainingName: 'Angular 7', category: 'Frontend', trainer: 'Mr.XYZ'},
-    {trainingName: 'Core Java', category: 'Backend', trainer: 'Mr.MNB'},
-    {
-      trainingName: 'Automation Testing',
-      category: 'Testing',
-      trainer: 'Mr.LKJ',
-    },
-    {trainingName: 'Angular 7', category: 'Frontend', trainer: 'Mr.XYZ'},
-    {trainingName: 'Core Java', category: 'Backend', trainer: 'Mr.MNB'},
-    {
-      trainingName: 'Automation Testing',
-      category: 'Testing',
-      trainer: 'Mr.LKJ',
-    },
-    {trainingName: 'Angular 7', category: 'Frontend', trainer: 'Mr.XYZ'},
-    {trainingName: 'Core Java', category: 'Backend', trainer: 'Mr.MNB'},
-    {
-      trainingName: 'Automation Testing',
-      category: 'Testing',
-      trainer: 'Mr.LKJ',
-    },
+    { trainingName: 'Angular 7', category: 'Frontend', trainer: 'Mr.XYZ' },
+    { trainingName: 'Core Java', category: 'Backend', trainer: 'Mr.MNB' },
   ];
 
-  userTypeObj = [{type: 'Admin'}, {type: 'Trainer'}];
+  userTypeObj = [{ type: 'Admin' }, { type: 'Trainer' }];
 
   courseCategoryObj = [
-    {category: 'Frontend'},
-    {category: 'Backend'},
-    {category: 'BA'},
-    {category: 'Dev Ops'},
-    {category: 'Training'},
+    { category: 'Frontend' },
+    { category: 'Backend' },
+    { category: 'BA' },
+    { category: 'Dev Ops' },
+    { category: 'Testing' },
   ];
   userType: any;
 
@@ -85,11 +68,9 @@ export class AdminComponent extends BaseApp implements OnInit {
         [
           Validators.required,
           Validators.maxLength(70),
-          Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),
-          CustomValidators.cannotContainSpace,
         ],
       ],
-      courseCategory: [''],
+      courseCategory: ['Frontend'],
       description: new FormControl('', [Validators.maxLength(700)]),
       trainerEmail: [
         '',
@@ -102,12 +83,12 @@ export class AdminComponent extends BaseApp implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAdminDashboard();
+   }
 
   ngAfterContentInit() {
     console.log('admin loaded');
-    // TODO Api call to do
-    this.getAdminDashboard();
   }
 
   submit() {
@@ -133,6 +114,9 @@ export class AdminComponent extends BaseApp implements OnInit {
   get trainerEmail() {
     return this.addTrainingForm.controls['trainerEmail'];
   }
+  get courseCategory(){
+    return this.addTrainingForm.controls['courseCategory'];
+  }
 
   applyClass(control) {
     return control.touched ? (control.invalid ? 'is-invalid' : 'is-valid') : '';
@@ -145,49 +129,58 @@ export class AdminComponent extends BaseApp implements OnInit {
     },
     fail: error => {
       console.log('addUserResponse Error - ', error);
-      this.toastService.presentToastDanger(error.status.message);
+      this.toastService.presentToastDanger('something went wrong');
     },
   };
 
   addUser() {
-    this.authService.addUser(this.addUserForm.value, this.addUserResponse);
+    // this.authService.addUser(this.addUserForm.value, this.addUserResponse);
+    this.firebaseService.updateRole(this.addUserForm.value,this.addUserResponse)
     console.log('addUser form res', this.addUserForm.value);
     this.addUserForm.controls['userType'].setValue('Admin');
   }
 
   addTrainingResponse = <IServiceResponse<any>>{
     success: (data: any) => {
-      console.log('addTrainingResponse objcet : ', data);
+      this.toastService.presentToastInfo('Training added successfully');
     },
     fail: error => {
       console.log('addTrainingResponse Error - ', error);
-      this.toastService.presentToastDanger(error.error.message);
+      this.toastService.presentToastDanger(error);
     },
   };
 
   addTraining() {
-    this.authService.addTraining(
-      this.addTrainingForm.value,
-      this.addTrainingResponse
-    );
-    console.log('addTraining form res', this.addTrainingForm.value);
+    // this.authService.addTraining(
+    //   this.addTrainingForm.value,
+    //   this.addTrainingResponse
+    // );
+    // console.log('addTraining form res', this.addTrainingForm.value);
     //this.addTrainingForm.reset();
+    this.firebaseService.addTraining(this.addTrainingForm.value, this.addTrainingResponse);
   }
 
   getAdminDashboardResponse = <IServiceResponse<any>>{
     success: (data: any) => {
-      console.log('getAdminDashboard objcet : ', data);
-      this.adminData = data.result;
-      console.log("GetAdminData",this.adminData);
+      // console.log('getAdminDashboard objcet : ', data);
+      // this.adminData = data.result;
+      // console.log("GetAdminData",this.adminData);
+
+      this.adminData = [];
+      this.firebaseAdminData = data;
+
+      data.forEach(r => {
+        this.adminData.push(r.data())
+      });
     },
     fail: error => {
       console.log('addAdminResponse Error - ', error);
-      this.toastService.presentToastDanger(error.error.message);
+      this.toastService.presentToastDanger('something went wrong');
     },
   };
 
   getAdminDashboard() {
-    this.dashboardService.getAdminDashboard(this.getAdminDashboardResponse);
-    console.log('getAdminDashboard form res', this.getAdminDashboardResponse);
+    // this.dashboardService.getAdminDashboard(this.getAdminDashboardResponse);
+    this.firebaseService.getAllTrainingsAdmin(this.getAdminDashboardResponse);
   }
 }

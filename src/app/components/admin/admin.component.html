@@ -138,12 +138,6 @@
                           <span *ngIf="courseName.errors.maxlength">
                               Minimum of 50 characters.
                             </span>
-                          <span *ngIf="courseName.errors.pattern">
-                              Only characters are allowed.
-                            </span>
-                          <span *ngIf="courseName.errors.cannotContainSpace">
-                              {{courseName.errors.cannotContainSpace}}
-                            </span>
                         </div>
                       </div>
 
@@ -151,7 +145,12 @@
                         <label for="courseCategory">Course Category</label>
                         <select formControlName="courseCategory" id="courseCategory" name="courseCategory" class="form-control" required
                           >
-                          <option *ngFor="let coursecategory of courseCategoryObj">{{coursecategory.category}}</option>
+                          <option value="Frontend">Frontend</option>
+                          <option value="Backend">Backend</option>
+                          <option value="Business Analyst" selected>Business Analyst</option>
+                          <option value="Data Analyst">Data Analyst</option>
+                          <option value="Dev Ops">Dev Ops</option>
+                          <option value="Testing">Testing</option>
                         </select>
                       </div>
 
@@ -186,7 +185,7 @@
 
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addTraining()">Add Training</button>
+                <button type="button" [disabled]="addTrainingForm.invalid" class="btn btn-primary" data-dismiss="modal" (click)="addTraining()">Add Training</button>
               </div>
 
             </div>

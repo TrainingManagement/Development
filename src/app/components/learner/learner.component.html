@@ -39,8 +39,8 @@
             <td>{{learnerData.trainingName}}</td>
             <td>{{learnerData.courseCategory}}</td>
             <td>{{learnerData.trainer?.firstName}} {{learnerData.trainer?.lastName}}</td>
-            <td>{{learnerData.trainingType}}</td>
-            <td>{{learnerData.startTime}}</td>
+            <td>Mandatory</td>
+            <td>{{learnerData.startDate}}</td>
             <td>{{learnerData.endTime}}</td>
           </tr>
         </tbody>
@@ -71,7 +71,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Introduction to Business analysis</h4>
+            <h4 class="modal-title">Introduction to {{modalData?.trainingName}}</h4>
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
@@ -104,18 +104,23 @@
 
               <div class="col">
                 <div class="form-group">
-                  <label for="trainingType">Training Type</label>
-                  <input class="form-control " type="text" id="trainingType" [value]="modalData.trainingType" disabled />
+                  <label for="trainingType">Description</label>
+                  <input class="form-control " type="text" id="trainingType" [value]="modalData.description" disabled />
                 </div>
 
 
                 <div class="form-group">
                   <label for="startDate">Date</label>
-                  <input class="form-control " type="text" id="startDate"  [value]="modalData.startTime" disabled />
+                  <input class="form-control " type="text" id="startDate"  [value]="modalData.startDate" disabled />
                 </div>
 
                 <div class="form-group">
-                  <label for="addTime">Time</label>
+                  <label for="addTime">Start Time</label>
+                  <input class="form-control " type="time" id="addTime" [value]="modalData.startTime" disabled />
+                </div>
+
+                <div class="form-group">
+                  <label for="addTime">End Time</label>
                   <input class="form-control " type="time" id="addTime" [value]="modalData.endTime" disabled />
                 </div>
               </div>
@@ -123,11 +128,11 @@
           </div>
 
           <!-- Modal footer -->
-          <div class="modal-footer">
+          <!-- <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">
               Enroll
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export class TrainerGuardService extends BaseApp implements CanActivate{
     }
   
     canActivate(): boolean {
-      if (this.eventService.user.adminRole != true) {      
+      if (this.eventService.user.trainerRole != true) {      
         this.toastService.presentToastDanger('You are not Trainer');
         let roleType = sessionStorage.getItem('role'); 
         let url = '/home/' + roleType;

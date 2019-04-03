@@ -21,18 +21,24 @@ export class LearnerComponent extends BaseApp implements OnInit {
     super(injector);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getLearnerDashboard();
+   }
 
   ngAfterContentInit() {
     console.log('admin loaded');
     // TODO Api call to do
-    this.getLearnerDashboard();
+    // this.getLearnerDashboard();
   }
 
   getLearnerDashboardResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log('getLearnerDashboard objcet : ', data);
-      this.learnerObj = data.result;
+      this.learnerObj = [];
+      data.forEach(r => {
+        this.learnerObj.push(r.data())
+      });
+      // this.learnerObj = data;
     },
     fail: error => {
       console.log('getLearnerDashboard Error - ', error);
@@ -41,12 +47,11 @@ export class LearnerComponent extends BaseApp implements OnInit {
   };
 
   getLearnerDashboard() {
-    this.dashboardService.getLearnerDashboard(this.getLearnerDashboardResponse);
-    console.log('getLearnerDashboard form res', this.getLearnerDashboardResponse);
+    this.firebaseService.getTrainingLearner(this.eventService.user.skill, this.getLearnerDashboardResponse)
   }
 
-  openModal(learnerData){
+  openModal(learnerData) {
     this.modalData = learnerData;
-    console.log('modal data',this.modalData);
+    console.log('modal data', this.modalData);
   }
 }

@@ -18,8 +18,7 @@ export class EventService {
 
     this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_LOGGED_IN, (res) => {
       console.log('event emitted', res)
-      sessionStorage.setItem(APP_CONSTANTS.SESSION_TOKEN, res.result.token);
-      sessionStorage.setItem(APP_CONSTANTS.SESSION_USER, res.result.username);
+      sessionStorage.setItem(APP_CONSTANTS.SESSION_USER, res.email);
     });
 
     this.eventEmitter.on(APP_CONSTANTS.SESSION_USER_PROFILE, (res) => {
