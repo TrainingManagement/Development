@@ -7,6 +7,7 @@ import { CacheService } from '../services/cache.service';
 import { ToastService } from '../services/toast.service';
 import { WindowScrolling } from '../components/loading/WindowScrolling';
 import * as PATTERN from '../common/validations/pattern-constants';
+import { FirebaseService } from '../services/firebase/firebase-services';
 export class BaseApp {
 
     // this will help to share data within 
@@ -17,6 +18,7 @@ export class BaseApp {
     PATTERN_CONSTANTS: any;
     cache: CacheService;
     toastService: ToastService;
+    firebaseService: FirebaseService;
     loading = false;
     windowScrolling = new WindowScrolling();
     constructor(
@@ -29,6 +31,7 @@ export class BaseApp {
         this.eventService = injector.get(EventService);
         this.cache = injector.get(CacheService);
         this.toastService = injector.get(ToastService);
+        this.firebaseService = injector.get(FirebaseService);
     }
 
     presentLoading(data) {
@@ -45,8 +48,7 @@ export class BaseApp {
 
 export class TrainingErrorHandler implements ErrorHandler {
     handleError(error) {
-      console.log(error);
+        console.log(error);
     }
-  }
-  
-  
+}
+

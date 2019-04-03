@@ -64,7 +64,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
     },
     fail: (error) => {
       console.log("loginResponse Error - ", error);
-      this.toastService.presentToastDanger( error.error.message);
+      this.toastService.presentToastDanger(error.error.message);
     }
   }
 
@@ -74,6 +74,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
       console.log("profile objcet : ", data);
       this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_PROFILE, data.result);
       this.toastService.presentToastInfo('Login Successful');
+      this.firebaseService.updateProfile(data.result);
       this.router.navigate(['/home/learner'])
     },
     fail: (errorService) => {
@@ -84,9 +85,9 @@ export class LoginFormComponent extends BaseApp implements OnInit {
 
 
   login() {
-    this.authService.login(this.loginForm.value,this.loginResponse)
+    this.authService.login(this.loginForm.value, this.loginResponse)
     this.loginForm.reset();
-    console.log("login form res",this.loginForm.value);
+    console.log("login form res", this.loginForm.value);
   }
 
   getProfile() {
@@ -96,22 +97,22 @@ export class LoginFormComponent extends BaseApp implements OnInit {
   welcomeResponse = <IServiceResponse<any>>{
     success: (data: any) => {
       console.log("welcome objcet : ", data);
-      
+
     },
     fail: (errorService) => {
       console.log("welcome Error - ", errorService);
       this.toastService.presentToastDanger('Something went wrong, please try again later.');
     }
   }
-  
-   welcomeData = 
-  {
-    email:"ashu.dhiman@capco.com",
-    userType:"Trainer"
-}
+
+  welcomeData =
+    {
+      email: "ashu.dhiman@capco.com",
+      userType: "Trainer"
+    }
 
   welcome() {
-    this.authService.welcome(this.welcomeData,this.welcomeResponse)
+    this.authService.welcome(this.welcomeData, this.welcomeResponse)
   }
 
   // addUserResponse = <IServiceResponse<any>>{
@@ -124,12 +125,12 @@ export class LoginFormComponent extends BaseApp implements OnInit {
   //     this.toastService.presentToastDanger( error.error.message);
   //   }
   // }
-  
+
   // addUser() {
   //   this.authService.addUser(this.welcomeData,this.addUserResponse);
   //   //console.log("addUser form res",this.addUserForm.value);
   //   //this.addUserForm.reset();
-    
+
   // }
 
 }
