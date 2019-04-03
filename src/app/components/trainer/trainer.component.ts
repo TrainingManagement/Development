@@ -42,7 +42,8 @@ export class TrainerComponent extends BaseApp implements OnInit {
       trainerName: [''],
       date: [''],
       startTime: [''],
-      endTime: []
+      endTime: [''],
+      completionStatus: ['']
     });
   }
 
@@ -82,8 +83,26 @@ export class TrainerComponent extends BaseApp implements OnInit {
     this.dashboardService.getTrainerDashboard(this.getTrainerDashboardResponse);
   }
 
-  updateTrainer()
+  getupdateTrainerResponse = <IServiceResponse<any>>{
+    success: (data: any) => {
+      console.log('getupdateTrainer objcet : ', data);
+    },
+    fail: error => {
+      console.log('getupdateTrainer Error - ', error);
+      this.toastService.presentToastDanger(error.error.message);
+    },
+  };
+
+  updateTrainerObj ={
+    // date : this.date.value,
+    // startTime: this.trainerForm.startTime.value,
+    // endTime: this.endTime,
+    // completionStatus:this.completionStatus
+  }
+
+  getUpdateTrainer()
   {
+    this.dashboardService.getUpdateTrainer(this.trainerForm.value,this.getupdateTrainerResponse);
     console.log("Update",this.trainerForm.value);
   }
 }
