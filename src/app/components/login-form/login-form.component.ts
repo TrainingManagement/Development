@@ -74,7 +74,7 @@ export class LoginFormComponent extends BaseApp implements OnInit {
       console.log("profile objcet : ", data);
       this.eventService.eventEmitter.emit(this.CONSTANTS.SESSION_USER_PROFILE, data.result);
       this.toastService.presentToastInfo('Login Successful');
-      this.firebaseService.updateProfile(data.result);
+      //this.firebaseService.updateProfile(data.result);
       this.router.navigate(['/home/learner'])
     },
     fail: (errorService) => {
