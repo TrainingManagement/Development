@@ -32,7 +32,7 @@ export class DashboardService extends BaseApp {
                 this.httpService.get(this.URL_CONSTANTS.VIEW_DASHBOARD_LEARNER +`${username}`, serviceResponse);
               }
 
-              getUpdateTrainer(serviceResponse: IServiceResponse<any>){
-
+              getUpdateTrainer(body: any, serviceResponse: IServiceResponse<any>){
+                this.httpService.post(this.URL_CONSTANTS.UPDATE_TRAINER_URL, serviceResponse, body);
               }
 }
