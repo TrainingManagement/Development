@@ -86,7 +86,6 @@ export class AdminComponent extends BaseApp implements OnInit {
           Validators.required,
           Validators.maxLength(70),
           Validators.pattern(this.PATTERN_CONSTANTS.NAME_PATTERN),
-          CustomValidators.cannotContainSpace,
         ],
       ],
       courseCategory: [''],

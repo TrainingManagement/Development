@@ -10,7 +10,7 @@
       <div class="col-sm-4  mx-auto" data-toggle="modal" data-target="#myModal2">
           <div class="card tile-box shadow mx-auto">
             <i class="fa fa-users fa-2x p-2" aria-hidden="true"></i>
-            <label for="AddUser" class="txt">Manage User</label>
+            <label for="AddUser" class="txt">Manage Users</label>
           </div>
 
       </div>
@@ -140,10 +140,7 @@
                             </span>
                           <span *ngIf="courseName.errors.pattern">
                               Only characters are allowed.
-                            </span>
-                          <span *ngIf="courseName.errors.cannotContainSpace">
-                              {{courseName.errors.cannotContainSpace}}
-                            </span>
+                            </span>                          
                         </div>
                       </div>
 

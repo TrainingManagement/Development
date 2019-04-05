@@ -17,18 +17,19 @@ import { TrainingData } from '../../common/models/training-data.class';
   styleUrls: ["./trainer.component.scss"]
 })
 export class TrainerComponent extends BaseApp implements OnInit {
+  trainerObj: TrainingData[] = [];
+  modalData: TrainingData = new TrainingData();
 
   trainerForm: FormGroup;
   trainingList:TrainingData[]=[];
-  trainingCategory:any
+  // trainingCategory:any
   completionStatus:any
   constructor(private formBuilder: FormBuilder,
     private dashboardService:DashboardService, injector: Injector) {
     super(injector);
     this.trainerForm = this.formBuilder.group({
       trainingName: [
-        "",
-        [
+        "", [
           Validators.required,
           Validators.maxLength(70),
           CustomValidators.cannotContainSpace
@@ -38,7 +39,7 @@ export class TrainerComponent extends BaseApp implements OnInit {
         "",
         [Validators.required, CustomValidators.cannotContainSpace]
       ],
-      trainingCategory: [''],
+      courseCategory: [''],
       trainerName: [''],
       date: [''],
       startTime: [''],
@@ -62,6 +63,10 @@ export class TrainerComponent extends BaseApp implements OnInit {
 
   get trainingType() {
     return this.trainerForm.controls["trainingType"];
+  }
+
+  get courseCategory(){
+    return this.trainerForm.controls["courseCategory"];
   }
 
   applyClass(control) {
@@ -92,17 +97,38 @@ export class TrainerComponent extends BaseApp implements OnInit {
       this.toastService.presentToastDanger(error.error.message);
     },
   };
-
-  updateTrainerObj ={
-    // date : this.date.value,
-    // startTime: this.trainerForm.startTime.value,
-    // endTime: this.endTime,
-    // completionStatus:this.completionStatus
-  }
-
+      
   getUpdateTrainer()
   {
-    this.dashboardService.getUpdateTrainer(this.trainerForm.value,this.getupdateTrainerResponse);
+  let updateTrainerObj = {
+    date : this.trainerForm.controls['date'].value,
+    startTime: this.trainerForm.controls['startTime'].value,
+    endTime: this.trainerForm.controls['endTime'].value,
+    completionStatus:this.trainerForm.controls['completionStatus'].value,
+    courseName: this.trainerForm.controls['trainingName'].value,
+    trainerEmail:sessionStorage.getItem('username')
+  }
+
+     this.dashboardService.getUpdateTrainer(updateTrainerObj,this.getupdateTrainerResponse);
     console.log("Update",this.trainerForm.value);
   }
+
+  openModal(training){
+    this.modalData = training;
+    console.log('trainer modal data',this.modalData);
+    this.trainingName.setValue(this.modalData.trainingName)
+    this.courseCategory.setValue(this.modalData.courseCategory)
+  }
+
+  formatDate = date => {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  };
 }

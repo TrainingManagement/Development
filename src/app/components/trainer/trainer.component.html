@@ -41,11 +41,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-toggle="modal" data-target="#myModal" *ngFor="let training of trainingList">
+          <tr data-toggle="modal" data-target="#myModal" *ngFor="let training of trainingList" (click)="openModal(training)">
             <td>{{training.trainingName}}</td>
             <td>{{training.courseCategory}}</td>
+            <td>{{training.date}}</td>
             <td>{{training.startTime}}</td>
-            <td>{{training.endTime}}</td>
           </tr>
         </tbody>
       </table>
@@ -87,13 +87,14 @@
               <div class="col">
                 <div class="form-group">
                   <label for="trainingName">Training Name</label>
-                  <input
-                    formControlName="trainingName"
-                    class="form-control"
-                    [ngClass]="applyClass(trainingName)"
+                  <input                    
                     type="text"
                     id="trainingName"
-                    placeholder="Training Name"
+                    class="form-control"
+                    formControlName="trainingName"
+                    [ngClass]="applyClass(trainingName)"
+                    [value] = "modalData.trainingName"  
+                    disabled                  
                   />
                   <div
                     id="training-name-error"
@@ -114,20 +115,21 @@
 
                 <div class="form-group">
                   <label for="trainingCategory">Training Category</label>
-                  <select
-                    id="trainingCategory"
-                    [ngModelOptions]="{ standalone: true }"
+                  <input
+                    id="trainingCategory"                    
                     name="trainingCategory"
                     class="form-control"
                     required
-                    [(ngModel)]="trainingCategory"
+                    formControlName = "courseCategory"
+                    [value] = "modalData.courseCategory"  
+                    disabled
                   >
-                    <option value="frontend">Frontend</option>
+                    <!-- <option value="frontend">Frontend</option>
                     <option value="backend">Backend</option>
                     <option value="ba">BA</option>
                     <option value="testing">Testing</option>
                     <option value="devops">DEV OPS</option>
-                  </select>
+                  </select> -->
                 </div>
 
                 <div class="form-group">
@@ -137,6 +139,7 @@
                     type="text"
                     id="trainerName"
                     placeholder="Trainer Name"
+                    [value] = "modalData.trainer?.firstName"
                     disabled
                   />
                 </div>
@@ -161,6 +164,8 @@
                     id="trainingType"
                     placeholder="Training Type"
                     [ngClass]="applyClass(trainingType)"
+                    value = "Mandatory" 
+                    disabled 
                   />
                   <div
                     id="training-name-error"
@@ -186,18 +191,10 @@
                     type="date"
                     id="date"
                     placeholder="Date"
+                    [value] = "modalData.date"  
                   />
                 </div>
-
-                <!-- <div class="form-group">
-                  <label for="endDate">End Date</label>
-                  <input
-                    class="form-control "
-                    type="date"
-                    id="endDate"
-                    placeholder="End Date"
-                  />
-                </div> -->
+               
 
                 <div class="form-group">
                   <label for="startTime">Start Time</label>
@@ -207,6 +204,7 @@
                     type="time"
                     id="startTime"
                     placeholder="Start Time"
+                    [value] = "modalData.startTime"  
                   />
                 </div>
 
@@ -218,18 +216,19 @@
                     type="time"
                     id="endTime"
                     placeholder="End Time"
+                    [value] = "modalData.endTime"  
                   />
                 </div>
 
                 <div class="form-group">
                   <label for="completionStatus">Completion Status</label>
                   <select
-                    id="completionStatus"
-                    [ngModelOptions]="{ standalone: true }"
+                    id="completionStatus"                    
                     name="completionStatus"
                     class="form-control"
+                    formControlName = "completionStatus"
                     required
-                    [(ngModel)]="completionStatus"
+                    [value] = "modalData.completionStatus"                     
                   >
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -241,7 +240,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="getUpdateTrainer()">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="getUpdateTrainer(training)">
               Update
             </button>
           </div>

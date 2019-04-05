@@ -7,4 +7,7 @@ export class TrainingData {
   trainer:any;
   trainingName: string;
   trainingType: string;
+  startTime: string;
+  endTime: string;
+  date: string;
 }
